@@ -1,5 +1,5 @@
 //
-//  Message.swift
+//  Constants.swift
 //  MetaCom-iOS
 //
 //  Created by Artem Chernenkiy on 18.05.17.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct Constants {
+	
+}

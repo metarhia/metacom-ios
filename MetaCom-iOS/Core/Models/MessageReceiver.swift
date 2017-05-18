@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+/**
+	Protocol that handles message receiving.
+*/
+protocol MessageReceiver: class {
+	
+	func didReceive(_ message: Message)
+}
