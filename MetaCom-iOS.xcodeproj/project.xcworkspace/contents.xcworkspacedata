@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MetaCom.xcodeproj">
+      location = "self:MetaCom-iOS.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  MetaCom
+//  MetaCom-iOS
 //
-//  Created by iKing on 11.05.17.
-//  Copyright © 2017 iKing. All rights reserved.
+//  Created by Artem Chernenkiy on 17.05.17.
+//  Copyright © 2017 Metarhia. All rights reserved.
 //
 
 import UIKit

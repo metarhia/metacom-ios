@@ -7,25 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F8A15391EC481290058775A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A15381EC481290058775A /* AppDelegate.swift */; };
-		8F8A153B1EC481290058775A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A153A1EC481290058775A /* ViewController.swift */; };
-		8F8A153E1EC481290058775A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A153C1EC481290058775A /* Main.storyboard */; };
-		8F8A15401EC481290058775A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A153F1EC481290058775A /* Assets.xcassets */; };
-		8F8A15431EC481290058775A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A15411EC481290058775A /* LaunchScreen.storyboard */; };
+		142318E01ECCE14B00F63687 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318DF1ECCE14B00F63687 /* AppDelegate.swift */; };
+		142318E51ECCE14B00F63687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142318E31ECCE14B00F63687 /* Main.storyboard */; };
+		142318E71ECCE14B00F63687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142318E61ECCE14B00F63687 /* Assets.xcassets */; };
+		142318EA1ECCE14B00F63687 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142318E81ECCE14B00F63687 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8F8A15351EC481290058775A /* MetaCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F8A15381EC481290058775A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F8A153A1EC481290058775A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8F8A153D1EC481290058775A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8F8A153F1EC481290058775A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8F8A15421EC481290058775A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8F8A15441EC481290058775A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaCom-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		142318DF1ECCE14B00F63687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		142318E41ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		142318E61ECCE14B00F63687 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Supporting/Assets.xcassets; sourceTree = "<group>"; };
+		142318E91ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		142318EB1ECCE14B00F63687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Supporting/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8F8A15321EC481290058775A /* Frameworks */ = {
+		142318D91ECCE14B00F63687 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -35,73 +33,118 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8F8A152C1EC481290058775A = {
+		142318D31ECCE14B00F63687 = {
 			isa = PBXGroup;
 			children = (
-				8F8A15371EC481290058775A /* MetaCom */,
-				8F8A15361EC481290058775A /* Products */,
+				142318DE1ECCE14B00F63687 /* MetaCom-iOS */,
+				142318DD1ECCE14B00F63687 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8F8A15361EC481290058775A /* Products */ = {
+		142318DD1ECCE14B00F63687 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8F8A15351EC481290058775A /* MetaCom.app */,
+				142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F8A15371EC481290058775A /* MetaCom */ = {
+		142318DE1ECCE14B00F63687 /* MetaCom-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				8F8A15381EC481290058775A /* AppDelegate.swift */,
-				8F8A153A1EC481290058775A /* ViewController.swift */,
-				8F8A153C1EC481290058775A /* Main.storyboard */,
-				8F8A153F1EC481290058775A /* Assets.xcassets */,
-				8F8A15411EC481290058775A /* LaunchScreen.storyboard */,
-				8F8A15441EC481290058775A /* Info.plist */,
+				142318DF1ECCE14B00F63687 /* AppDelegate.swift */,
+				142318F41ECCE47100F63687 /* Core */,
+				142319001ECCF2B300F63687 /* Extensions */,
+				142318F31ECCE1CE00F63687 /* Supporting */,
+				142318F11ECCE1A600F63687 /* Storyboards */,
+				142318F21ECCE1B300F63687 /* ViewControllers */,
 			);
-			path = MetaCom;
+			path = "MetaCom-iOS";
+			sourceTree = "<group>";
+		};
+		142318F11ECCE1A600F63687 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				142318E31ECCE14B00F63687 /* Main.storyboard */,
+				142318E81ECCE14B00F63687 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		142318F21ECCE1B300F63687 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		142318F31ECCE1CE00F63687 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				142318EB1ECCE14B00F63687 /* Info.plist */,
+				142318E61ECCE14B00F63687 /* Assets.xcassets */,
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
+		142318F41ECCE47100F63687 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				142319031ECDD8FF00F63687 /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		142319001ECCF2B300F63687 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		142319031ECDD8FF00F63687 /* Models */ = {
+			isa = PBXGroup;
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8F8A15341EC481290058775A /* MetaCom */ = {
+		142318DB1ECCE14B00F63687 /* MetaCom-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8F8A15471EC481290058775A /* Build configuration list for PBXNativeTarget "MetaCom" */;
+			buildConfigurationList = 142318EE1ECCE14B00F63687 /* Build configuration list for PBXNativeTarget "MetaCom-iOS" */;
 			buildPhases = (
-				8F8A15311EC481290058775A /* Sources */,
-				8F8A15321EC481290058775A /* Frameworks */,
-				8F8A15331EC481290058775A /* Resources */,
+				142318D81ECCE14B00F63687 /* Sources */,
+				142318D91ECCE14B00F63687 /* Frameworks */,
+				142318DA1ECCE14B00F63687 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MetaCom;
-			productName = MetaCom;
-			productReference = 8F8A15351EC481290058775A /* MetaCom.app */;
+			name = "MetaCom-iOS";
+			productName = "MetaCom-iOS";
+			productReference = 142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8F8A152D1EC481290058775A /* Project object */ = {
+		142318D41ECCE14B00F63687 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = iKing;
+				ORGANIZATIONNAME = Metarhia;
 				TargetAttributes = {
-					8F8A15341EC481290058775A = {
+					142318DB1ECCE14B00F63687 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = KFY32PE2QK;
+						DevelopmentTeam = SGGE7G6CX5;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 8F8A15301EC481290058775A /* Build configuration list for PBXProject "MetaCom" */;
+			buildConfigurationList = 142318D71ECCE14B00F63687 /* Build configuration list for PBXProject "MetaCom-iOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -109,62 +152,60 @@
 				en,
 				Base,
 			);
-			mainGroup = 8F8A152C1EC481290058775A;
-			productRefGroup = 8F8A15361EC481290058775A /* Products */;
+			mainGroup = 142318D31ECCE14B00F63687;
+			productRefGroup = 142318DD1ECCE14B00F63687 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8F8A15341EC481290058775A /* MetaCom */,
+				142318DB1ECCE14B00F63687 /* MetaCom-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8F8A15331EC481290058775A /* Resources */ = {
+		142318DA1ECCE14B00F63687 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F8A15431EC481290058775A /* LaunchScreen.storyboard in Resources */,
-				8F8A15401EC481290058775A /* Assets.xcassets in Resources */,
-				8F8A153E1EC481290058775A /* Main.storyboard in Resources */,
+				142318EA1ECCE14B00F63687 /* LaunchScreen.storyboard in Resources */,
+				142318E71ECCE14B00F63687 /* Assets.xcassets in Resources */,
+				142318E51ECCE14B00F63687 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8F8A15311EC481290058775A /* Sources */ = {
+		142318D81ECCE14B00F63687 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				8F8A153B1EC481290058775A /* ViewController.swift in Sources */,
-				8F8A15391EC481290058775A /* AppDelegate.swift in Sources */,
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8F8A153C1EC481290058775A /* Main.storyboard */ = {
+		142318E31ECCE14B00F63687 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8F8A153D1EC481290058775A /* Base */,
+				142318E41ECCE14B00F63687 /* Base */,
 			);
 			name = Main.storyboard;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		8F8A15411EC481290058775A /* LaunchScreen.storyboard */ = {
+		142318E81ECCE14B00F63687 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8F8A15421EC481290058775A /* Base */,
+				142318E91ECCE14B00F63687 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8F8A15451EC481290058775A /* Debug */ = {
+		142318EC1ECCE14B00F63687 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -211,10 +252,11 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		8F8A15461EC481290058775A /* Release */ = {
+		142318ED1ECCE14B00F63687 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -253,31 +295,32 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		8F8A15481EC481290058775A /* Debug */ = {
+		142318EF1ECCE14B00F63687 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KFY32PE2QK;
-				INFOPLIST_FILE = MetaCom/Info.plist;
+				DEVELOPMENT_TEAM = SGGE7G6CX5;
+				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iKing.MetaCom;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.metarhia.MetaCom-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		8F8A15491EC481290058775A /* Release */ = {
+		142318F01ECCE14B00F63687 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KFY32PE2QK;
-				INFOPLIST_FILE = MetaCom/Info.plist;
+				DEVELOPMENT_TEAM = SGGE7G6CX5;
+				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iKing.MetaCom;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.metarhia.MetaCom-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -286,24 +329,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8F8A15301EC481290058775A /* Build configuration list for PBXProject "MetaCom" */ = {
+		142318D71ECCE14B00F63687 /* Build configuration list for PBXProject "MetaCom-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F8A15451EC481290058775A /* Debug */,
-				8F8A15461EC481290058775A /* Release */,
+				142318EC1ECCE14B00F63687 /* Debug */,
+				142318ED1ECCE14B00F63687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F8A15471EC481290058775A /* Build configuration list for PBXNativeTarget "MetaCom" */ = {
+		142318EE1ECCE14B00F63687 /* Build configuration list for PBXNativeTarget "MetaCom-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F8A15481EC481290058775A /* Debug */,
-				8F8A15491EC481290058775A /* Release */,
+				142318EF1ECCE14B00F63687 /* Debug */,
+				142318F01ECCE14B00F63687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8F8A152D1EC481290058775A /* Project object */;
+	rootObject = 142318D41ECCE14B00F63687 /* Project object */;
 }
