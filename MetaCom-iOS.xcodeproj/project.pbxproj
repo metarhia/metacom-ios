@@ -29,21 +29,21 @@
 		142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaCom-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		142318DF1ECCE14B00F63687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		142318E41ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		142318E61ECCE14B00F63687 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Supporting/Assets.xcassets; sourceTree = "<group>"; };
+		142318E61ECCE14B00F63687 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		142318E91ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		142318EB1ECCE14B00F63687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Supporting/Info.plist; sourceTree = "<group>"; };
-		142318F51ECCE99C00F63687 /* UserConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserConnectionManager.swift; path = Models/UserConnectionManager.swift; sourceTree = "<group>"; };
-		142318F71ECCE9AE00F63687 /* UserConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserConnection.swift; path = Models/UserConnection.swift; sourceTree = "<group>"; };
-		142318F91ECCE9BE00F63687 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileManager.swift; path = Models/FileManager.swift; sourceTree = "<group>"; };
-		142318FB1ECCE9C700F63687 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatManager.swift; path = Models/ChatManager.swift; sourceTree = "<group>"; };
-		142318FE1ECCE9DA00F63687 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Chat.swift; path = Models/Chat.swift; sourceTree = "<group>"; };
+		142318EB1ECCE14B00F63687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142318F51ECCE99C00F63687 /* UserConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConnectionManager.swift; sourceTree = "<group>"; };
+		142318F71ECCE9AE00F63687 /* UserConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConnection.swift; sourceTree = "<group>"; };
+		142318F91ECCE9BE00F63687 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		142318FB1ECCE9C700F63687 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		142318FE1ECCE9DA00F63687 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		142319011ECCF2F800F63687 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		142319041ECDDE0900F63687 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
-		142319061ECDEA2000F63687 /* MessageReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageReceiver.swift; path = Models/MessageReceiver.swift; sourceTree = "<group>"; };
-		8F9E9FA21ECEEC8F004F5CD1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ViewControllers/MainViewController.swift; sourceTree = "<group>"; };
-		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilesViewController.swift; path = ViewControllers/FilesViewController.swift; sourceTree = "<group>"; };
-		8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ViewControllers/ChatViewController.swift; sourceTree = "<group>"; };
-		8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewChatViewController.swift; path = ViewControllers/NewChatViewController.swift; sourceTree = "<group>"; };
+		142319041ECDDE0900F63687 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		142319061ECDEA2000F63687 /* MessageReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceiver.swift; sourceTree = "<group>"; };
+		8F9E9FA21ECEEC8F004F5CD1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
+		8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 				142318E31ECCE14B00F63687 /* Main.storyboard */,
 				142318E81ECCE14B00F63687 /* LaunchScreen.storyboard */,
 			);
-			name = Storyboards;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		142318F21ECCE1B300F63687 /* ViewControllers */ = {
@@ -104,7 +104,7 @@
 				8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */,
 				8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */,
 			);
-			name = ViewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		142318F31ECCE1CE00F63687 /* Supporting */ = {
@@ -113,7 +113,7 @@
 				142318EB1ECCE14B00F63687 /* Info.plist */,
 				142318E61ECCE14B00F63687 /* Assets.xcassets */,
 			);
-			name = Supporting;
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 		142318F41ECCE47100F63687 /* Core */ = {
@@ -142,7 +142,7 @@
 				142318F51ECCE99C00F63687 /* UserConnectionManager.swift */,
 				142319061ECDEA2000F63687 /* MessageReceiver.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,8 +243,8 @@
 				142318E41ECCE14B00F63687 /* Base */,
 			);
 			name = Main.storyboard;
-			path = Storyboards;
-			sourceTree = "<group>";
+			path = "MetaCom-iOS/Storyboards";
+			sourceTree = SOURCE_ROOT;
 		};
 		142318E81ECCE14B00F63687 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -252,7 +252,6 @@
 				142318E91ECCE14B00F63687 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
