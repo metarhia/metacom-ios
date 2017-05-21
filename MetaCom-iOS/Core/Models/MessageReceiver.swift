@@ -13,5 +13,7 @@ import Foundation
 */
 protocol MessageReceiver: class {
 	
+	func didJoin()
+	func didLeave()
 	func didReceive(_ message: Message)
 }

@@ -30,7 +30,7 @@ class Message {
 			- type: message type.
 			- content: message contents.
 	*/
-	init(_ type: MessageType, _ content: String, _ isIncoming: Bool = true) {
+	init(type: MessageType, content: String, isIncoming: Bool = true) {
 		
 		self.type = type
 		self.content = content
