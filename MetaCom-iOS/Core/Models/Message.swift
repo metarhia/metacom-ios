@@ -14,14 +14,14 @@ import Foundation
 class Message {
 	
 	/**
-		Type of the concrete message.
+		`Message`'s content.
 	*/
-	public enum MessageType: UInt {
-		case text = 0, file
+	public enum Content {
+		case text(String)
+		case file(Data)
 	}
 	
-	public let type: MessageType
-	public let content: String
+	public let content: Content
 	public let isIncoming: Bool
 	
 	/**
@@ -30,10 +30,8 @@ class Message {
 			- type: message type.
 			- content: message contents.
 	*/
-	init(_ type: MessageType, _ content: String, _ isIncoming: Bool = true) {
-		
-		self.type = type
+	init(content: Content, incoming: Bool = true) {
 		self.content = content
-		self.isIncoming = isIncoming
+		self.isIncoming = incoming
 	}
 }
