@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGq-pz-TVy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--MetaCom-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="MetaCom" id="BYZ-38-t0r" customClass="MainViewController" customModule="MetaCom_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MetaCom" id="BYZ-38-t0r" customClass="ConnectionViewController" customModule="MetaCom_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,19 +24,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="gRX-Nv-JAb">
-                                <rect key="frame" x="112.5" y="164" width="150" height="150"/>
+                                <rect key="frame" x="112.5" y="120" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gRX-Nv-JAb" secondAttribute="height" multiplier="1:1" id="7Ce-LN-kI9"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MetaCom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-ro-jze">
-                                <rect key="frame" x="141.5" y="355" width="92" height="25.5"/>
+                                <rect key="frame" x="141.5" y="311" width="92" height="25.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="se1-8C-zA9">
-                                <rect key="frame" x="60" y="420.5" width="255" height="68"/>
+                                <rect key="frame" x="60" y="376.5" width="255" height="68"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="host" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-49-q5S">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="30"/>
@@ -53,7 +53,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfj-5I-109">
-                                <rect key="frame" x="163" y="528.5" width="49" height="30"/>
+                                <rect key="frame" x="163" y="484.5" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submit" destination="BYZ-38-t0r" eventType="touchUpInside" id="2B6-04-KYy"/>
@@ -78,7 +78,7 @@
                     <connections>
                         <outlet property="hostTextField" destination="2Ib-49-q5S" id="OMM-F4-vdv"/>
                         <outlet property="portTextField" destination="uHg-qc-BlR" id="6B2-9T-Vny"/>
-                        <segue destination="c0u-BN-ZGB" kind="show" identifier="submit" id="tNh-rn-NDO"/>
+                        <segue destination="c0u-BN-ZGB" kind="presentation" identifier="submit" modalTransitionStyle="flipHorizontal" id="tNh-rn-NDO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAG-T1-odB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2840.8000000000002" y="364.7676161919041"/>
+            <point key="canvasLocation" x="1937" y="1298"/>
         </scene>
         <!--Files-->
         <scene sceneID="iJu-94-8td">
@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXL-xJ-DhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2840.8000000000002" y="-290.10494752623691"/>
+            <point key="canvasLocation" x="1937" y="643"/>
         </scene>
         <!--127.0.0.1:8080-->
         <scene sceneID="a8d-id-U79">
@@ -159,7 +159,7 @@
                     <navigationItem key="navigationItem" title="127.0.0.1:8080" id="IGd-Ep-un2">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Noa-jI-O88">
                             <connections>
-                                <segue destination="iDn-aU-u4e" kind="unwind" unwindAction="unwindToMain:" id="MR6-iV-ibp"/>
+                                <segue destination="iDn-aU-u4e" kind="unwind" unwindAction="unwindToConnection:" id="cn7-dx-dgd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -176,7 +176,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wi8-Dc-OAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iDn-aU-u4e" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1888.8" y="37.331334332833585"/>
+            <point key="canvasLocation" x="985" y="970"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Urg-Fz-T8c">
@@ -192,7 +192,20 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IlI-7d-wv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="36"/>
+            <point key="canvasLocation" x="116" y="968"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="b8J-3q-eg8">
+            <objects>
+                <splitViewController id="dGq-pz-TVy" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="masterViewController" id="p4M-5w-aPp"/>
+                        <segue destination="c0u-BN-ZGB" kind="relationship" relationship="detailViewController" id="pYO-45-LxP"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDa-Gf-PTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-969" y="510"/>
         </scene>
     </scenes>
     <resources>
@@ -202,4 +215,7 @@
         <image name="logo" width="228" height="228"/>
         <image name="upload" width="45" height="59"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tNh-rn-NDO"/>
+    </inferredMetricsTieBreakers>
 </document>

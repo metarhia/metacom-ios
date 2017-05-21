@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  ConnectionViewController.swift
 //  MetaCom-iOS
 //
 //  Created by iKing on 19.05.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class ConnectionViewController: UIViewController {
 	
 	@IBOutlet weak var hostTextField: UITextField!
 	@IBOutlet weak var portTextField: UITextField!
@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
 		performSegue(withIdentifier: "submit", sender: nil)
 	}
 	
-	@IBAction func unwindToMain(_ segue: UIStoryboardSegue) {
+	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
 		
 	}
 
@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension MainViewController: UITextFieldDelegate {
+extension ConnectionViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let nextTag = textField.tag + 1;
