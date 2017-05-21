@@ -14,8 +14,8 @@
 		142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318F51ECCE99C00F63687 /* UserConnectionManager.swift */; };
 		142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318F71ECCE9AE00F63687 /* UserConnection.swift */; };
 		142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318F91ECCE9BE00F63687 /* FileManager.swift */; };
-		142318FC1ECCE9C700F63687 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FB1ECCE9C700F63687 /* ChatManager.swift */; };
-		142318FF1ECCE9DA00F63687 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FE1ECCE9DA00F63687 /* Chat.swift */; };
+		142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FB1ECCE9C700F63687 /* ChatRoomManager.swift */; };
+		142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FE1ECCE9DA00F63687 /* ChatRoom.swift */; };
 		142319021ECCF2F800F63687 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319011ECCF2F800F63687 /* Constants.swift */; };
 		142319051ECDDE0900F63687 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319041ECDDE0900F63687 /* Message.swift */; };
 		142319071ECDEA2000F63687 /* MessageReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319061ECDEA2000F63687 /* MessageReceiver.swift */; };
@@ -35,8 +35,8 @@
 		142318F51ECCE99C00F63687 /* UserConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConnectionManager.swift; sourceTree = "<group>"; };
 		142318F71ECCE9AE00F63687 /* UserConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConnection.swift; sourceTree = "<group>"; };
 		142318F91ECCE9BE00F63687 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		142318FB1ECCE9C700F63687 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		142318FE1ECCE9DA00F63687 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		142318FB1ECCE9C700F63687 /* ChatRoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomManager.swift; sourceTree = "<group>"; };
+		142318FE1ECCE9DA00F63687 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		142319011ECCF2F800F63687 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		142319041ECDDE0900F63687 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		142319061ECDEA2000F63687 /* MessageReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceiver.swift; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 		142319031ECDD8FF00F63687 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				142318FE1ECCE9DA00F63687 /* Chat.swift */,
-				142318FB1ECCE9C700F63687 /* ChatManager.swift */,
+				142318FE1ECCE9DA00F63687 /* ChatRoom.swift */,
+				142318FB1ECCE9C700F63687 /* ChatRoomManager.swift */,
 				142318F91ECCE9BE00F63687 /* FileManager.swift */,
 				142319041ECDDE0900F63687 /* Message.swift */,
 				142318F71ECCE9AE00F63687 /* UserConnection.swift */,
@@ -220,8 +220,8 @@
 			files = (
 				142319071ECDEA2000F63687 /* MessageReceiver.swift in Sources */,
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
-				142318FC1ECCE9C700F63687 /* ChatManager.swift in Sources */,
-				142318FF1ECCE9DA00F63687 /* Chat.swift in Sources */,
+				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
+				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
 				142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */,
