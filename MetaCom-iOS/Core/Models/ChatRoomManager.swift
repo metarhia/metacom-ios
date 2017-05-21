@@ -1,5 +1,5 @@
 //
-//  ChatManager.swift
+//  ChatRoomManager.swift
 //  MetaCom-iOS
 //
 //  Created by Artem Chernenkiy on 17.05.17.
@@ -11,10 +11,10 @@ import Foundation
 /**
 	A type representing a chat conversation manager.
 */
-final class ChatManager {
+final class ChatRoomManager {
 	
 	public let connection: Connection
-	private var chats: Array<Chat> = []
+	private var chats: Array<ChatRoom> = []
 	
 	/**
 		Create new `ChatManager` instance.
@@ -31,10 +31,21 @@ final class ChatManager {
 			- id: chat name.
 			- completion: callback on completion.
 	*/
-	func add(_ id: String, completion: (Error?) -> Void) {
+	func add(id: String = Constants.roomDefault, completion: Callback? = nil) {
 		
-		let chat = Chat(id, connection)
-		chats.append(chat)
+		let chat = ChatRoom(id, connection)
+		chat.join { (_, error) in
+			
+			defer {
+				completion?(nil, error)
+			}
+			
+			guard error == nil else {
+				return
+			}
+			
+			self.chats.append(chat)
+		}
 	}
 	
 	/**
@@ -42,13 +53,25 @@ final class ChatManager {
 		- parameters:
 			- id: chat name.
 	*/
-	func remove(_ id: String) {
+	func remove(_ id: String, completion: Callback? = nil) {
 		
 		guard let index = chats.index(where: { $0.id == id }) else {
 			return
 		}
 		
-		chats.remove(at: index)
+		let chat = chats[index]
+		chat.leave { (_, error) in
+			
+			defer {
+				completion?(nil, error)
+			}
+			
+			guard error == nil else {
+				return
+			}
+			
+			self.chats.remove(at: index)
+		}
 	}
 	
 	/**
@@ -56,7 +79,7 @@ final class ChatManager {
 		- parameters:
 			- id: chat name.
 	*/
-	func get(by id: String) -> Chat? {
+	func get(by id: String) -> ChatRoom? {
 		
 		return (chats.filter { $0.id == id }).first
 	}

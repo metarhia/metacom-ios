@@ -8,9 +8,6 @@
 
 import Foundation
 
-// MARK: - Stub.
-protocol Connection { }
-
 /**
 	A type representing a manager for user connections to various server hosts and ports.
 */
@@ -34,18 +31,13 @@ final class UserConnectionManager {
 		- parameters: 
 			- host: server host.
 			- port: server port.
-			- completion: callback on completion.
 	*/
-	func add(_ host: String, _ port: Int, _ completion: (Error?) -> Void) {
+	func add(host: String, port: Int) {
 		
 		let id = (userConnections.last?.id ?? -1) + 1
-		
-		// TODO: Implement JSTP transport
-		let transportConnection: (Any)? = nil
-		let connection = UserConnection(id, transportConnection as! Connection)
+		let connection = UserConnection(id: id, host: host, port: port)
 		
 		userConnections.append(connection)
-		completion(nil)
 	}
 	
 	/**

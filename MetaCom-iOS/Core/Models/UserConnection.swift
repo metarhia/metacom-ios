@@ -7,29 +7,76 @@
 //
 
 import Foundation
+import JSTP
+
+typealias Event = JSTP.Event
+typealias Callback = JSTP.Callback
+typealias Connection = JSTP.Connection
+typealias Credentials = JSTP.Credentials
+typealias Configuration = JSTP.Configuration
+typealias ConnectionDelegate = JSTP.ConnectionDelegate
 
 /**
 	A type representing a user in the anonymous chat.
 */
 final class UserConnection {
 	
+	private let config: Configuration!
+	fileprivate var connection: Connection!
+	
 	public let id: Int
-	public let connection: Connection
-	public let chatManager: ChatManager
-	public let fileManager: FileManager
+	private(set) var chatManager: ChatRoomManager!
+	private(set) var fileManager: FileManager!
 	
 	/**
 		Create new `UserConnection` instance.
 		- parameters:
 			- id: connection identifier.
-			- connection: concrete transport connection.
+			- host: server host.
+			- port: server port.
+			- isSecure: connection is secure.
+			- credentials: user authentification credentials.
 	*/
-	init(_ id: Int, _ connection: Connection) {
+	init(id: Int, host: String, port: Int, secured: Bool = true, credentials: Credentials? = nil) {
 		
 		self.id = id
+		
+		let config = Configuration(host: host, port, secured, Constants.applicationName, credentials)
+		self.config = config
+		
+		let connection = Connection(config: config, delegate: self)
 		self.connection = connection
 		
-		chatManager = ChatManager(connection)
-		fileManager = FileManager(connection)
+		chatManager = ChatRoomManager(self.connection)
+		fileManager = FileManager(self.connection)
+	}
+}
+
+extension UserConnection: ConnectionDelegate {
+	
+	public func connection(_ connection: JSTP.Connection, didReceiveEvent event: JSTP.Event) {
+		handle(received: event)
+	}
+	
+	public func connectionDidDisconnect(_ connection: JSTP.Connection) {
+		NotificationCenter.default.post(name: Notification.Name.MCConnectionLost, object: self)
+	}
+	
+	public func connectionDidConnect(_ connection: JSTP.Connection) {
+		NotificationCenter.default.post(name: Notification.Name.MCConnectionEstablished, object: self)
+	}
+	
+	public func connection(_ connection: Connection, didFailWithError error: Error) {
+		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
+	}
+	
+	private func handle(received event: Event) {
+		
+		// TODO: Current version includes only one chat instance at time, therefore it will be used with default identifier.
+		let params = [Constants.notificationObject : event]
+		let eventName = Events.get(event: event.name, for: Constants.roomDefault)
+		let notification = Notification.Name(eventName)
+		
+		NotificationCenter.default.post(name: notification, object: self.connection, userInfo: params)
 	}
 }

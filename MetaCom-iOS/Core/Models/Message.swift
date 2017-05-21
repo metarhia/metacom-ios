@@ -31,6 +31,7 @@ class Message {
 			- content: message contents.
 	*/
 	init(content: Content, incoming: Bool = true) {
+
 		self.content = content
 		self.isIncoming = incoming
 	}
