@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		140E07401ED1932900D8FB7D /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140E073F1ED1932900D8FB7D /* JSTP.framework */; };
 		142318E01ECCE14B00F63687 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318DF1ECCE14B00F63687 /* AppDelegate.swift */; };
 		142318E51ECCE14B00F63687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142318E31ECCE14B00F63687 /* Main.storyboard */; };
 		142318E71ECCE14B00F63687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142318E61ECCE14B00F63687 /* Assets.xcassets */; };
@@ -21,6 +20,10 @@
 		142319051ECDDE0900F63687 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319041ECDDE0900F63687 /* Message.swift */; };
 		142319071ECDEA2000F63687 /* MessageReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319061ECDEA2000F63687 /* MessageReceiver.swift */; };
 		142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319111ED07B4400F63687 /* NotificationName+Extensions.swift */; };
+		1474A72A1ED2FA87009464BD /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; };
+		1474A72B1ED2FA87009464BD /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; };
+		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
@@ -29,8 +32,22 @@
 		C44979B35A449C4937082899 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1474A72C1ED2FA87009464BD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1474A72B1ED2FA87009464BD /* Socket.framework in Embed Frameworks */,
+				1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		140E073F1ED1932900D8FB7D /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
 		142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaCom-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		142318DF1ECCE14B00F63687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		142318E41ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,6 +63,8 @@
 		142319041ECDDE0900F63687 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		142319061ECDEA2000F63687 /* MessageReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceiver.swift; sourceTree = "<group>"; };
 		142319111ED07B4400F63687 /* NotificationName+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extensions.swift"; sourceTree = "<group>"; };
+		1474A7261ED2F9F3009464BD /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
+		1474A7271ED2F9F3009464BD /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
 		14CBECC81ED08ECD008B6587 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,8 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1474A72A1ED2FA87009464BD /* Socket.framework in Frameworks */,
 				C44979B35A449C4937082899 /* Pods_MetaCom_iOS.framework in Frameworks */,
-				140E07401ED1932900D8FB7D /* JSTP.framework in Frameworks */,
+				1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +92,8 @@
 		140E073C1ED18FC400D8FB7D /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				140E073F1ED1932900D8FB7D /* JSTP.framework */,
+				1474A7261ED2F9F3009464BD /* JSTP.framework */,
+				1474A7271ED2F9F3009464BD /* Socket.framework */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -200,6 +221,7 @@
 				142318DA1ECCE14B00F63687 /* Resources */,
 				434B471473F28DE4A6548C2B /* [CP] Embed Pods Frameworks */,
 				3826789E18CEB52A63DB41FB /* [CP] Copy Pods Resources */,
+				1474A72C1ED2FA87009464BD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

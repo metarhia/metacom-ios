@@ -70,6 +70,10 @@ extension UserConnection: ConnectionDelegate {
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
 	
+	func connectionShouldRestoreState(_ connection: Connection, callback: @escaping () -> Void) {
+		callback()
+	}
+	
 	private func handle(received event: Event) {
 		
 		// TODO: Current version includes only one chat instance at time, therefore it will be used with default identifier.
