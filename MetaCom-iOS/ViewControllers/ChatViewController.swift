@@ -42,6 +42,27 @@ class ChatViewController: JSQMessagesViewController {
 		collectionView?.layoutIfNeeded()
     }
 	
+	// Dark magic to send a reply message **********************************************************
+	// Of course, will be removed.
+	
+	override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+		if motion == .motionShake {
+			sendReply()
+		}
+	}
+	
+	func sendReply() {
+		showTypingIndicator = !showTypingIndicator
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+			let message = JSQMessage(message: Message(content: .text("Hi there!"), incoming: true))
+			self.messages.append(message)
+			self.finishReceivingMessage(animated: true)
+		}
+	}
+	
+	// End of dark magic ***************************************************************************
+	
 	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
 		guard let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text) else {
 			return
