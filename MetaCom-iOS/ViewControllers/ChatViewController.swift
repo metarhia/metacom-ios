@@ -89,5 +89,23 @@ class ChatViewController: JSQMessagesViewController {
 		
 		return messages[indexPath.item].senderId == self.senderId ? outgoingBubble : incomingBubble
 	}
+	
+	//MARK: - UICollectionViewDataSource
+	
+	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
+		
+		if let messageCell = cell as? JSQMessagesCollectionViewCell {
+			let message = messages[indexPath.item]
+			
+			if message.senderId == self.senderId {
+				messageCell.textView?.textColor = .white
+			} else {
+				messageCell.textView?.textColor = .black
+			}
+		}
+		
+		return cell
+	}
 
 }
