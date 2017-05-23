@@ -9,11 +9,32 @@
 import UIKit
 
 class NewChatViewController: UIViewController {
+	
+	@IBOutlet weak var chatNameTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        chatNameTextField.delegate = self
     }
 
+	@IBAction func startChat() {
+		performSegue(withIdentifier: "show.chat", sender: nil)
+	}
+	
+	@IBAction func unwindToChatSetup(_ segue: UIStoryboardSegue) {
+		
+	}
+
+}
+
+// MARK: - UITextFieldDelegate
+
+extension NewChatViewController: UITextFieldDelegate {
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		startChat()
+		return false
+	}
 }

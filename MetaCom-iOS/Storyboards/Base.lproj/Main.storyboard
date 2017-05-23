@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGq-pz-TVy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGq-pz-TVy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -96,13 +96,68 @@
                     <view key="view" contentMode="scaleToFill" id="OeM-3e-VNM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pJU-7k-hOr">
+                                <rect key="frame" x="60" y="295.5" width="255" height="76"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chat name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9se-2w-j3G">
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmP-dB-xvp">
+                                        <rect key="frame" x="0.0" y="46" width="255" height="30"/>
+                                        <state key="normal" title="Let's chat!"/>
+                                        <connections>
+                                            <action selector="startChat" destination="FLt-Jf-409" eventType="touchUpInside" id="z67-KK-MGN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pJU-7k-hOr" firstAttribute="centerY" secondItem="OeM-3e-VNM" secondAttribute="centerY" id="IJW-tt-bFU"/>
+                            <constraint firstItem="pJU-7k-hOr" firstAttribute="leading" secondItem="OeM-3e-VNM" secondAttribute="leading" constant="60" id="Owh-dC-jle"/>
+                            <constraint firstItem="pJU-7k-hOr" firstAttribute="centerX" secondItem="OeM-3e-VNM" secondAttribute="centerX" id="ogI-6I-z11"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="chat" id="ehY-bO-MuR"/>
+                    <connections>
+                        <outlet property="chatNameTextField" destination="9se-2w-j3G" id="HdN-XI-TRI"/>
+                        <segue destination="EuX-dW-NWt" kind="presentation" identifier="show.chat" id="zXI-3x-lLV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAG-T1-odB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1937" y="1298"/>
+        </scene>
+        <!--Chat name-->
+        <scene sceneID="ohU-VZ-Rdm">
+            <objects>
+                <viewController id="AXY-ZM-hLC" customClass="ChatViewController" customModule="MetaCom_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NBO-OA-ppv"/>
+                        <viewControllerLayoutGuide type="bottom" id="cwD-Ez-dff"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bdu-u1-iuD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat name" id="dmo-YO-J5M">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="YHD-xZ-UXy">
+                            <connections>
+                                <segue destination="B8L-2J-k0H" kind="unwind" unwindAction="unwindToChatSetup:" id="nDj-mg-Sbv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ADP-5Y-euR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="B8L-2J-k0H" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3732" y="1297.6011994002999"/>
         </scene>
         <!--Files-->
         <scene sceneID="iJu-94-8td">
@@ -206,6 +261,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDa-Gf-PTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-969" y="510"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Hjn-f4-cTY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EuX-dW-NWt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ovz-9v-EiI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AXY-ZM-hLC" kind="relationship" relationship="rootViewController" id="lju-rX-cSZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xIt-TA-QdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2841" y="1298"/>
         </scene>
     </scenes>
     <resources>
