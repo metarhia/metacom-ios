@@ -53,8 +53,7 @@ class ConnectionViewController: UIViewController {
 			return
 		}
 		
-		guard let host = hostTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-		      let port = portTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+		guard let host = hostTextField.text?.trim(), let port = portTextField.text?.trim() else {
 			return
 		}
 		
