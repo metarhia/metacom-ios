@@ -25,7 +25,17 @@ class FilesViewController: UIViewController {
 		alert.addTextField { textField in
 			// TODO: Setup `textField`
 		}
-		alert.addAction(UIAlertAction(title: "Download", style: .default))
+		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+		let download = UIAlertAction(title: "Download", style: .default) { action in
+			guard let code = alert.textFields?.first?.text, !code.isEmpty else {
+				print("No any code typed.")
+				return
+			}
+			print("Downloading file with code: \(code).")
+			// TODO: Perform download
+		}
+		alert.addAction(cancel)
+		alert.addAction(download)
 		present(alert, animated: true)
 	}
 
