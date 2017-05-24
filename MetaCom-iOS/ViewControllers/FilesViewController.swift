@@ -10,13 +10,21 @@ import UIKit
 
 class FilesViewController: UIViewController {
 	
+	// MARK: - Upload
+	
 	@IBAction func upload() {
+		// TODO: Let user to select file
+		// TODO: Visualize uploading process (show some status bar, perhaps)
+		// TODO: Get proper `code`
+		let code = "31415926535"
 		let alert = UIAlertController(title: "Upload",
-		                              message: "Your file was uploaded. Code is 31415926535.",
+		                              message: "Your file was uploaded. Code is \(code).",
 		                              preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .default))
 		present(alert, animated: true)
 	}
+	
+	// MARK: - Download
 	
 	private weak var downloadAction: UIAlertAction?
 	
@@ -36,7 +44,9 @@ class FilesViewController: UIViewController {
 				return
 			}
 			print("Downloading file with code: \(code).")
-			// TODO: Perform download
+			// TODO: Try to perform download with specified `code`
+			// TODO: Handle download errors
+			// TODO: Visualize downloading process (show some status bar, perhaps)
 		}
 		download.isEnabled = false
 		downloadAction = download
