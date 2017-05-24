@@ -18,25 +18,35 @@ class FilesViewController: UIViewController {
 		present(alert, animated: true)
 	}
 	
+	private weak var downloadAction: UIAlertAction?
+	
 	@IBAction func download() {
 		let alert = UIAlertController(title: "Enter download code:",
 		                              message: nil,
 		                              preferredStyle: .alert)
 		alert.addTextField { textField in
-			// TODO: Setup `textField`
+			textField.returnKeyType = .done
+			textField.enablesReturnKeyAutomatically = true
+			textField.addTarget(self, action: #selector(self.codeTextChanged(_:)), for: .editingChanged)
 		}
 		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-		let download = UIAlertAction(title: "Download", style: .default) { action in
-			guard let code = alert.textFields?.first?.text, !code.isEmpty else {
+		let download = UIAlertAction(title: "Download", style: .default) { [weak alert] action in
+			guard let code = alert?.textFields?.first?.text, !code.isEmpty else {
 				print("No any code typed.")
 				return
 			}
 			print("Downloading file with code: \(code).")
 			// TODO: Perform download
 		}
+		download.isEnabled = false
+		downloadAction = download
 		alert.addAction(cancel)
 		alert.addAction(download)
 		present(alert, animated: true)
+	}
+	
+	@objc private func codeTextChanged(_ textField: UITextField) {
+		downloadAction?.isEnabled = textField.text?.isEmpty == false
 	}
 
 }
