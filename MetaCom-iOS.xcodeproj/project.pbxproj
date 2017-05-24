@@ -26,6 +26,7 @@
 		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */; };
+		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
 		8F4D385A1ED3020A00706CAE /* JSQMessage+InitFromMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4D38591ED3020A00706CAE /* JSQMessage+InitFromMessage.swift */; };
 		8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
@@ -72,6 +73,7 @@
 		2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaCom_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ActivityIndicator.swift"; sourceTree = "<group>"; };
+		8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Root.swift"; sourceTree = "<group>"; };
 		8F4D38591ED3020A00706CAE /* JSQMessage+InitFromMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessage+InitFromMessage.swift"; sourceTree = "<group>"; };
 		8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				142319111ED07B4400F63687 /* NotificationName+Extensions.swift */,
 				8F4D38591ED3020A00706CAE /* JSQMessage+InitFromMessage.swift */,
 				8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */,
+				8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
+				8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */,
 				142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */,
 				142318E01ECCE14B00F63687 /* AppDelegate.swift in Sources */,
 				8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */,

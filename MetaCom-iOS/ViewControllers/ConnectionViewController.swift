@@ -37,13 +37,28 @@ class ConnectionViewController: UIViewController {
 		
 		// TODO: Replace with attempting to connect to the specified host:port
 		// TODO: Handle connection errors
-		DispatchQueue.main.asyncAfter(deadline: .now() + 3) { 
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 			self.performSegue(withIdentifier: "submit", sender: nil)
 		}
 	}
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
 		
+	}
+	
+	// MARK: - Navigation
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		guard segue.identifier == "submit" else {
+			return
+		}
+		
+		guard let host = hostTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+		      let port = portTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+			return
+		}
+		
+		(segue.destination as? UINavigationController)?.rootViewController?.title = "\(host):\(port)"
 	}
 
 }
