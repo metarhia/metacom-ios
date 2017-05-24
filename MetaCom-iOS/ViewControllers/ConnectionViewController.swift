@@ -12,6 +12,7 @@ class ConnectionViewController: UIViewController {
 	
 	@IBOutlet weak var hostTextField: UITextField!
 	@IBOutlet weak var portTextField: UITextField!
+	@IBOutlet weak var submitButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +21,25 @@ class ConnectionViewController: UIViewController {
 		portTextField.delegate = self
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		// TODO: Move out of this method
+		submitButton.isActivityIndicatorVisible = false
+		hostTextField.isEnabled = true
+		portTextField.isEnabled = true
+	}
+	
 	@IBAction func submit() {
-		performSegue(withIdentifier: "submit", sender: nil)
+		submitButton.isActivityIndicatorVisible = true
+		hostTextField.isEnabled = false
+		portTextField.isEnabled = false
+		
+		// TODO: Replace with attempting to connect to the specified host:port
+		// TODO: Handle connection errors
+		DispatchQueue.main.asyncAfter(deadline: .now() + 3) { 
+			self.performSegue(withIdentifier: "submit", sender: nil)
+		}
 	}
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {

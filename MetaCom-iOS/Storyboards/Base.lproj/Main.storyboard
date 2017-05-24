@@ -78,6 +78,7 @@
                     <connections>
                         <outlet property="hostTextField" destination="2Ib-49-q5S" id="OMM-F4-vdv"/>
                         <outlet property="portTextField" destination="uHg-qc-BlR" id="6B2-9T-Vny"/>
+                        <outlet property="submitButton" destination="Lfj-5I-109" id="IwZ-vR-i6M"/>
                         <segue destination="c0u-BN-ZGB" kind="presentation" identifier="submit" modalTransitionStyle="flipHorizontal" id="tNh-rn-NDO"/>
                     </connections>
                 </viewController>
