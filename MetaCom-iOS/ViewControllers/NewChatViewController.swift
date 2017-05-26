@@ -25,6 +25,16 @@ class NewChatViewController: UIViewController {
 	@IBAction func unwindToChatSetup(_ segue: UIStoryboardSegue) {
 		
 	}
+	
+	// MARK: - Navigation
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		guard segue.identifier == "show.chat" else {
+			return
+		}
+		
+		segue.destination.content.title = chatNameTextField.text?.trim()
+	}
 
 }
 
