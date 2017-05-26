@@ -29,7 +29,6 @@
 		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
 		8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */; };
 		8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */; };
-		8F4D385A1ED3020A00706CAE /* JSQMessage+InitFromMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4D38591ED3020A00706CAE /* JSQMessage+InitFromMessage.swift */; };
 		8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
 		8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */; };
@@ -78,7 +77,6 @@
 		8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Root.swift"; sourceTree = "<group>"; };
 		8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
 		8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Content.swift"; sourceTree = "<group>"; };
-		8F4D38591ED3020A00706CAE /* JSQMessage+InitFromMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSQMessage+InitFromMessage.swift"; sourceTree = "<group>"; };
 		8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				142319111ED07B4400F63687 /* NotificationName+Extensions.swift */,
-				8F4D38591ED3020A00706CAE /* JSQMessage+InitFromMessage.swift */,
 				8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */,
 				8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */,
 				8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */,
@@ -363,7 +360,6 @@
 				8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */,
 				142319021ECCF2F800F63687 /* Constants.swift in Sources */,
 				8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */,
-				8F4D385A1ED3020A00706CAE /* JSQMessage+InitFromMessage.swift in Sources */,
 				8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */,
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
 				8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */,

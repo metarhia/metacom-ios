@@ -17,8 +17,4 @@ struct Constants {
 	
 	private init() { }
 	
-	struct Chat {
-		static let incomingSenderId = "incomingId"
-		static let outcomingSenderId = "outcomingId"
-	}
 }

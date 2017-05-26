@@ -9,6 +9,33 @@
 import UIKit
 import JSQMessagesViewController
 
+// MARK: - Constants related to chat displaying
+
+private struct ChatConstants {
+	static let incomingSenderId = "incomingId"
+	static let outcomingSenderId = "outcomingId"
+}
+
+// MARK: - Initialization `JSQMessage` form `Message`
+
+extension JSQMessage {
+	
+	convenience init(message: Message) {
+		// TODO: Handle messages with file content
+		let id = message.isIncoming ? ChatConstants.incomingSenderId : ChatConstants.outcomingSenderId
+		let text: String
+		switch message.content {
+		case .text(let value):
+			text = value
+		default:
+			text = "There is no text. Maybe file, but files are not handled yet."
+		}
+		self.init(senderId: id, displayName: "", text: text)
+	}
+}
+
+// MARK: - Placeholder data
+
 // TODO: Replace with actual data model
 private let Messages = [
 	Message(content: .text("Hello"), incoming: true),
@@ -35,7 +62,7 @@ class ChatViewController: JSQMessagesViewController {
 		
 		messages = Messages.map { JSQMessage(message: $0) }
 		
-		senderId = Constants.Chat.outcomingSenderId
+		senderId = ChatConstants.outcomingSenderId
 		senderDisplayName = ""
 		
 		collectionView?.reloadData()
