@@ -57,7 +57,7 @@ class ConnectionViewController: UIViewController {
 			return
 		}
 		
-		(segue.destination as? UINavigationController)?.rootViewController?.title = "\(host):\(port)"
+		segue.destination.content.title = "\(host):\(port)"
 	}
 
 }
