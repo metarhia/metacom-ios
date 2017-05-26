@@ -36,6 +36,7 @@
 		8FAB32E91ED81B250004BEFF /* JSQDataMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */; };
 		8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
 		8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
+		8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */; };
 		C44979B35A449C4937082899 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQDataMediaItem.swift; sourceTree = "<group>"; };
 		8FAB32EA1ED823560004BEFF /* DataMediaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataMediaView.xib; sourceTree = "<group>"; };
 		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
+		8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EndEditing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */,
 				8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */,
 				8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */,
+				8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */,
 				8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */,
 			);
 			path = Extensions;
@@ -366,6 +369,7 @@
 				142319071ECDEA2000F63687 /* MessageReceiver.swift in Sources */,
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
+				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
 				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,

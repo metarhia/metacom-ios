@@ -19,6 +19,8 @@ class ConnectionViewController: UIViewController {
 
         hostTextField.delegate = self
 		portTextField.delegate = self
+		
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
     }
 	
 	override func viewWillAppear(_ animated: Bool) {

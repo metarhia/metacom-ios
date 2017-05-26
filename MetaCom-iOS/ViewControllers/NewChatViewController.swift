@@ -16,6 +16,8 @@ class NewChatViewController: UIViewController {
         super.viewDidLoad()
 
         chatNameTextField.delegate = self
+		
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
     }
 
 	@IBAction func startChat() {

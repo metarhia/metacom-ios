@@ -136,8 +136,10 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-		// TODO: Handle tap on message if it contains `JSQDataMediaItem` 
+		// TODO: Handle tap on message if it contains `JSQDataMediaItem`
+//		guard let media = messages[indexPath.item].media else {
+//			return
+//		}
 	}
 	
-
 }
