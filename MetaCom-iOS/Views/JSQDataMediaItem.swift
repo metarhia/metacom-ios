@@ -11,7 +11,13 @@ import JSQMessagesViewController
 
 class JSQDataMediaItem: JSQMediaItem {
 	
-	var data: Data
+	private var cachedView: UIView?
+	
+	var data: Data {
+		didSet {
+			cachedView = nil
+		}
+	}
 	
 	// MARK: - Initialization
 	
@@ -23,8 +29,23 @@ class JSQDataMediaItem: JSQMediaItem {
 	
 	// MARK: - JSQMediaItem
 	
+	override func clearCachedMediaViews() {
+		super.clearCachedMediaViews()
+		cachedView = nil
+	}
+	
+	override var appliesMediaViewMaskAsOutgoing: Bool {
+		didSet {
+			cachedView = nil
+		}
+	}
+	
 	override func mediaView() -> UIView! {
-		let isOutgoing = self.appliesMediaViewMaskAsOutgoing
+		if let view = cachedView {
+			return view
+		}
+		
+		let isOutgoing = appliesMediaViewMaskAsOutgoing
 		let view = DataMediaView(frame: CGRect(origin: .zero, size: mediaViewDisplaySize()))
 		view.backgroundColor = isOutgoing ? .jsq_messageBubbleBlue() : .jsq_messageBubbleLightGray()
 		view.tintColor = isOutgoing ? .white : UIColor.black.withAlphaComponent(0.7)
@@ -37,6 +58,8 @@ class JSQDataMediaItem: JSQMediaItem {
 		} else {
 			view.insets.left = 8
 		}
+		
+		cachedView = view
 		
 		return view
 	}
