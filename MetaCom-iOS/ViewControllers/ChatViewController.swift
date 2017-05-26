@@ -13,7 +13,7 @@ import JSQMessagesViewController
 
 private struct ChatConstants {
 	static let incomingSenderId = "incomingId"
-	static let outcomingSenderId = "outcomingId"
+	static let outgoingSenderId = "outgoingId"
 }
 
 // MARK: - Initialization `JSQMessage` form `Message`
@@ -22,15 +22,14 @@ extension JSQMessage {
 	
 	convenience init(message: Message) {
 		// TODO: Handle messages with file content
-		let id = message.isIncoming ? ChatConstants.incomingSenderId : ChatConstants.outcomingSenderId
-		let text: String
+		let id = message.isIncoming ? ChatConstants.incomingSenderId : ChatConstants.outgoingSenderId
 		switch message.content {
-		case .text(let value):
-			text = value
+		case .text(let text):
+			self.init(senderId: id, displayName: "", text: text)
 		default:
-			text = "There is no text. Maybe file, but files are not handled yet."
+			let media = JSQDataMediaItem(data: Data(), maskAsOutgoing: !message.isIncoming)
+			self.init(senderId: id, displayName: "", media: media)
 		}
-		self.init(senderId: id, displayName: "", text: text)
 	}
 }
 
@@ -43,6 +42,7 @@ private let Messages = [
 	Message(content: .text("What's up?"), incoming: false),
 	Message(content: .text("I'll answer with photo:"), incoming: true),
 	Message(content: .file(Data()), incoming: true),
+	Message(content: .file(Data()), incoming: false),
 	Message(content: .text("Hmmm... Something gone wrong..."), incoming: false)
 ]
 
@@ -62,7 +62,7 @@ class ChatViewController: JSQMessagesViewController {
 		
 		messages = Messages.map { JSQMessage(message: $0) }
 		
-		senderId = ChatConstants.outcomingSenderId
+		senderId = ChatConstants.outgoingSenderId
 		senderDisplayName = ""
 		
 		collectionView?.reloadData()
@@ -134,5 +134,10 @@ class ChatViewController: JSQMessagesViewController {
 		
 		return cell
 	}
+	
+	override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+		// TODO: Handle tap on message if it contains `JSQDataMediaItem` 
+	}
+	
 
 }

@@ -33,6 +33,9 @@
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
 		8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */; };
 		8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */; };
+		8FAB32E91ED81B250004BEFF /* JSQDataMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */; };
+		8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
+		8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
 		C44979B35A449C4937082899 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +84,9 @@
 		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
+		8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQDataMediaItem.swift; sourceTree = "<group>"; };
+		8FAB32EA1ED823560004BEFF /* DataMediaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataMediaView.xib; sourceTree = "<group>"; };
+		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,7 @@
 				142318F31ECCE1CE00F63687 /* Supporting */,
 				142318F11ECCE1A600F63687 /* Storyboards */,
 				142318F21ECCE1B300F63687 /* ViewControllers */,
+				8FAB32E71ED8199C0004BEFF /* Views */,
 			);
 			path = "MetaCom-iOS";
 			sourceTree = "<group>";
@@ -220,6 +227,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8FAB32E71ED8199C0004BEFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */,
+				8FAB32EC1ED823670004BEFF /* DataMediaView.swift */,
+				8FAB32EA1ED823560004BEFF /* DataMediaView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,6 +304,7 @@
 				142318EA1ECCE14B00F63687 /* LaunchScreen.storyboard in Resources */,
 				142318E71ECCE14B00F63687 /* Assets.xcassets in Resources */,
 				142318E51ECCE14B00F63687 /* Main.storyboard in Resources */,
+				8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +368,7 @@
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
+				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
 				8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */,
@@ -361,6 +380,7 @@
 				142319021ECCF2F800F63687 /* Constants.swift in Sources */,
 				8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */,
 				8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */,
+				8FAB32E91ED81B250004BEFF /* JSQDataMediaItem.swift in Sources */,
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
 				8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */,
 				8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */,
