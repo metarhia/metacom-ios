@@ -13,15 +13,15 @@ class ConnectionViewController: UIViewController {
 	@IBOutlet weak var hostTextField: UITextField!
 	@IBOutlet weak var portTextField: UITextField!
 	@IBOutlet weak var submitButton: UIButton!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        hostTextField.delegate = self
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		hostTextField.delegate = self
 		portTextField.delegate = self
 		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
-    }
+	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -61,7 +61,7 @@ class ConnectionViewController: UIViewController {
 		
 		segue.destination.content.title = "\(host):\(port)"
 	}
-
+	
 }
 
 // MARK: - UITextFieldDelegate

@@ -11,15 +11,15 @@ import UIKit
 class NewChatViewController: UIViewController {
 	
 	@IBOutlet weak var chatNameTextField: UITextField!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        chatNameTextField.delegate = self
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		chatNameTextField.delegate = self
 		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
-    }
-
+	}
+	
 	@IBAction func startChat() {
 		performSegue(withIdentifier: "show.chat", sender: nil)
 	}
@@ -37,7 +37,7 @@ class NewChatViewController: UIViewController {
 		
 		segue.destination.content.title = chatNameTextField.text?.trim()
 	}
-
+	
 }
 
 // MARK: - UITextFieldDelegate
