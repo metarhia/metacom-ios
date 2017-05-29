@@ -13,11 +13,14 @@ import Foundation
 */
 final class UserConnectionManager {
 	
-	/// List of user connections.
-	private var userConnections: Array<UserConnection>
-	
 	/// Manager instance.
 	public static let instance = UserConnectionManager()
+	
+	/// List of user connections.
+	private(set) var userConnections: Array<UserConnection>
+	
+	/// Current displayed connection.
+	private(set) var currentConnection: UserConnection?
 	
 	/**
 		Create new `UserConnectionManager` instance.
@@ -48,9 +51,28 @@ final class UserConnectionManager {
 			- connection: living connection.
 	*/
 	func remove(_ connection: UserConnection) {
-		if let index = userConnections.index(where: { $0.id == connection.id }) {
+		
+		if let index = userConnections.index(of: connection) {
 			userConnections.remove(at: index)
 		}
 	}
 	
+	/**
+		Set connection as the current connection the user works with.
+		This method does nothing if the connection has been removed.
+		- parameters:
+			- connection: living connection.
+	*/
+	func setCurrent(connection: UserConnection?) {
+		
+		guard let aConnection = connection, userConnections.contains(aConnection) else {
+			
+			if connection == nil {
+				currentConnection = nil
+			}
+			return
+		}
+		
+		currentConnection = aConnection
+	}
 }

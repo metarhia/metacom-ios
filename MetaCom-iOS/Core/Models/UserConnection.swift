@@ -49,6 +49,8 @@ final class UserConnection {
 		
 		chatManager = ChatRoomManager(self.connection)
 		fileManager = FileManager(self.connection)
+		
+		self.connection.connect()
 	}
 }
 
@@ -82,5 +84,12 @@ extension UserConnection: ConnectionDelegate {
 		let notification = Notification.Name(eventName)
 		
 		NotificationCenter.default.post(name: notification, object: self.connection, userInfo: params)
+	}
+}
+
+extension UserConnection: Equatable {
+	
+	public static func ==(lhs: UserConnection, rhs: UserConnection) -> Bool {
+		return  lhs.id == rhs.id
 	}
 }
