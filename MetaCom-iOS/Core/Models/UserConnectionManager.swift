@@ -32,12 +32,14 @@ final class UserConnectionManager {
 			- host: server host.
 			- port: server port.
 	*/
-	func add(host: String, port: Int) {
+	func add(host: String, port: Int) -> UserConnection {
 		
 		let id = (userConnections.last?.id ?? -1) + 1
 		let connection = UserConnection(id: id, host: host, port: port)
 		
 		userConnections.append(connection)
+		
+		return connection
 	}
 	
 	/**
@@ -46,17 +48,9 @@ final class UserConnectionManager {
 			- connection: living connection.
 	*/
 	func remove(_ connection: UserConnection) {
-		
-		userConnections.append(connection)
+		if let index = userConnections.index(where: { $0.id == connection.id }) {
+			userConnections.remove(at: index)
+		}
 	}
 	
-	/**
-		Retrieve connection from the connections list.
-		- parameters:
-			- id: connection identifier.
-	*/
-	func getConnection(by id: Int) -> UserConnection? {
-		
-		return (userConnections.filter { $0.id == id } ).first
-	}
 }
