@@ -19,7 +19,7 @@ final class UserConnectionManager {
 	/// List of user connections.
 	private(set) var userConnections: Array<UserConnection>
 	
-	/// Current displayed connection.
+	/// Currently displayed connection.
 	private var currentConnection: UserConnection?
 	
 	/**
@@ -73,8 +73,6 @@ final class UserConnectionManager {
 	*/
 	func remove(_ connection: UserConnection) {
 		
-		if let index = userConnections.index(of: connection) {
-			userConnections.remove(at: index)
-		}
+		userConnections.remove(connection)
 	}
 }

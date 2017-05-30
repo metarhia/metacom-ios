@@ -25,6 +25,7 @@
 		1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; };
 		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
+		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
 		8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */; };
 		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
 		8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */; };
@@ -77,6 +78,7 @@
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaCom_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Root.swift"; sourceTree = "<group>"; };
 		8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */,
 				8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */,
 				8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */,
+				8F146CCE1EDD914100BC1733 /* Array+Remove.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */,
 				8FAB32E91ED81B250004BEFF /* JSQDataMediaItem.swift in Sources */,
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
+				8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */,
 				8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */,
 				8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */,
 			);

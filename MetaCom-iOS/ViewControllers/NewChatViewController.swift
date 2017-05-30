@@ -21,6 +21,11 @@ class NewChatViewController: UIViewController {
 	}
 	
 	@IBAction func startChat() {
+//		guard let name = chatNameTextField.text else {
+//			return
+//		}
+		// TODO: Start conversation in the chat room named `name`
+		
 		performSegue(withIdentifier: "show.chat", sender: nil)
 	}
 	
