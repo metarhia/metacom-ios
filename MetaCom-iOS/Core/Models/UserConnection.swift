@@ -24,9 +24,18 @@ final class UserConnection {
 	private let config: Configuration!
 	fileprivate var connection: Connection!
 	
-	public let id: Int
 	private(set) var chatManager: ChatRoomManager!
 	private(set) var fileManager: FileManager!
+	
+	public let id: Int
+	
+	public var host: String {
+		return config.host
+	}
+	
+	public var port: Int {
+		return config.port
+	}
 	
 	/**
 		Create new `UserConnection` instance.
