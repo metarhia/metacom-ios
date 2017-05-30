@@ -10,9 +10,11 @@ import Foundation
 
 extension Array where Element: Equatable {
 	
-	mutating func remove(_ object: Element) {
+	@discardableResult mutating func remove(_ object: Element) -> Bool {
 		if let index = index(of: object) {
 			remove(at: index)
+			return true
 		}
+		return false
 	}
 }
