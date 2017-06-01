@@ -56,7 +56,7 @@ final class UserConnection {
 		let connection = Connection(config: config, delegate: self)
 		self.connection = connection
 		
-		chatManager = ChatRoomManager(self.connection)
+		chatManager = ChatRoomManager(connection: self.connection)
 		fileManager = FileManager(self.connection)
 		
 		self.connection.connect()
