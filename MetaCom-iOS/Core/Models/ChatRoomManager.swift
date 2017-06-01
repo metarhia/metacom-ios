@@ -13,31 +13,31 @@ import Foundation
 */
 final class ChatRoomManager {
 	
-	public let connection: Connection
-	private var chats: Array<ChatRoom> = []
+	private let connection: Connection
+	private var chats: [ChatRoom] = []
 	
 	/**
 		Create new `ChatManager` instance.
 		- parameters:
 			- connection: transport connection.
 	*/
-	init(_ connection: Connection) {
+	init(connection: Connection) {
 		self.connection = connection
 	}
 	
 	/**
 		Add new chatroom.
 		- parameters:
-			- id: chat name.
+			- name: chat name.
 			- completion: callback on completion.
 	*/
-	func add(id: String = Constants.roomDefault, completion: Callback? = nil) {
+	func addRoom(named name: String = Constants.roomDefault, completion: Completion? = nil) {
 		
-		let chat = ChatRoom(id, connection)
-		chat.join { (_, error) in
+		let chat = ChatRoom(name: name, connection: connection)
+		chat.join { (error) in
 			
 			defer {
-				completion?(nil, error)
+				completion?(error)
 			}
 			
 			guard error == nil else {
@@ -51,19 +51,19 @@ final class ChatRoomManager {
 	/**
 		Remove existing chatroom.
 		- parameters:
-			- id: chat name.
+			- name: chat name.
 	*/
-	func remove(_ id: String, completion: Callback? = nil) {
+	func removeRoom(named name: String, completion: Completion? = nil) {
 		
-		guard let index = chats.index(where: { $0.id == id }) else {
+		guard let index = chats.index(where: { $0.name == name }) else {
 			return
 		}
 		
 		let chat = chats[index]
-		chat.leave { (_, error) in
+		chat.leave { (error) in
 			
 			defer {
-				completion?(nil, error)
+				completion?(error)
 			}
 			
 			guard error == nil else {
@@ -75,12 +75,12 @@ final class ChatRoomManager {
 	}
 	
 	/**
-		Get chat by id.
+		Get chat by name.
 		- parameters:
-			- id: chat name.
+			- name: chat name.
 	*/
-	func get(by id: String) -> ChatRoom? {
+	func getRoom(named name: String) -> ChatRoom? {
 		
-		return (chats.filter { $0.id == id }).first
+		return (chats.filter { $0.name == name }).first
 	}
 }

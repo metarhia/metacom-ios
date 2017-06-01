@@ -7,26 +7,27 @@
 //
 
 import Foundation
-import JSTP
+
+typealias Completion = (Error?) -> ()
 
 /**
 	A type representing a chat conversation.
 */
 class ChatRoom {
 	
-	public let id: String
-	public let connection: Connection
+	public let name: String
+	private let connection: Connection
 	fileprivate var receivers: Array<MessageReceiver> = []
 	
 	/**
 		Create a new `Chat` instance.
 		- parameters:
-			- id: chat identifier.
+			- name: chat identifier.
 			- connection: transport connection.
 	*/
-	init(_ id: String, _ connection: Connection) {
+	init(name: String, connection: Connection) {
 		
-		self.id = id
+		self.name = name
 		self.connection = connection
 	}
 	
@@ -35,12 +36,12 @@ class ChatRoom {
 		- parameters:
 			- completion: callback on completion.
 	*/
-	func join(_ completion: Callback?) {
+	func join(completion: Completion?) {
 		
-		self.connection.call(Constants.interfaceName, "join", [id]) { (_, error) in
+		self.connection.call(Constants.interfaceName, "join", [name]) { (_, error) in
 			
 			defer {
-				completion?(nil, error)
+				completion?(error)
 			}
 			
 			guard error == nil else {
@@ -56,9 +57,9 @@ class ChatRoom {
 		- parameters:
 			- completion: callback on completion.
 	*/
-	func leave(_ completion: Callback?) {
+	func leave(completion: Completion?) {
 		
-		self.connection.call(Constants.interfaceName, "leave", [], completion)
+		self.connection.call(Constants.interfaceName, "leave", [], { completion?($1) })
 	}
 	
 	/**
@@ -67,9 +68,15 @@ class ChatRoom {
 			- message: sent message.
 			- completion: callback on completion.
 	*/
-	func send(_ message: String, completion: Callback?) {
+	func send(message: Message, completion: Completion?) {
 		
-		connection.call(Constants.interfaceName, "send", [message], completion)
+		switch message.content {
+		case .text(let text):
+			connection.call(Constants.interfaceName, "send", [text], { completion?($1) })
+		case .file(let data):
+			// TODO: Send file
+			break
+		}
 	}
 	
 	/**
@@ -84,7 +91,7 @@ class ChatRoom {
 		]
 		
 		let notifications = selectors.map { pair -> (Notification.Name, Selector) in
-			let event = Events.get(event: pair.key, for: self.id)
+			let event = Events.get(event: pair.key, for: self.name)
 			return (Notification.Name(event), pair.value)
 		}
 		
