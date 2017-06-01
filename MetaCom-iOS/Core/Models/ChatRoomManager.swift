@@ -14,7 +14,7 @@ import Foundation
 final class ChatRoomManager {
 	
 	private let connection: Connection
-	private var chats: Array<ChatRoom> = []
+	private var chats: [ChatRoom] = []
 	
 	/**
 		Create new `ChatManager` instance.

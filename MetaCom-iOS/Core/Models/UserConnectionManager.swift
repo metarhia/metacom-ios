@@ -17,7 +17,7 @@ final class UserConnectionManager {
 	public static let instance = UserConnectionManager()
 	
 	/// List of user connections.
-	private(set) var userConnections: [UserConnection]
+	private(set) var userConnections: [UserConnection] = []
 	
 	/// Currently displayed connection.
 	private var currentUserConnection: UserConnection?
@@ -47,7 +47,6 @@ final class UserConnectionManager {
 		Create new `UserConnectionManager` instance.
 	*/
 	private init() {
- 		userConnections = []
 	}
 	
 	/**
