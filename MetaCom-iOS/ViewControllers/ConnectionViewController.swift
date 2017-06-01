@@ -44,7 +44,7 @@ class ConnectionViewController: UIViewController {
 		portTextField.isEnabled = false
 		
 		// TODO: Store conection
-		_ = UserConnectionManager.instance.add(host: host, port: port)
+		_ = UserConnectionManager.instance.addConnection(host: host, port: port)
 	}
 	
 	@objc private func didConnect(_ notification: Notification) {

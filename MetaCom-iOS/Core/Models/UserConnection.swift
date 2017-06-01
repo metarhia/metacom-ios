@@ -61,6 +61,10 @@ final class UserConnection {
 		
 		self.connection.connect()
 	}
+	
+	deinit {
+		// TODO: Close `connection`
+	}
 }
 
 extension UserConnection: ConnectionDelegate {

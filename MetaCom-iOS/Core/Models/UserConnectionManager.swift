@@ -17,29 +17,29 @@ final class UserConnectionManager {
 	public static let instance = UserConnectionManager()
 	
 	/// List of user connections.
-	private(set) var userConnections: Array<UserConnection>
+	private(set) var userConnections: [UserConnection]
 	
 	/// Currently displayed connection.
-	private var currentConnection: UserConnection?
+	private var currentUserConnection: UserConnection?
 	
 	/**
 		Represents current connection the user works with.
 		Setting this property does nothing if the connection has been removed.
 	*/
-	public var current: UserConnection? {
+	public var currentConnection: UserConnection? {
 		get {
-			return currentConnection
+			return currentUserConnection
 		}
 		set(connection) {
 			
 			guard let aConnection = connection, userConnections.contains(aConnection) else {
 				if connection == nil {
-					currentConnection = nil
+					currentUserConnection = nil
 				}
 				return
 			}
 			
-			currentConnection = aConnection
+			currentUserConnection = aConnection
 		}
 	}
 	
@@ -56,7 +56,7 @@ final class UserConnectionManager {
 			- host: server host.
 			- port: server port.
 	*/
-	func add(host: String, port: Int) -> UserConnection {
+	func addConnection(host: String, port: Int) -> UserConnection {
 		
 		let id = (userConnections.last?.id ?? -1) + 1
 		let connection = UserConnection(id: id, host: host, port: port)
@@ -71,7 +71,7 @@ final class UserConnectionManager {
 		- parameters:
 			- connection: living connection.
 	*/
-	func remove(_ connection: UserConnection) {
+	func removeConnection(_ connection: UserConnection) {
 		
 		userConnections.remove(connection)
 	}
