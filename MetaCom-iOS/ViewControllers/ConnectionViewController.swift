@@ -12,7 +12,7 @@ class ConnectionViewController: UIViewController {
 	
 	@IBOutlet weak var hostTextField: UITextField!
 	@IBOutlet weak var portTextField: UITextField!
-	@IBOutlet weak var submitButton: UIButton!
+	@IBOutlet weak var connectButton: UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,31 +21,34 @@ class ConnectionViewController: UIViewController {
 		portTextField.delegate = self
 		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(didConnect(_:)), name: Notification.Name.MCConnectionEstablished, object: nil)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		// TODO: Move out of this method
-		submitButton.isActivityIndicatorVisible = false
+		connectButton.isActivityIndicatorVisible = false
 		hostTextField.isEnabled = true
 		portTextField.isEnabled = true
 	}
 	
-	@IBAction func submit() {
-		submitButton.isActivityIndicatorVisible = true
+	@IBAction func connect() {
+		guard let host = hostTextField.text?.trim(), let port = Int(portTextField.text?.trim() ?? "") else {
+			return
+		}
+		
+		connectButton.isActivityIndicatorVisible = true
 		hostTextField.isEnabled = false
 		portTextField.isEnabled = false
 		
-		// TODO: Replace with attempting to connect to the specified host:port
-		// TODO: Handle connection errors
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-			self.performSegue(withIdentifier: "submit", sender: nil)
-		}
+		// TODO: Store conection
+		_ = UserConnectionManager.instance.add(host: host, port: port)
 	}
 	
-	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
-		
+	@objc private func didConnect(_ notification: Notification) {
+		performSegue(withIdentifier: "submit", sender: nil)
 	}
 	
 	// MARK: - Navigation
@@ -62,6 +65,10 @@ class ConnectionViewController: UIViewController {
 		segue.destination.content.title = "\(host):\(port)"
 	}
 	
+	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
+		
+	}
+	
 }
 
 // MARK: - UITextFieldDelegate
@@ -74,7 +81,7 @@ extension ConnectionViewController: UITextFieldDelegate {
 			nextResponder.becomeFirstResponder()
 		} else {
 			textField.resignFirstResponder()
-			submit()
+			connect()
 		}
 		return false
 	}
