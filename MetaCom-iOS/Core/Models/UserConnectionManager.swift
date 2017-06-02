@@ -71,7 +71,9 @@ final class UserConnectionManager {
 			- connection: living connection.
 	*/
 	func removeConnection(_ connection: UserConnection) {
-		
+		if currentUserConnection == connection {
+			currentUserConnection = nil
+		}
 		userConnections.remove(connection)
 	}
 }

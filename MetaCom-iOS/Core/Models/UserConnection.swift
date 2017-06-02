@@ -43,7 +43,7 @@ final class UserConnection {
 			- id: connection identifier.
 			- host: server host.
 			- port: server port.
-			- isSecure: connection is secure.
+			- secured: connection is secure.
 			- credentials: user authentification credentials.
 	*/
 	init(id: Int, host: String, port: Int, secured: Bool = true, credentials: Credentials? = nil) {
@@ -82,6 +82,7 @@ extension UserConnection: ConnectionDelegate {
 	}
 	
 	public func connection(_ connection: Connection, didFailWithError error: Error) {
+		NotificationCenter.default.post(name: Notification.Name.MCConnectionDidFail, object: self, userInfo: ["error": error])
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
 	
