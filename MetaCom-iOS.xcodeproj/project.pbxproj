@@ -25,6 +25,7 @@
 		1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; };
 		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
+		404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
 		8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */; };
 		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
@@ -38,7 +39,6 @@
 		8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
 		8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
 		8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */; };
-		C44979B35A449C4937082899 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +90,7 @@
 		8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQDataMediaItem.swift; sourceTree = "<group>"; };
 		8FAB32EA1ED823560004BEFF /* DataMediaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataMediaView.xib; sourceTree = "<group>"; };
 		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
+		8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MetaCom-iOS.entitlements"; path = "../MetaCom-iOS.entitlements"; sourceTree = "<group>"; };
 		8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EndEditing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,8 +100,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1474A72A1ED2FA87009464BD /* Socket.framework in Frameworks */,
-				C44979B35A449C4937082899 /* Pods_MetaCom_iOS.framework in Frameworks */,
 				1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */,
+				404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +174,7 @@
 		142318F31ECCE1CE00F63687 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */,
 				142318EB1ECCE14B00F63687 /* Info.plist */,
 				142318E61ECCE14B00F63687 /* Assets.xcassets */,
 			);
@@ -279,8 +281,13 @@
 				TargetAttributes = {
 					142318DB1ECCE14B00F63687 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = SGGE7G6CX5;
+						DevelopmentTeam = Q5WSPT927E;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -518,7 +525,8 @@
 			baseConfigurationReference = 2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SGGE7G6CX5;
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				DEVELOPMENT_TEAM = Q5WSPT927E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MetaCom-iOS",
@@ -527,7 +535,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metarhia.MetaCom-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metarhia.MetaCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -538,7 +546,8 @@
 			baseConfigurationReference = 1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SGGE7G6CX5;
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				DEVELOPMENT_TEAM = Q5WSPT927E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MetaCom-iOS",
@@ -547,7 +556,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metarhia.MetaCom-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metarhia.MetaCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
