@@ -17,7 +17,7 @@ class ChatRoom {
 	
 	public let name: String
 	private let connection: Connection
-	fileprivate var receivers: Array<MessageReceiver> = []
+	fileprivate var receivers: Array<ChatRoomDelegate> = []
 	
 	/**
 		Create a new `Chat` instance.
@@ -121,7 +121,7 @@ extension ChatRoom {
 		}
 		
 		let message = Message(content: Message.Content.text(content))
-		receivers.forEach { $0.didReceive(message) }
+		receivers.forEach { $0.chatRoom(self, didReceive: message) }
 	}
 	
 	/**
@@ -131,7 +131,7 @@ extension ChatRoom {
 	*/
 	@objc func onJoinChat(_ notification: Notification) {
 		
-		receivers.forEach { $0.didJoin() }
+		receivers.forEach { $0.chatRoomDidJoin(self) }
 	}
 	
 	/**
@@ -141,7 +141,7 @@ extension ChatRoom {
 	*/
 	@objc func onLeaveChat(_ notification: Notification) {
 		
-		receivers.forEach { $0.didLeave() }
+		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
 }
 
@@ -152,7 +152,7 @@ extension ChatRoom {
 		- parameters:
 			- this: message receiver instance.
 	*/
-	func subscribe<Listener>(_ this: Listener) where Listener: MessageReceiver & Equatable {
+	func subscribe<Listener>(_ this: Listener) where Listener: ChatRoomDelegate & Equatable {
 		
 		receivers.append(this)
 	}
@@ -162,7 +162,7 @@ extension ChatRoom {
 		- parameters:
 			- this: message receiver instance.
 	*/
-	func unsubscribe<Listener>(_ this: Listener) where Listener: MessageReceiver & Equatable {
+	func unsubscribe<Listener>(_ this: Listener) where Listener: ChatRoomDelegate & Equatable {
 		
 		guard let index = receivers.index(where: { ($0 as! Listener) == this } ) else {
 			return

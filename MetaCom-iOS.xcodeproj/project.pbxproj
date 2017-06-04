@@ -18,7 +18,7 @@
 		142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FE1ECCE9DA00F63687 /* ChatRoom.swift */; };
 		142319021ECCF2F800F63687 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319011ECCF2F800F63687 /* Constants.swift */; };
 		142319051ECDDE0900F63687 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319041ECDDE0900F63687 /* Message.swift */; };
-		142319071ECDEA2000F63687 /* MessageReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319061ECDEA2000F63687 /* MessageReceiver.swift */; };
+		142319071ECDEA2000F63687 /* ChatRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */; };
 		142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319111ED07B4400F63687 /* NotificationName+Extensions.swift */; };
 		1474A72A1ED2FA87009464BD /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; };
 		1474A72B1ED2FA87009464BD /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -70,7 +70,7 @@
 		142318FE1ECCE9DA00F63687 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		142319011ECCF2F800F63687 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		142319041ECDDE0900F63687 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		142319061ECDEA2000F63687 /* MessageReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceiver.swift; sourceTree = "<group>"; };
+		142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomDelegate.swift; sourceTree = "<group>"; };
 		142319111ED07B4400F63687 /* NotificationName+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extensions.swift"; sourceTree = "<group>"; };
 		1474A7261ED2F9F3009464BD /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
 		1474A7271ED2F9F3009464BD /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 				142319041ECDDE0900F63687 /* Message.swift */,
 				142318F71ECCE9AE00F63687 /* UserConnection.swift */,
 				142318F51ECCE99C00F63687 /* UserConnectionManager.swift */,
-				142319061ECDEA2000F63687 /* MessageReceiver.swift */,
+				142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -376,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				142319071ECDEA2000F63687 /* MessageReceiver.swift in Sources */,
+				142319071ECDEA2000F63687 /* ChatRoomDelegate.swift in Sources */,
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
