@@ -21,8 +21,6 @@ class ConnectionViewController: UIViewController {
 		portTextField.delegate = self
 		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(didConnect(_:)), name: Notification.Name.MCConnectionEstablished, object: nil)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -43,14 +41,21 @@ class ConnectionViewController: UIViewController {
 		hostTextField.isEnabled = false
 		portTextField.isEnabled = false
 		
-		// TODO: Store conection
-		_ = UserConnectionManager.instance.addConnection(host: host, port: port)
+		UserConnectionManager.instance.addConnection(host: host, port: port) { connection in
+			
+			defer {
+				self.connectButton.isActivityIndicatorVisible = false
+			}
+			
+			guard let userConnection = connection else {
+				return
+			}
+			
+			UserConnectionManager.instance.currentConnection = userConnection
+			self.performSegue(withIdentifier: "submit", sender: nil)
+		}
 	}
-	
-	@objc private func didConnect(_ notification: Notification) {
-		performSegue(withIdentifier: "submit", sender: nil)
-	}
-	
+
 	// MARK: - Navigation
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,6 +72,11 @@ class ConnectionViewController: UIViewController {
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
 		
+		guard let current = UserConnectionManager.instance.currentConnection else {
+			return
+		}
+		
+		UserConnectionManager.instance.removeConnection(current)
 	}
 	
 }
