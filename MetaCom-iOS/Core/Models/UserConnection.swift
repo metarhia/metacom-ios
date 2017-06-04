@@ -40,30 +40,60 @@ final class UserConnection {
 	/**
 		Create new `UserConnection` instance.
 		- parameters:
-			- id: connection identifier.
-			- host: server host.
-			- port: server port.
-			- secured: connection is secure.
-			- credentials: user authentification credentials.
+			- identifier: connection identifier.
+			- configuration: connection configuration.
 	*/
-	init(id: Int, host: String, port: Int, secured: Bool = true, credentials: Credentials? = nil) {
+	init(identifier: Int, configuration: Configuration) {
+
+		id = identifier
+		config = configuration
+		connection = Connection(config: config, delegate: self)
 		
-		self.id = id
-		
-		let config = Configuration(host: host, port, secured, Constants.applicationName, credentials)
-		self.config = config
-		
-		let connection = Connection(config: config, delegate: self)
-		self.connection = connection
-		
-		chatManager = ChatRoomManager(connection: self.connection)
+		chatManager = ChatRoomManager(connection: connection)
 		fileManager = FileManager(self.connection)
+	}
+	
+	/**
+		Connect to a `MetaCom` server.
+		- parameters:
+			- callback: block called on operation completion.
+	*/
+	func connect(with callback: @escaping (UserConnection, Error?) -> Void) {
 		
-		self.connection.connect()
+		let queue = OperationQueue.current
+		let center = NotificationCenter.default
+		
+		var didFailToken: NSObjectProtocol? = nil
+		var didDisconnectToken: NSObjectProtocol? = nil
+		
+		/// Callback on operation completion.
+		let completion: Callback = { [weak self] _, error in
+			
+			guard let this = self else {
+				return
+			}
+
+			callback(this, error)
+			didFailToken != nil ? center.removeObserver(didFailToken!) : ()
+			didDisconnectToken != nil ? center.removeObserver(didDisconnectToken!) : ()
+		}
+		
+		/// Block called if any transport related error occures.
+		let block: (Notification) -> Void = {
+			let error = $0.userInfo?["error"] as? Error ?? MCError(of: .connectionLost)
+			completion(nil, error)
+		}
+		
+		didFailToken = center.addObserver(forName: .MCConnectionDidFail, object: self, queue: queue, using: block)
+		didDisconnectToken = center.addObserver(forName: .MCConnectionLost, object: self, queue: queue, using: block)
+		
+		connection.connect()
+		connection.handshake(Constants.applicationName, completion)
 	}
 	
 	deinit {
 		// TODO: Close `connection`
+		self.connection.disconnect()
 	}
 }
 
@@ -74,15 +104,15 @@ extension UserConnection: ConnectionDelegate {
 	}
 	
 	public func connectionDidDisconnect(_ connection: JSTP.Connection) {
-		NotificationCenter.default.post(name: Notification.Name.MCConnectionLost, object: self)
+		NotificationCenter.default.post(name: .MCConnectionLost, object: self)
 	}
 	
 	public func connectionDidConnect(_ connection: JSTP.Connection) {
-		NotificationCenter.default.post(name: Notification.Name.MCConnectionEstablished, object: self)
+		NotificationCenter.default.post(name: .MCConnectionEstablished, object: self)
 	}
 	
 	public func connection(_ connection: Connection, didFailWithError error: Error) {
-		NotificationCenter.default.post(name: Notification.Name.MCConnectionDidFail, object: self, userInfo: ["error": error])
+		NotificationCenter.default.post(name: .MCConnectionDidFail, object: self, userInfo: ["error": error])
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
 	

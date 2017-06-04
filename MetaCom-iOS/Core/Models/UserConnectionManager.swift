@@ -46,23 +46,33 @@ final class UserConnectionManager {
 	/**
 		Create new `UserConnectionManager` instance.
 	*/
-	private init() {
-	}
+	private init() { }
 	
 	/**
 		Establish new connection.
 		- parameters: 
 			- host: server host.
 			- port: server port.
+			- callback: called on completion.
 	*/
-	func addConnection(host: String, port: Int) -> UserConnection {
+	func addConnection(host: String, port: Int, callback: @escaping (UserConnection?) -> Void) {
 		
 		let id = (userConnections.last?.id ?? -1) + 1
-		let connection = UserConnection(id: id, host: host, port: port)
+		let config = Configuration(host: host, port, true, Constants.applicationName, nil)
 		
+		let completion: (UserConnection, Error?) -> Void = { userConnection, error in
+			
+			guard error != nil else {
+				return callback(userConnection)
+			}
+			
+			self.removeConnection(userConnection)
+			callback(nil)
+		}
+		
+		let connection = UserConnection(identifier: id, configuration: config)
 		userConnections.append(connection)
-		
-		return connection
+		connection.connect(with: completion)
 	}
 	
 	/**
