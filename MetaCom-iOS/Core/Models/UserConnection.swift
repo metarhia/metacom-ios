@@ -91,9 +91,15 @@ final class UserConnection {
 		connection.handshake(Constants.applicationName, completion)
 	}
 	
+	/**
+		Disconnect from a `MetaCom` server.
+	*/
+	func disconnect() {
+		connection.disconnect()
+	}
+	
 	deinit {
-		// TODO: Close `connection`
-		self.connection.disconnect()
+		disconnect()
 	}
 }
 
