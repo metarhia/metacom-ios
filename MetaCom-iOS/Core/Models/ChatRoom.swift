@@ -116,11 +116,11 @@ extension ChatRoom {
 	*/
 	@objc func onReceiveMessage(_ notification: Notification) {
 		
-		guard let content = notification.userInfo?[Constants.notificationObject] as? String else {
+		guard let event = notification.userInfo?[Constants.notificationObject] as? Event, let content = event.arguments.first as? String else {
 			return
 		}
 		
-		let message = Message(content: Message.Content.text(content))
+		let message = Message(content: .text(content))
 		receivers.forEach { $0.chatRoom(self, didReceive: message) }
 	}
 	

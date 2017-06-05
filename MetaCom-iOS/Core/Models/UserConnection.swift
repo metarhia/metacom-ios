@@ -122,9 +122,8 @@ extension UserConnection: ConnectionDelegate {
 	
 	private func handle(received event: Event) {
 		
-		// TODO: Current version includes only one chat instance at time, therefore it will be used with default identifier.
 		let params = [Constants.notificationObject : event]
-		let eventName = Events.get(event: event.name, for: Constants.roomDefault)
+		let eventName = Events.get(event: event.name, for: chatManager.currentChat?.name ?? "")
 		let notification = Notification.Name(eventName)
 		
 		NotificationCenter.default.post(name: notification, object: self.connection, userInfo: params)
