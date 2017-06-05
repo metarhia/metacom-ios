@@ -16,7 +16,7 @@ typealias Completion = (Error?) -> ()
 class ChatRoom {
 	
 	public let name: String
-	private let connection: Connection
+	fileprivate let connection: Connection
 	fileprivate var receivers: Array<ChatRoomDelegate> = []
 	
 	/**
@@ -169,5 +169,12 @@ extension ChatRoom {
 		}
 		
 		receivers.remove(at: index)
+	}
+}
+
+extension ChatRoom: Equatable {
+	
+	public static func ==(lhs: ChatRoom, rhs: ChatRoom) -> Bool {
+		return lhs.name == rhs.name && lhs.connection.config.host == rhs.connection.config.host
 	}
 }

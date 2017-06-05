@@ -16,6 +16,27 @@ final class ChatRoomManager {
 	private let connection: Connection
 	private var chats: [ChatRoom] = []
 	
+	/// Currently displayed chat room.
+	private var currentChatRoom: ChatRoom?
+	
+	/**
+		Represents current chat room the user works with.
+		Setting this property does nothing if the connection has been removed.
+	*/
+	public var currentChat: ChatRoom? {
+		get {
+			return currentChatRoom
+		}
+		set(chat) {
+			
+			guard let aChat = chat, chats.contains(aChat) else {
+				return
+			}
+			
+			currentChatRoom = aChat
+		}
+	}
+	
 	/**
 		Create new `ChatManager` instance.
 		- parameters:
@@ -31,7 +52,7 @@ final class ChatRoomManager {
 			- name: chat name.
 			- completion: callback on completion.
 	*/
-	func addRoom(named name: String = Constants.roomDefault, completion: Completion? = nil) {
+	func addRoom(named name: String, completion: Completion? = nil) {
 		
 		let chat = ChatRoom(name: name, connection: connection)
 		chat.join { (error) in
@@ -44,6 +65,7 @@ final class ChatRoomManager {
 				return
 			}
 			
+			self.currentChatRoom = chat
 			self.chats.append(chat)
 		}
 	}
@@ -55,12 +77,22 @@ final class ChatRoomManager {
 	*/
 	func removeRoom(named name: String, completion: Completion? = nil) {
 		
-		guard let index = chats.index(where: { $0.name == name }) else {
+		guard let chat = getRoom(named: name) else {
+			completion?(MCError(of: .noChat))
 			return
 		}
 		
-		let chat = chats[index]
-		chat.leave { (error) in
+		removeRoom(chatRoom: chat, completion: completion)
+	}
+	
+	/**
+	Remove existing chatroom.
+		- parameters:
+			- chatRoom: chat room to remove.
+	*/
+	func removeRoom(chatRoom: ChatRoom, completion: Completion? = nil) {
+		
+		chatRoom.leave { (error) in
 			
 			defer {
 				completion?(error)
@@ -70,7 +102,11 @@ final class ChatRoomManager {
 				return
 			}
 			
-			self.chats.remove(at: index)
+			self.chats.remove(chatRoom)
+			
+			if self.currentChatRoom == chatRoom {
+				self.currentChatRoom = nil
+			}
 		}
 	}
 	
@@ -81,6 +117,9 @@ final class ChatRoomManager {
 	*/
 	func getRoom(named name: String) -> ChatRoom? {
 		
-		return (chats.filter { $0.name == name }).first
+		guard let index = chats.index(where: { $0.name == name }) else {
+			return nil
+		}
+		return chats[index]
 	}
 }
