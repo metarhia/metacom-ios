@@ -105,6 +105,10 @@ class ChatRoom {
 			center.addObserver(this, selector: selector, name: name, object: this.connection)
 		}
 	}
+	
+	deinit {
+		NotificationCenter.default.removeObserver(self)
+	}
 }
 
 extension ChatRoom {
