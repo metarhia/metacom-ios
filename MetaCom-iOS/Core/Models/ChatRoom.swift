@@ -20,7 +20,7 @@ class ChatRoom {
 	fileprivate var receivers: Array<ChatRoomDelegate> = []
 	
 	/**
-		Create a new `Chat` instance.
+		Create a new `ChatRoom` instance.
 		- parameters:
 			- name: chat identifier.
 			- connection: transport connection.
@@ -108,6 +108,7 @@ class ChatRoom {
 	
 	deinit {
 		NotificationCenter.default.removeObserver(self)
+		self.leave(completion: nil)
 	}
 }
 
@@ -118,7 +119,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc func onReceiveMessage(_ notification: Notification) {
+	@objc fileprivate func onReceiveMessage(_ notification: Notification) {
 		
 		guard let event = notification.userInfo?[Constants.notificationObject] as? Event, let content = event.arguments.first as? String else {
 			return
@@ -133,7 +134,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc func onJoinChat(_ notification: Notification) {
+	@objc fileprivate func onJoinChat(_ notification: Notification) {
 		
 		receivers.forEach { $0.chatRoomDidJoin(self) }
 	}
@@ -143,7 +144,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc func onLeaveChat(_ notification: Notification) {
+	@objc fileprivate func onLeaveChat(_ notification: Notification) {
 		
 		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
@@ -157,6 +158,10 @@ extension ChatRoom {
 			- this: message receiver instance.
 	*/
 	func subscribe<Listener>(_ this: Listener) where Listener: ChatRoomDelegate & Equatable {
+		
+		guard !receivers.contains(where: { ($0 as! Listener) == this }) else {
+			return
+		}
 		
 		receivers.append(this)
 	}
