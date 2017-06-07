@@ -62,12 +62,13 @@ final class UserConnectionManager {
 		
 		let completion: (UserConnection, Error?) -> Void = { userConnection, error in
 			
-			guard error != nil else {
-				return callback(userConnection)
+			guard error == nil else {
+				self.removeConnection(userConnection)
+				callback(nil)
+				return
 			}
 			
-			self.removeConnection(userConnection)
-			callback(nil)
+			callback(userConnection)
 		}
 		
 		let connection = UserConnection(identifier: id, configuration: config)
