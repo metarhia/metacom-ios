@@ -139,6 +139,6 @@ extension UserConnection: ConnectionDelegate {
 extension UserConnection: Equatable {
 	
 	public static func ==(lhs: UserConnection, rhs: UserConnection) -> Bool {
-		return  lhs.id == rhs.id
+		return lhs.id == rhs.id
 	}
 }
