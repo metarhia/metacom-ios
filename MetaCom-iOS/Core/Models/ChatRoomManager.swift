@@ -17,7 +17,7 @@ final class ChatRoomManager {
 	private var chats: [ChatRoom] = []
 	
 	/// Currently displayed chat room.
-	private var currentChatRoom: ChatRoom?
+	private weak var currentChatRoom: ChatRoom?
 	
 	/**
 		Represents current chat room the user works with.
@@ -103,10 +103,6 @@ final class ChatRoomManager {
 			}
 			
 			self.chats.remove(chatRoom)
-			
-			if self.currentChatRoom == chatRoom {
-				self.currentChatRoom = nil
-			}
 		}
 	}
 	
