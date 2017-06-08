@@ -64,7 +64,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
-                                                    <action selector="textFiledValueChanged" destination="BYZ-38-t0r" eventType="editingDidEnd" id="bvc-dr-E9j"/>
+                                                    <action selector="textFiledValueChanged" destination="BYZ-38-t0r" eventType="editingChanged" id="iD0-IF-cIb"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
