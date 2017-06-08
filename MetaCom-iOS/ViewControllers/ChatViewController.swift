@@ -16,7 +16,7 @@ private struct ChatConstants {
 	static let outgoingSenderId = "outgoingId"
 }
 
-// MARK: - Initialization `JSQMessage` form `Message`
+// MARK: - Initialization `JSQMessage` from `Message`
 
 extension JSQMessage {
 	
@@ -33,69 +33,56 @@ extension JSQMessage {
 	}
 }
 
-// MARK: - Placeholder data
-
-// TODO: Replace with actual data model
-private let Messages = [
-	Message(content: .text("Hello"), incoming: true),
-	Message(content: .text("Hi"), incoming: false),
-	Message(content: .text("What's up?"), incoming: false),
-	Message(content: .text("I'll answer with photo:"), incoming: true),
-	Message(content: .file(Data()), incoming: true),
-	Message(content: .file(Data()), incoming: false),
-	Message(content: .text("Hmmm... Something gone wrong..."), incoming: false)
-]
-
 // MARK: - ChatViewController
 
 class ChatViewController: JSQMessagesViewController {
 	
-	var messages = [JSQMessage]()
-	weak var chat: ChatRoom?
+	weak var chat: ChatRoom? {
+		didSet {
+			guard oldValue != chat else {
+				return
+			}
+			
+			oldValue?.unsubscribe(self)
+			chat?.subscribe(self)
+			clearChat()
+		}
+	}
+	
+	fileprivate var messages = [JSQMessage]()
+	
 	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())!
 	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		self.title = chat?.name
+		
 		collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
 		collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
-		
-		messages = Messages.map { JSQMessage(message: $0) }
 		
 		senderId = ChatConstants.outgoingSenderId
 		senderDisplayName = ""
 		
-		collectionView?.reloadData()
-		collectionView?.layoutIfNeeded()
+		clearChat()
     }
 	
-	// Dark magic to send a reply message **********************************************************
-	// Of course, will be removed.
-	
-	override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-		if motion == .motionShake {
-			sendReply()
-		}
+	private func clearChat() {
+		messages = []
+		collectionView?.reloadData()
+		collectionView?.layoutIfNeeded()
 	}
-	
-	func sendReply() {
-		showTypingIndicator = !showTypingIndicator
-		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-			let message = JSQMessage(message: Message(content: .text("Hi there!"), incoming: true))
-			self.messages.append(message)
-			self.finishReceivingMessage(animated: true)
-		}
-	}
-	
-	// End of dark magic ***************************************************************************
 	
 	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
-		guard let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text) else {
-			return
+		let message = Message(content: .text(text), incoming: false)
+		chat?.send(message: message) { error in
+			if let error = error {
+				// TODO: Handle error. Maybe show an alert.
+			}
 		}
-		messages.append(message)
+		
+		messages += [JSQMessage(message: message)]
 		finishSendingMessage(animated: true)
 	}
 	
@@ -126,11 +113,15 @@ class ChatViewController: JSQMessagesViewController {
 		if let messageCell = cell as? JSQMessagesCollectionViewCell {
 			let message = messages[indexPath.item]
 			
-			if message.senderId == self.senderId {
-				messageCell.textView?.textColor = .white
-			} else {
-				messageCell.textView?.textColor = .black
-			}
+			let textColor: UIColor = message.senderId == self.senderId ? .white : .black
+			messageCell.textView?.textColor = textColor
+			
+			// Disabling user interaction and (unfortunately) data detectors to prevent text selection.
+			// Such solution is caused by strange `UITextView` behavior inside a message bubble.
+			// For more info about the problem see the following issue:
+			// https://github.com/jessesquires/JSQMessagesViewController/issues/1159
+			messageCell.textView?.isUserInteractionEnabled = false
+			messageCell.textView?.dataDetectorTypes = UIDataDetectorTypes(rawValue: 0)
 		}
 		
 		return cell
@@ -141,6 +132,21 @@ class ChatViewController: JSQMessagesViewController {
 //		guard let media = messages[indexPath.item].media else {
 //			return
 //		}
+	}
+	
+}
+
+// MARK: - ChatRoomDelegate
+
+extension ChatViewController: ChatRoomDelegate {
+	
+	func chatRoom(_ chatRoom: ChatRoom, didReceive message: Message) {
+		guard chatRoom == chat else {
+			return
+		}
+		
+		messages += [JSQMessage(message: message)]
+		finishReceivingMessage(animated: true)
 	}
 	
 }
