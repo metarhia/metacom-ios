@@ -184,6 +184,8 @@ extension ChatRoom {
 extension ChatRoom: Equatable {
 	
 	public static func ==(lhs: ChatRoom, rhs: ChatRoom) -> Bool {
-		return lhs.name == rhs.name && lhs.connection.config.host == rhs.connection.config.host
+		return lhs.name == rhs.name &&
+			lhs.connection.config.host == rhs.connection.config.host &&
+			lhs.connection.config.port == rhs.connection.config.port
 	}
 }
