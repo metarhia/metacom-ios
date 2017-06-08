@@ -18,6 +18,8 @@ class NewChatViewController: UIViewController {
 		
 		chatNameTextField.delegate = self
 		
+		updateButtonState()
+		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 	}
 	
@@ -29,7 +31,7 @@ class NewChatViewController: UIViewController {
 	}
 	
 	@IBAction func joinChat() {
-		guard let name = chatNameTextField.text else {
+		guard let name = chatNameTextField.text?.trim(), !name.isEmpty else {
 			return
 		}
 		
@@ -55,6 +57,14 @@ class NewChatViewController: UIViewController {
 			
 			self.performSegue(withIdentifier: "show.chat", sender: nil)
 		}
+	}
+	
+	@IBAction func nameChanged() {
+		updateButtonState()
+	}
+	
+	func updateButtonState() {
+		joinButton.isEnabled = chatNameTextField.text?.isEmpty == false
 	}
 	
 	// MARK: - Navigation

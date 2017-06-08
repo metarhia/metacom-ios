@@ -14,26 +14,42 @@ class ConnectionViewController: UIViewController {
 	@IBOutlet weak var portTextField: UITextField!
 	@IBOutlet weak var connectButton: UIButton!
 	
+	private var host: String? {
+		guard let host = hostTextField.text?.trim(), !host.isEmpty else {
+			return nil
+		}
+		return host
+	}
+	
+	private var port: Int? {
+		guard let port = portTextField.text?.trim(), !port.isEmpty else {
+			return nil
+		}
+		return Int(port)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		hostTextField.delegate = self
 		portTextField.delegate = self
 		
+		updateButtonState()
+		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		// TODO: Move out of this method
-		connectButton.isActivityIndicatorVisible = false
-		hostTextField.isEnabled = true
-		portTextField.isEnabled = true
+	private var isInterfaceLocked: Bool = false {
+		didSet {
+			hostTextField.isEnabled = !isInterfaceLocked
+			portTextField.isEnabled = !isInterfaceLocked
+			connectButton.isActivityIndicatorVisible = isInterfaceLocked
+		}
 	}
 	
 	@IBAction func connect() {
-		guard let host = hostTextField.text?.trim(), let port = Int(portTextField.text?.trim() ?? "") else {
+		guard let host = host, let port = port else {
+			// TODO: Show alert
 			return
 		}
 		
@@ -41,10 +57,15 @@ class ConnectionViewController: UIViewController {
 		hostTextField.isEnabled = false
 		portTextField.isEnabled = false
 		
-		UserConnectionManager.instance.addConnection(host: host, port: port) { connection in
+		isInterfaceLocked = true
+		
+		UserConnectionManager.instance.addConnection(host: host, port: port) { [weak self] connection in
+			guard let `self` = self else {
+				return
+			}
 			
 			defer {
-				self.connectButton.isActivityIndicatorVisible = false
+				self.isInterfaceLocked = false
 			}
 			
 			guard let userConnection = connection else {
@@ -55,6 +76,14 @@ class ConnectionViewController: UIViewController {
 			self.performSegue(withIdentifier: "submit", sender: nil)
 		}
 	}
+	
+	@IBAction func textFiledValueChanged() {
+		updateButtonState()
+	}
+	
+	func updateButtonState() {
+		connectButton.isEnabled = host != nil && port != nil
+	}
 
 	// MARK: - Navigation
 	
@@ -63,7 +92,7 @@ class ConnectionViewController: UIViewController {
 			return
 		}
 		
-		guard let host = hostTextField.text?.trim(), let port = portTextField.text?.trim() else {
+		guard let host = host, let port = port else {
 			return
 		}
 		
@@ -71,7 +100,6 @@ class ConnectionViewController: UIViewController {
 	}
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
-		
 		guard let current = UserConnectionManager.instance.currentConnection else {
 			return
 		}
