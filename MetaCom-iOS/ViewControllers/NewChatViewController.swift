@@ -32,10 +32,12 @@ class NewChatViewController: UIViewController {
 	
 	@IBAction func joinChat() {
 		guard let name = chatNameTextField.text?.trim(), !name.isEmpty else {
+			present(UIAlertController.chatJoiningFailed(), animated: true)
 			return
 		}
 		
 		guard let chatManager = UserConnectionManager.instance.currentConnection?.chatManager else {
+			present(UIAlertController.genericError(), animated: true)
 			return
 		}
 		
@@ -51,7 +53,7 @@ class NewChatViewController: UIViewController {
 			}
 			
 			guard error == nil else {
-				// TODO: Handle error. Maybe show an alert.
+				self.present(UIAlertController.chatJoiningFailed(), animated: true)
 				return
 			}
 			

@@ -49,7 +49,7 @@ class ConnectionViewController: UIViewController {
 	
 	@IBAction func connect() {
 		guard let host = host, let port = port else {
-			// TODO: Show alert
+			present(UIAlertController.connectionFailed(), animated: true)
 			return
 		}
 		
@@ -69,6 +69,7 @@ class ConnectionViewController: UIViewController {
 			}
 			
 			guard let userConnection = connection else {
+				self.present(UIAlertController.connectionFailed(), animated: true)
 				return
 			}
 			

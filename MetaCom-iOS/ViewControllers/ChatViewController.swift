@@ -76,9 +76,15 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
 		let message = Message(content: .text(text), incoming: false)
-		chat?.send(message: message) { error in
-			if let error = error {
-				// TODO: Handle error. Maybe show an alert.
+		chat?.send(message: message) { [weak self] error in
+			guard let `self` = self else {
+				return
+			}
+			
+			guard error == nil else {
+				// TODO: Handle error. Maybe show an alert, make message bubble red etc.
+				self.present(UIAlertController.messageSendingFailed(), animated: true)
+				return
 			}
 		}
 		
