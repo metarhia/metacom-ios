@@ -11,6 +11,7 @@ import UIKit
 class NewChatViewController: UIViewController {
 	
 	@IBOutlet weak var chatNameTextField: UITextField!
+	@IBOutlet weak var joinButton: UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,17 +21,40 @@ class NewChatViewController: UIViewController {
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 	}
 	
-	@IBAction func startChat() {
-//		guard let name = chatNameTextField.text else {
-//			return
-//		}
-		// TODO: Start conversation in the chat room named `name`
-		
-		performSegue(withIdentifier: "show.chat", sender: nil)
+	private var isInterfaceLocked: Bool = false {
+		didSet {
+			chatNameTextField.isEnabled = !isInterfaceLocked
+			joinButton.isActivityIndicatorVisible = isInterfaceLocked
+		}
 	}
 	
-	@IBAction func unwindToChatSetup(_ segue: UIStoryboardSegue) {
+	@IBAction func joinChat() {
+		guard let name = chatNameTextField.text else {
+			return
+		}
 		
+		guard let chatManager = UserConnectionManager.instance.currentConnection?.chatManager else {
+			return
+		}
+		
+		isInterfaceLocked = true
+		
+		chatManager.addRoom(named: name) { [weak self] error in
+			guard let `self` = self else {
+				return
+			}
+			
+			defer {
+				self.isInterfaceLocked = false
+			}
+			
+			guard error == nil else {
+				// TODO: Handle error. Maybe show an alert.
+				return
+			}
+			
+			self.performSegue(withIdentifier: "show.chat", sender: nil)
+		}
 	}
 	
 	// MARK: - Navigation
@@ -40,7 +64,23 @@ class NewChatViewController: UIViewController {
 			return
 		}
 		
-		segue.destination.content.title = chatNameTextField.text?.trim()
+		guard let chatController = segue.destination.content as? ChatViewController else {
+			return
+		}
+		
+		chatController.chat = UserConnectionManager.instance.currentConnection?.chatManager.currentChat
+	}
+	
+	@IBAction func unwindToChatSetup(_ segue: UIStoryboardSegue) {
+		guard let chatManager = UserConnectionManager.instance.currentConnection?.chatManager else {
+			return
+		}
+		
+		guard let chat = chatManager.currentChat else {
+			return
+		}
+		
+		chatManager.removeRoom(chat)
 	}
 	
 }
@@ -51,7 +91,7 @@ extension NewChatViewController: UITextFieldDelegate {
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
-		startChat()
+		joinChat()
 		return false
 	}
 }

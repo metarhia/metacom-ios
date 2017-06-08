@@ -82,7 +82,7 @@ final class ChatRoomManager {
 			return
 		}
 		
-		removeRoom(chatRoom: chat, completion: completion)
+		removeRoom(chat, completion: completion)
 	}
 	
 	/**
@@ -90,7 +90,7 @@ final class ChatRoomManager {
 		- parameters:
 			- chatRoom: chat room to remove.
 	*/
-	func removeRoom(chatRoom: ChatRoom, completion: Completion? = nil) {
+	func removeRoom(_ chatRoom: ChatRoom, completion: Completion? = nil) {
 		
 		chatRoom.leave { (error) in
 			

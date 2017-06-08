@@ -51,6 +51,7 @@ private let Messages = [
 class ChatViewController: JSQMessagesViewController {
 	
 	var messages = [JSQMessage]()
+	weak var chat: ChatRoom?
 	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())!
 	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())!
 
