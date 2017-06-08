@@ -20,7 +20,7 @@ final class UserConnectionManager {
 	private(set) var userConnections: [UserConnection] = []
 	
 	/// Currently displayed connection.
-	private var currentUserConnection: UserConnection?
+	private weak var currentUserConnection: UserConnection?
 	
 	/**
 		Represents current connection the user works with.
@@ -82,9 +82,6 @@ final class UserConnectionManager {
 			- connection: living connection.
 	*/
 	func removeConnection(_ connection: UserConnection) {
-		if currentUserConnection == connection {
-			currentUserConnection = nil
-		}
 		userConnections.remove(connection)
 	}
 }
