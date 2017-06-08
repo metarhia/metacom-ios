@@ -143,10 +143,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="pJU-7k-hOr">
-                                <rect key="frame" x="60" y="295.5" width="255" height="76"/>
+                                <rect key="frame" x="62.5" y="295.5" width="250" height="76"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chat name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9se-2w-j3G">
-                                        <rect key="frame" x="0.0" y="0.0" width="255" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
@@ -155,7 +155,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmP-dB-xvp">
-                                        <rect key="frame" x="0.0" y="46" width="255" height="30"/>
+                                        <rect key="frame" x="0.0" y="46" width="250" height="30"/>
                                         <state key="normal" title="Let's chat!"/>
                                         <connections>
                                             <action selector="joinChat" destination="FLt-Jf-409" eventType="touchUpInside" id="5rK-Bk-0AE"/>
@@ -166,13 +166,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pJU-7k-hOr" firstAttribute="centerY" secondItem="OeM-3e-VNM" secondAttribute="centerY" id="IJW-tt-bFU"/>
-                            <constraint firstItem="pJU-7k-hOr" firstAttribute="leading" secondItem="OeM-3e-VNM" secondAttribute="leading" constant="60" id="Owh-dC-jle"/>
+                            <constraint firstItem="pJU-7k-hOr" firstAttribute="centerY" secondItem="OeM-3e-VNM" secondAttribute="centerY" priority="750" id="IJW-tt-bFU"/>
+                            <constraint firstItem="pJU-7k-hOr" firstAttribute="width" secondItem="OeM-3e-VNM" secondAttribute="width" multiplier="1:1.5" id="gST-jq-M7m"/>
                             <constraint firstItem="pJU-7k-hOr" firstAttribute="centerX" secondItem="OeM-3e-VNM" secondAttribute="centerX" id="ogI-6I-z11"/>
+                            <constraint firstItem="bZ9-07-RVG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pJU-7k-hOr" secondAttribute="bottom" id="pmh-ST-wSq"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="chat" id="ehY-bO-MuR"/>
                     <connections>
+                        <outlet property="bottomSpace" destination="pmh-ST-wSq" id="KSN-fj-RwT"/>
                         <outlet property="chatNameTextField" destination="9se-2w-j3G" id="HdN-XI-TRI"/>
                         <outlet property="joinButton" destination="WmP-dB-xvp" id="a4s-Gl-lZN"/>
                         <segue destination="EuX-dW-NWt" kind="presentation" identifier="show.chat" id="zXI-3x-lLV"/>

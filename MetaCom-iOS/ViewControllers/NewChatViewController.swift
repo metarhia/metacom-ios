@@ -13,6 +13,10 @@ class NewChatViewController: UIViewController {
 	@IBOutlet weak var chatNameTextField: UITextField!
 	@IBOutlet weak var joinButton: UIButton!
 	
+	@IBOutlet weak var bottomSpace: NSLayoutConstraint!
+	
+	// MARK: - View Controller Lifecycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -23,12 +27,39 @@ class NewChatViewController: UIViewController {
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		registerKeyboardNotifications()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		unregisterKeyboardNotifications()
+	}
+	
+	// MARK: - UI updating stuff
+	
 	private var isInterfaceLocked: Bool = false {
 		didSet {
 			chatNameTextField.isEnabled = !isInterfaceLocked
 			joinButton.isActivityIndicatorVisible = isInterfaceLocked
 		}
 	}
+	
+	private func setBottomSpace(_ space: CGFloat, animated: Bool = true) {
+		bottomSpace.constant = space
+		UIView.animate(withDuration: animated ? 0.3 : 0, animations: view.layoutIfNeeded)
+	}
+	
+	private func updateButtonState() {
+		joinButton.isEnabled = chatNameTextField.text?.isEmpty == false
+	}
+	
+	@IBAction func nameChanged() {
+		updateButtonState()
+	}
+	
+	// MARK: - Joining Chat
 	
 	@IBAction func joinChat() {
 		guard let name = chatNameTextField.text?.trim(), !name.isEmpty else {
@@ -61,14 +92,6 @@ class NewChatViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func nameChanged() {
-		updateButtonState()
-	}
-	
-	func updateButtonState() {
-		joinButton.isEnabled = chatNameTextField.text?.isEmpty == false
-	}
-	
 	// MARK: - Navigation
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -93,6 +116,40 @@ class NewChatViewController: UIViewController {
 		}
 		
 		chatManager.removeRoom(chat)
+	}
+	
+	// MARK: - Handling keyboard events
+	// Preventing controls overlapping by keyboard.
+	// Perhaps will be replaced with another solution later.
+	
+	private func registerKeyboardNotifications() {
+		let center = NotificationCenter.default
+		center.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: .UIKeyboardDidShow, object: nil)
+		center.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+		center.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+	}
+	
+	private func unregisterKeyboardNotifications() {
+		let center = NotificationCenter.default
+		center.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
+		center.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+		center.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
+	}
+	
+	@objc private func keyboardDidShow(_ notification: Notification) {
+		if let kbRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+			setBottomSpace(kbRect.height - 40)
+		}
+	}
+	
+	@objc private func keyboardWillHide(_ notification: Notification) {
+		setBottomSpace(0)
+	}
+	
+	@objc private func keyboardWillChangeFrame(_ notification: Notification) {
+		if let kbRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+			setBottomSpace(kbRect.height - 40)
+		}
 	}
 	
 }
