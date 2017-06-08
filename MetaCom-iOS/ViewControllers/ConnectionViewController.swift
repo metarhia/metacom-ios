@@ -35,6 +35,11 @@ class ConnectionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// Developer hack. Will be removed. Later...
+		hostTextField.text = "dev.metarhia.com"
+		portTextField.text = "3000"
+		//
+		
 		hostTextField.delegate = self
 		portTextField.delegate = self
 		
@@ -151,7 +156,7 @@ class ConnectionViewController: UIViewController {
 	
 	@objc private func keyboardDidShow(_ notification: Notification) {
 		if let kbRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-			setBottomSpace(kbRect.height + 20)
+			setBottomSpace(kbRect.height + 10)
 		}
 	}
 	
@@ -161,7 +166,7 @@ class ConnectionViewController: UIViewController {
 	
 	@objc private func keyboardWillChangeFrame(_ notification: Notification) {
 		if let kbRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-			setBottomSpace(kbRect.height + 20)
+			setBottomSpace(kbRect.height + 10)
 		}
 	}
 	
