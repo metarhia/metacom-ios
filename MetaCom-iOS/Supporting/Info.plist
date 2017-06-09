@@ -39,5 +39,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Required for sending photo or video</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Required for sending photo or video</string>
 </dict>
 </plist>
