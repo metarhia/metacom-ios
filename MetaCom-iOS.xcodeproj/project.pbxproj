@@ -41,7 +41,7 @@
 		8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
 		8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
 		8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */; };
-		8FF9E0671EEAA86700E3FAD9 /* UIAlertController+FIlePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FIlePicker.swift */; };
+		8FF9E0671EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,7 +97,7 @@
 		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
 		8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MetaCom-iOS.entitlements"; path = "../MetaCom-iOS.entitlements"; sourceTree = "<group>"; };
 		8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EndEditing.swift"; sourceTree = "<group>"; };
-		8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FIlePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+FIlePicker.swift"; sourceTree = "<group>"; };
+		8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+FilePicker.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +206,7 @@
 				8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */,
 				8F146CCE1EDD914100BC1733 /* Array+Remove.swift */,
 				8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */,
-				8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FIlePicker.swift */,
+				8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 			files = (
 				142319071ECDEA2000F63687 /* ChatRoomDelegate.swift in Sources */,
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
-				8FF9E0671EEAA86700E3FAD9 /* UIAlertController+FIlePicker.swift in Sources */,
+				8FF9E0671EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift in Sources */,
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,

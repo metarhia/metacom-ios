@@ -1,5 +1,5 @@
 //
-//  UIAlertController+FIlePicker.swift
+//  UIAlertController+FilePicker.swift
 //  MetaCom-iOS
 //
 //  Created by iKing on 09.06.17.
