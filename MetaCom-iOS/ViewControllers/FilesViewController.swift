@@ -10,18 +10,47 @@ import UIKit
 
 class FilesViewController: UIViewController {
 	
+	@IBOutlet weak var uploadButton: UIButton!
+	@IBOutlet weak var downloadButton: UIButton!
+	@IBOutlet weak var infoLabel: UILabel!
+	
 	// MARK: - Upload
 	
 	@IBAction func upload() {
-		// TODO: Let user to select file
-		// TODO: Visualize uploading process (show some status bar, perhaps)
-		// TODO: Get proper `code`
-		let code = "31415926535"
-		let alert = UIAlertController(title: "Upload",
-		                              message: "Your file was uploaded. Code is \(code).",
-		                              preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		
+		let alert = UIAlertController.filePicker(with: self, rootController: self)
 		present(alert, animated: true)
+	}
+	
+	var isInterfaceLocked: Bool = false {
+		didSet {
+			uploadButton.isEnabled = !isInterfaceLocked
+			downloadButton.isEnabled = !isInterfaceLocked
+		}
+	}
+	
+	// Temporary. For demonstration.
+	fileprivate func showUploading() {
+		isInterfaceLocked = true
+		infoLabel.text = "Uploading..."
+		infoLabel.isHidden = false
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+			guard let `self` = self else {
+				return
+			}
+			
+			self.isInterfaceLocked = false
+			self.infoLabel.text = "Uploading..."
+			self.infoLabel.isHidden = true
+			
+			let code = "31415926535"
+			let alert = UIAlertController(title: "Upload",
+			                              message: "Your file was uploaded. Code is \(code).",
+				preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+			self.present(alert, animated: true)
+		}
 	}
 	
 	// MARK: - Download
@@ -59,4 +88,22 @@ class FilesViewController: UIViewController {
 		downloadAction?.isEnabled = textField.text?.isEmpty == false
 	}
 
+}
+
+// MARK: - Temporary solution
+
+extension FilesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		picker.dismiss(animated: true, completion: nil)
+		showUploading()
+	}
+	
+}
+
+extension FilesViewController: UIDocumentPickerDelegate {
+	
+	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+		showUploading()
+	}
 }
