@@ -58,6 +58,14 @@ class ConnectionViewController: UIViewController {
 		unregisterKeyboardNotifications()
 	}
 	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		if shouldUnlockInterfaceOnDisappear && isInterfaceLocked {
+			isInterfaceLocked = false
+		}
+	}
+	
 	// MARK: - UI updating stuff
 	
 	private var isInterfaceLocked: Bool = false {
@@ -67,6 +75,8 @@ class ConnectionViewController: UIViewController {
 			connectButton.isActivityIndicatorVisible = isInterfaceLocked
 		}
 	}
+	
+	private var shouldUnlockInterfaceOnDisappear: Bool = true
 	
 	private func setBottomSpace(_ space: CGFloat, animated: Bool = true) {
 		bottomSpace.constant = space
@@ -100,12 +110,9 @@ class ConnectionViewController: UIViewController {
 				return
 			}
 			
-			defer {
-				self.isInterfaceLocked = false
-			}
-			
 			guard let userConnection = connection else {
 				self.present(UIAlertController.connectionFailed(), animated: true)
+				self.isInterfaceLocked = false
 				return
 			}
 			

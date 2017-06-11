@@ -37,6 +37,14 @@ class NewChatViewController: UIViewController {
 		unregisterKeyboardNotifications()
 	}
 	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		if shouldUnlockInterfaceOnDisappear && isInterfaceLocked {
+			isInterfaceLocked = false
+		}
+	}
+	
 	// MARK: - UI updating stuff
 	
 	private var isInterfaceLocked: Bool = false {
@@ -45,6 +53,8 @@ class NewChatViewController: UIViewController {
 			joinButton.isActivityIndicatorVisible = isInterfaceLocked
 		}
 	}
+	
+	private var shouldUnlockInterfaceOnDisappear: Bool = true
 	
 	private func setBottomSpace(_ space: CGFloat, animated: Bool = true) {
 		bottomSpace.constant = space
@@ -79,12 +89,9 @@ class NewChatViewController: UIViewController {
 				return
 			}
 			
-			defer {
-				self.isInterfaceLocked = false
-			}
-			
 			guard error == nil else {
 				self.present(UIAlertController.chatJoiningFailed(), animated: true)
+				self.isInterfaceLocked = false
 				return
 			}
 			
