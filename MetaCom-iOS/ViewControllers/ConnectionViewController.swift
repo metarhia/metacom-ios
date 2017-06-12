@@ -99,10 +99,6 @@ class ConnectionViewController: UIViewController {
 			return
 		}
 		
-		connectButton.isActivityIndicatorVisible = true
-		hostTextField.isEnabled = false
-		portTextField.isEnabled = false
-		
 		isInterfaceLocked = true
 		
 		UserConnectionManager.instance.addConnection(host: host, port: port) { [weak self] connection in
