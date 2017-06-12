@@ -87,7 +87,7 @@ class ConnectionViewController: UIViewController {
 		connectButton.isEnabled = host != nil && port != nil
 	}
 	
-	@IBAction func textFiledValueChanged() {
+	@IBAction func textFieldValueChanged() {
 		updateButtonState()
 	}
 	
