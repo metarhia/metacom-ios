@@ -58,8 +58,8 @@ final class UserConnection {
 		- parameters:
 			- callback: block called on operation completion.
 	*/
-	func connect(with callback: @escaping (UserConnection, Error?) -> Void) {
-		
+	func connect(with callback: @escaping (Error?) -> Void) {
+	
 		let queue = OperationQueue.current
 		let center = NotificationCenter.default
 		
@@ -67,15 +67,15 @@ final class UserConnection {
 		var didDisconnectToken: NSObjectProtocol? = nil
 		
 		/// Callback on operation completion.
-		let completion: Callback = { [weak self] _, error in
+		let completion: Callback = { _, error in
 			
-			guard let this = self else {
-				return
-			}
-
-			callback(this, error)
 			didFailToken != nil ? center.removeObserver(didFailToken!) : ()
 			didDisconnectToken != nil ? center.removeObserver(didDisconnectToken!) : ()
+			
+			didFailToken = nil
+			didDisconnectToken = nil
+			
+			callback(error)
 		}
 		
 		/// Block called if any transport related error occures.
@@ -84,8 +84,8 @@ final class UserConnection {
 			completion(nil, error)
 		}
 		
-		didFailToken = center.addObserver(forName: .MCConnectionDidFail, object: self, queue: queue, using: block)
-		didDisconnectToken = center.addObserver(forName: .MCConnectionLost, object: self, queue: queue, using: block)
+		didFailToken = center.addObserver(forName: .MCConnectionDidFail, object: connection, queue: queue, using: block)
+		didDisconnectToken = center.addObserver(forName: .MCConnectionLost, object: connection, queue: queue, using: block)
 		
 		connection.connect()
 		connection.handshake(Constants.applicationName, completion)
@@ -95,7 +95,10 @@ final class UserConnection {
 		Disconnect from a `MetaCom` server.
 	*/
 	func disconnect() {
+		
+		NotificationCenter.default.removeObserver(self, name: nil, object: nil)
 		connection.disconnect()
+		connection = nil
 	}
 	
 	deinit {
@@ -110,15 +113,15 @@ extension UserConnection: ConnectionDelegate {
 	}
 	
 	public func connectionDidDisconnect(_ connection: JSTP.Connection) {
-		NotificationCenter.default.post(name: .MCConnectionLost, object: self)
+		NotificationCenter.default.post(name: .MCConnectionLost, object: connection)
 	}
 	
 	public func connectionDidConnect(_ connection: JSTP.Connection) {
-		NotificationCenter.default.post(name: .MCConnectionEstablished, object: self)
+		NotificationCenter.default.post(name: .MCConnectionEstablished, object: connection)
 	}
 	
 	public func connection(_ connection: Connection, didFailWithError error: Error) {
-		NotificationCenter.default.post(name: .MCConnectionDidFail, object: self, userInfo: ["error": error])
+		NotificationCenter.default.post(name: .MCConnectionDidFail, object: connection, userInfo: ["error": error])
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
 	
@@ -132,7 +135,7 @@ extension UserConnection: ConnectionDelegate {
 		let eventName = Events.get(event: event.name, for: chatManager.currentChat?.name ?? "")
 		let notification = Notification.Name(eventName)
 		
-		NotificationCenter.default.post(name: notification, object: self.connection, userInfo: params)
+		NotificationCenter.default.post(name: notification, object: connection, userInfo: params)
 	}
 }
 
