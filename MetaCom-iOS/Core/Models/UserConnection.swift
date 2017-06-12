@@ -96,12 +96,14 @@ final class UserConnection {
 	*/
 	func disconnect() {
 		
-		NotificationCenter.default.removeObserver(self, name: nil, object: nil)
+		NotificationCenter.default.removeObserver(self, name: nil, object: connection)
 		connection.disconnect()
 		connection = nil
 	}
 	
 	deinit {
+		
+		NotificationCenter.default.removeObserver(self, name: nil, object: nil)
 		disconnect()
 	}
 }
