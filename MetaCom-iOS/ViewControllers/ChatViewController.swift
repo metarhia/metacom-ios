@@ -74,8 +74,7 @@ class ChatViewController: JSQMessagesViewController {
 		collectionView?.layoutIfNeeded()
 	}
 	
-	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
-		let message = Message(content: .text(text), incoming: false)
+	fileprivate func send(_ message: Message) {
 		chat?.send(message: message) { [weak self] error in
 			guard let `self` = self else {
 				return
@@ -90,6 +89,16 @@ class ChatViewController: JSQMessagesViewController {
 		
 		messages += [JSQMessage(message: message)]
 		finishSendingMessage(animated: true)
+	}
+	
+	fileprivate func receive(_ message: Message) {
+		messages += [JSQMessage(message: message)]
+		finishReceivingMessage(animated: true)
+	}
+	
+	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
+		let message = Message(content: .text(text), incoming: false)
+		send(message)
 	}
 	
 	override func didPressAccessoryButton(_ sender: UIButton) {
@@ -152,8 +161,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		messages += [JSQMessage(message: message)]
-		finishReceivingMessage(animated: true)
+		receive(message)
 	}
 	
 }
@@ -163,7 +171,9 @@ extension ChatViewController: ChatRoomDelegate {
 extension ChatViewController: FilePickerDelegate {
 	
 	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
-		// TODO: Upload
+		let message = Message(content: .file(data), incoming: false)
+		send(message)
+		
 	}
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
