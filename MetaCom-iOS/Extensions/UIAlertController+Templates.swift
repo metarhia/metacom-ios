@@ -10,6 +10,25 @@ import UIKit
 
 extension UIAlertController {
 	
+	// MARK: - Info
+	
+	static func upload(code: String) -> UIAlertController {
+		let alert = UIAlertController(title: "Upload",
+		                              message: "Your file was uploaded. Code is \(code).",
+		                              preferredStyle: .alert)
+		
+		let copy = UIAlertAction(title: "Copy", style: .cancel) { _ in
+			UIPasteboard.general.string = code
+		}
+		
+		alert.addAction(copy)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		
+		return alert
+	}
+	
+	// MARK: - Errors
+	
 	static func chatJoiningFailed() -> UIAlertController {
 		let alert = UIAlertController(title: "Error", message: "An error occured while joining chat room. Try again.", preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .cancel))

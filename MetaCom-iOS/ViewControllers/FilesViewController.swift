@@ -40,15 +40,10 @@ class FilesViewController: UIViewController {
 			}
 			
 			self.isInterfaceLocked = false
-			self.infoLabel.text = "Uploading..."
 			self.infoLabel.isHidden = true
 			
 			let code = "31415926535"
-			let alert = UIAlertController(title: "Upload",
-			                              message: "Your file was uploaded. Code is \(code).",
-				preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-			self.present(alert, animated: true)
+			self.present(UIAlertController.upload(code: code), animated: true)
 		}
 	}
 	
