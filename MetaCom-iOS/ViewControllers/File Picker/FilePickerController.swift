@@ -48,32 +48,14 @@ class FilePickerController: UIViewController {
 	private func createAlert() -> UIAlertController {
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 		
-		let cancelHandler: (UIAlertAction) -> () = { _ in
-			self.dismiss()
+		let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { _ in
+			let imagePicker = UIImagePickerController(sourceType: .photoLibrary, delegate: self)
+			self.present(imagePicker, animated: true)
 		}
 		
-		let media = UIAlertAction(title: "Photo or Video", style: .default) { _ in
-			
-			let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-			
-			let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { _ in
-				let imagePicker = UIImagePickerController(sourceType: .photoLibrary, delegate: self)
-				self.present(imagePicker, animated: true)
-			}
-			
-			let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-				let imagePicker = UIImagePickerController(sourceType: .camera, delegate: self)
-				self.present(imagePicker, animated: true)
-			}
-			
-			photoLibrary.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
-			camera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-			
-			alert.addAction(photoLibrary)
-			alert.addAction(camera)
-			alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler))
-			
-			self.present(alert, animated: true)
+		let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+			let imagePicker = UIImagePickerController(sourceType: .camera, delegate: self)
+			self.present(imagePicker, animated: true)
 		}
 		
 		let iCloudDrive = UIAlertAction(title: "iCloud Drive", style: .default) { _ in
@@ -82,9 +64,17 @@ class FilePickerController: UIViewController {
 			self.present(documentPickerController, animated: true)
 		}
 		
-		alert.addAction(media)
+		let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+			self.dismiss()
+		}
+		
+		photoLibrary.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+		camera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+		
+		alert.addAction(photoLibrary)
+		alert.addAction(camera)
 		alert.addAction(iCloudDrive)
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler))
+		alert.addAction(cancel)
 		
 		return alert
 	}
