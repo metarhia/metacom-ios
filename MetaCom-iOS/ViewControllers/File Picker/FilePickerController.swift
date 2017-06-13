@@ -99,6 +99,10 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 		picker.dismiss(animated: true, completion: nil)
 		
+		defer {
+			self.dismiss()
+		}
+		
 		guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
 			return
 		}
@@ -108,8 +112,6 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 		}
 		
 		delegate?.filePicker(self, didPickData: data)
-		
-		self.dismiss()
 	}
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
