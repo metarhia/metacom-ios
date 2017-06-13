@@ -17,8 +17,7 @@ class FilesViewController: UIViewController {
 	// MARK: - Upload
 	
 	@IBAction func upload() {
-		let filePicker = FilePickerController()
-		filePicker.delegate = self
+		let filePicker = FilePickerController(delegate: self)
 		present(filePicker, animated: false)
 	}
 	

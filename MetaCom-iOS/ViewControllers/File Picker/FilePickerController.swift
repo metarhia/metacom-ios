@@ -21,6 +21,11 @@ class FilePickerController: UIViewController {
 	
 	weak var delegate: FilePickerControllerDelegate?
 	
+	convenience init(delegate: FilePickerControllerDelegate) {
+		self.init()
+		self.delegate = delegate
+	}
+	
 	override init(nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: Bundle? = nil) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 		setup()
