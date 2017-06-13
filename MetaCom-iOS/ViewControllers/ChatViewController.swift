@@ -93,7 +93,8 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	override func didPressAccessoryButton(_ sender: UIButton) {
-		// TODO: Let user to upload file
+		let filePicker = FilePickerController(delegate: self)
+		present(filePicker, animated: false)
 	}
 	
 	//MARK: - JSQMessagesCollectionViewDataSource
@@ -155,4 +156,17 @@ extension ChatViewController: ChatRoomDelegate {
 		finishReceivingMessage(animated: true)
 	}
 	
+}
+
+// MARK: - FilePickerControllerDelegate
+
+extension ChatViewController: FilePickerControllerDelegate {
+	
+	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
+		// TODO: Upload
+	}
+	
+	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
+		// TODO: Upload
+	}
 }
