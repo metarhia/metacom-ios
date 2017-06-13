@@ -1,5 +1,5 @@
 //
-//  FilePickerControllerDelegate.swift
+//  FilePickerDelegate.swift
 //  MetaCom-iOS
 //
 //  Created by iKing on 12.06.17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FilePickerControllerDelegate: class {
+protocol FilePickerDelegate: class {
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL)
 	

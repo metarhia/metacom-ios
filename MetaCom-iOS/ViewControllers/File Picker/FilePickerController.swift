@@ -19,9 +19,9 @@ private extension UIImagePickerController {
 
 class FilePickerController: UIViewController {
 	
-	weak var delegate: FilePickerControllerDelegate?
+	weak var delegate: FilePickerDelegate?
 	
-	convenience init(delegate: FilePickerControllerDelegate) {
+	convenience init(delegate: FilePickerDelegate) {
 		self.init()
 		self.delegate = delegate
 	}

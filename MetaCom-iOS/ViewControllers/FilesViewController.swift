@@ -91,7 +91,7 @@ class FilesViewController: UIViewController {
 
 // MARK: - FilePickerDelegate
 
-extension FilesViewController: FilePickerControllerDelegate {
+extension FilesViewController: FilePickerDelegate {
 	
 	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
 		showUploading()

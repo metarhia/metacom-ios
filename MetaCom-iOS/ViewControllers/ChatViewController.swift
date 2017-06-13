@@ -158,9 +158,9 @@ extension ChatViewController: ChatRoomDelegate {
 	
 }
 
-// MARK: - FilePickerControllerDelegate
+// MARK: - FilePickerDelegate
 
-extension ChatViewController: FilePickerControllerDelegate {
+extension ChatViewController: FilePickerDelegate {
 	
 	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
 		// TODO: Upload
