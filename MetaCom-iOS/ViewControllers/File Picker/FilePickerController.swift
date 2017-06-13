@@ -44,10 +44,15 @@ class FilePickerController: UIViewController {
 		self.presentingViewController?.dismiss(animated: false)
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+	private var alertAlreadyPresented = false
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		
-		present(createAlert(), animated: true)
+		if !alertAlreadyPresented {
+			present(createAlert(), animated: true)
+			alertAlreadyPresented = true
+		}
 	}
 	
 	private func createAlert() -> UIAlertController {
@@ -102,11 +107,7 @@ extension FilePickerController: UIDocumentPickerDelegate {
 extension FilePickerController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-		picker.dismiss(animated: true, completion: nil)
-		
-		defer {
-			self.dismiss()
-		}
+		picker.dismiss(animated: true, completion: self.dismiss)
 		
 		guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
 			return
@@ -120,6 +121,6 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	}
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		self.dismiss()
+		picker.dismiss(animated: true, completion: self.dismiss)
 	}
 }
