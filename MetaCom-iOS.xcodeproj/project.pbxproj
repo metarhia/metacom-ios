@@ -27,6 +27,8 @@
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		14E3BA661EE467A100739F46 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3BA651EE467A100739F46 /* Error.swift */; };
 		404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
+		8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
+		8F035ED31EEEDEB200E597A0 /* FilePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerControllerDelegate.swift */; };
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
 		8F3F87B11EE9762A00B64B99 /* UIAlertController+Templates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */; };
 		8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */; };
@@ -41,7 +43,6 @@
 		8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
 		8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
 		8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */; };
-		8FF9E0671EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,8 @@
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaCom_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerController.swift; sourceTree = "<group>"; };
+		8F035ED21EEEDEB200E597A0 /* FilePickerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Templates.swift"; sourceTree = "<group>"; };
 		8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ActivityIndicator.swift"; sourceTree = "<group>"; };
@@ -97,7 +100,6 @@
 		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
 		8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MetaCom-iOS.entitlements"; path = "../MetaCom-iOS.entitlements"; sourceTree = "<group>"; };
 		8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EndEditing.swift"; sourceTree = "<group>"; };
-		8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+FilePicker.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */,
 				8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */,
 				8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */,
+				8F035ED11EEEDE5A00E597A0 /* File Picker */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -206,7 +209,6 @@
 				8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */,
 				8F146CCE1EDD914100BC1733 /* Array+Remove.swift */,
 				8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */,
-				8FF9E0661EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,6 +244,15 @@
 				1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8F035ED11EEEDE5A00E597A0 /* File Picker */ = {
+			isa = PBXGroup;
+			children = (
+				8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */,
+				8F035ED21EEEDEB200E597A0 /* FilePickerControllerDelegate.swift */,
+			);
+			path = "File Picker";
 			sourceTree = "<group>";
 		};
 		8FAB32E71ED8199C0004BEFF /* Views */ = {
@@ -387,8 +398,8 @@
 			files = (
 				142319071ECDEA2000F63687 /* ChatRoomDelegate.swift in Sources */,
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
-				8FF9E0671EEAA86700E3FAD9 /* UIAlertController+FilePicker.swift in Sources */,
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
+				8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */,
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
@@ -410,6 +421,7 @@
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
 				8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */,
 				8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */,
+				8F035ED31EEEDEB200E597A0 /* FilePickerControllerDelegate.swift in Sources */,
 				8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

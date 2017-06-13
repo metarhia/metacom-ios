@@ -17,9 +17,9 @@ class FilesViewController: UIViewController {
 	// MARK: - Upload
 	
 	@IBAction func upload() {
-		
-		let alert = UIAlertController.filePicker(with: self, rootController: self)
-		present(alert, animated: true)
+		let filePicker = FilePickerController()
+		filePicker.delegate = self
+		present(filePicker, animated: false)
 	}
 	
 	var isInterfaceLocked: Bool = false {
@@ -90,20 +90,15 @@ class FilesViewController: UIViewController {
 
 }
 
-// MARK: - Temporary solution
+// MARK: - FilePickerDelegate
 
-extension FilesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension FilesViewController: FilePickerControllerDelegate {
 	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		picker.dismiss(animated: true, completion: nil)
+	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
 		showUploading()
 	}
 	
-}
-
-extension FilesViewController: UIDocumentPickerDelegate {
-	
-	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
 		showUploading()
 	}
 }
