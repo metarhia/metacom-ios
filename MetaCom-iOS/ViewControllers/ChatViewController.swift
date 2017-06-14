@@ -68,6 +68,12 @@ class ChatViewController: JSQMessagesViewController {
 		clearChat()
     }
 	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		self.inputToolbar.contentView.textView.becomeFirstResponder()
+	}
+	
 	private func clearChat() {
 		messages = []
 		collectionView?.reloadData()
