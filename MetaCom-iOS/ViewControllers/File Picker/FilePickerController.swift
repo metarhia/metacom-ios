@@ -16,7 +16,6 @@ private extension UIImagePickerController {
 		self.init()
 		self.sourceType = type
 		self.delegate = delegate
-		self.allowsEditing = true
 		if let types = UIImagePickerController.availableMediaTypes(for: type) {
 			self.mediaTypes = types
 		}
@@ -121,15 +120,7 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 		picker.dismiss(animated: true, completion: self.dismiss)
 		
-		var image: UIImage?
-		
-		if let edited = info[UIImagePickerControllerEditedImage] as? UIImage {
-			image = edited
-		} else {
-			image = info[UIImagePickerControllerOriginalImage] as? UIImage
-		}
-		
-		if let image = image {
+		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			guard let data = UIImagePNGRepresentation(image) else {
 				return
 			}
