@@ -40,8 +40,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>Required for sending photo or video</string>
+	<string>Required for sending photos or videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Required for sending photo or video</string>
+	<string>Required for sending photos or videos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Required for video recording</string>
 </dict>
 </plist>
