@@ -53,6 +53,8 @@ class ChatViewController: JSQMessagesViewController {
 	
 	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())!
 	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())!
+	
+	// MARK: - View Conrtroller Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +81,8 @@ class ChatViewController: JSQMessagesViewController {
 		collectionView?.reloadData()
 		collectionView?.layoutIfNeeded()
 	}
+	
+	// MARK: - Sending / receiving messages
 	
 	fileprivate func send(_ message: Message) {
 		chat?.send(message: message) { [weak self] error in

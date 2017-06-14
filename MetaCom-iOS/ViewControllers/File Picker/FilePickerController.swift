@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - UIImagePickerController convenience init
+
 private extension UIImagePickerController {
 	
 	convenience init(sourceType type: UIImagePickerControllerSourceType, delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
@@ -17,9 +19,13 @@ private extension UIImagePickerController {
 	}
 }
 
+// MARK: - FilePickerController
+
 class FilePickerController: UIViewController {
 	
 	weak var delegate: FilePickerDelegate?
+	
+	// MARK: - Initialization
 	
 	convenience init(delegate: FilePickerDelegate) {
 		self.init()
@@ -40,9 +46,7 @@ class FilePickerController: UIViewController {
 		self.modalPresentationStyle = .overCurrentContext
 	}
 	
-	fileprivate func dismiss() {
-		self.presentingViewController?.dismiss(animated: false)
-	}
+	// MARK: - View Conrtroller Lifecycle
 	
 	private var alertAlreadyPresented = false
 	
@@ -53,6 +57,10 @@ class FilePickerController: UIViewController {
 			present(createAlert(), animated: true)
 			alertAlreadyPresented = true
 		}
+	}
+	
+	fileprivate func dismiss() {
+		self.presentingViewController?.dismiss(animated: false)
 	}
 	
 	private func createAlert() -> UIAlertController {
