@@ -11,7 +11,7 @@ import JSQMessagesViewController
 
 class JSQDataMediaItem: JSQMediaItem {
 	
-	private var cachedView: UIView?
+	private var cachedView: DataMediaView?
 	
 	var data: Data {
 		didSet {
@@ -21,7 +21,7 @@ class JSQDataMediaItem: JSQMediaItem {
 	
 	var isLoading: Bool = false {
 		didSet {
-			(cachedView as? DataMediaView)?.isLoading = isLoading
+			cachedView?.isLoading = isLoading
 		}
 	}
 	
