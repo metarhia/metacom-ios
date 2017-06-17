@@ -12,6 +12,17 @@ class DataMediaView: UIView {
 	
 	private weak var contentView: UIView!
 	
+	@IBOutlet weak var imageView: UIImageView!
+	
+	@IBOutlet weak var loadingOverlay: UIView!
+	@IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+	
+	var isLoading: Bool = false {
+		didSet {
+			loadingOverlay.isHidden = !isLoading
+		}
+	}
+	
 	override init(frame: CGRect = .zero) {
 		super.init(frame: frame)
 		setup()

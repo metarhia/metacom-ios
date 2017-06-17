@@ -19,6 +19,12 @@ class JSQDataMediaItem: JSQMediaItem {
 		}
 	}
 	
+	var isLoading: Bool = false {
+		didSet {
+			(cachedView as? DataMediaView)?.isLoading = isLoading
+		}
+	}
+	
 	// MARK: - Initialization
 	
 	init(data: Data, maskAsOutgoing outgoing: Bool) {
@@ -50,9 +56,10 @@ class JSQDataMediaItem: JSQMediaItem {
 		view.backgroundColor = isOutgoing ? .jsq_messageBubbleBlue() : .jsq_messageBubbleLightGray()
 		view.tintColor = isOutgoing ? .white : UIColor.black.withAlphaComponent(0.7)
 		view.clipsToBounds = true
+		view.isLoading = isLoading
 		JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMask(toMediaView: view, isOutgoing: isOutgoing)
 		
-		// A bit of magic to center file icon after adding tail to a bubble 
+		// A bit of magic to center file icon after adding tail to a bubble
 		if isOutgoing {
 			view.insets.right = 4
 		} else {
