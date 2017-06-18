@@ -8,7 +8,20 @@
 
 import UIKit
 
+protocol DotViewDelegate: class {
+	
+	func dotViewColor(_ dotView: DotView) -> UIColor?
+	func dotViewHighlitedColor(_ dotView: DotView) -> UIColor?
+	func dotViewStateChangeDuration(_ dotView: DotView) -> TimeInterval
+}
+
 @IBDesignable class DotView: UIView {
+	
+	weak var delegate: DotViewDelegate? {
+		didSet {
+			update()
+		}
+	}
 	
 	@IBInspectable var color = UIColor.white.withAlphaComponent(0.55) {
 		didSet {
@@ -33,13 +46,24 @@ import UIKit
 	}
 	
 	func setHighlighted(_ highlighted: Bool, animated: Bool = true) {
-		UIView.animate(withDuration: animated ? 0.4 : 0) {
+		let duration = animated ? (delegate?.dotViewStateChangeDuration(self) ?? 0.3) : 0
+		UIView.animate(withDuration: duration) {
 			self.isHighlighted = highlighted
 		}
 	}
 	
-	private func update() {
-		backgroundColor = isHighlighted ? highlightedColor : color
+	///
+	/// Updates `DotView` appearance according to its `isHighlighted` property
+	///
+	func update() {
+		backgroundColor = isHighlighted ?
+			(delegate?.dotViewHighlitedColor(self) ?? highlightedColor) :
+			(delegate?.dotViewColor(self) ?? color)
+	}
+	
+	convenience init(delegate: DotViewDelegate) {
+		self.init()
+		self.delegate = delegate
 	}
 	
 	override init(frame: CGRect = .zero) {

@@ -34,6 +34,18 @@ import UIKit
 		}
 	}
 	
+	@IBInspectable var color: UIColor = UIColor.white.withAlphaComponent(0.55) {
+		didSet {
+			dots.forEach { $0.update() }
+		}
+	}
+	
+	@IBInspectable var highlightedColor: UIColor = UIColor.white.withAlphaComponent(0.85) {
+		didSet {
+			dots.forEach { $0.update() }
+		}
+	}
+	
 	// MARK: - Initialization
 	
 	override init(frame: CGRect = .zero) {
@@ -54,7 +66,7 @@ import UIKit
 		stackView.spacing = Constants.dotsSpacing
 		
 		for _ in 0 ..< Constants.dotsCount {
-			stackView.addArrangedSubview(DotView())
+			stackView.addArrangedSubview(DotView(delegate: self))
 		}
 
 		addSubview(stackView)
@@ -106,4 +118,21 @@ import UIKit
 		static let dotsSpacing: CGFloat = 8
 	}
 	
+}
+
+// MARK: - DotViewDelegate
+
+extension DotsActivityIndicatorView: DotViewDelegate {
+	
+	func dotViewColor(_ dotView: DotView) -> UIColor? {
+		return color
+	}
+	
+	func dotViewHighlitedColor(_ dotView: DotView) -> UIColor? {
+		return highlightedColor
+	}
+	
+	func dotViewStateChangeDuration(_ dotView: DotView) -> TimeInterval {
+		return 0.4
+	}
 }
