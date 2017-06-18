@@ -19,8 +19,7 @@ class DataMediaView: UIView {
 	
 	var isLoading: Bool = false {
 		didSet {
-			loadingOverlay.isHidden = !isLoading
-			loadingIndicator.isAnimating = isLoading
+			updateLoadingUI()
 		}
 	}
 	
@@ -30,8 +29,14 @@ class DataMediaView: UIView {
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
+		isLoading = aDecoder.decodeBool(forKey: NSStringFromSelector(#selector(getter: isLoading)))
 		super.init(coder: aDecoder)
 		setup()
+	}
+	
+	override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
+		aCoder.encode(isLoading, forKey: NSStringFromSelector(#selector(getter: isLoading)))
 	}
 	
 	private func setup() {
@@ -44,6 +49,13 @@ class DataMediaView: UIView {
 		addSubview(view)
 		
 		contentView = view
+		
+		updateLoadingUI()
+	}
+	
+	private func updateLoadingUI() {
+		loadingOverlay.isHidden = !isLoading
+		loadingIndicator.isAnimating = isLoading
 	}
 	
 	var insets: UIEdgeInsets = .zero {
