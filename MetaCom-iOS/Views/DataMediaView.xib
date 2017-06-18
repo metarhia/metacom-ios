@@ -12,8 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DataMediaView" customModule="MetaCom_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="5N1-oK-LdU" id="kfW-HQ-RN4"/>
+                <outlet property="loadingIndicator" destination="dS1-Ny-rnC" id="XbC-de-ria"/>
                 <outlet property="loadingOverlay" destination="IjT-he-j9p" id="Rlc-Pi-B1t"/>
-                <outlet property="loadingSpinner" destination="uu4-23-hZh" id="ryx-Zx-jzH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,14 +28,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjT-he-j9p">
                     <rect key="frame" x="-10" y="-10" width="355" height="224"/>
                     <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uu4-23-hZh">
-                            <rect key="frame" x="168" y="102" width="20" height="20"/>
-                        </activityIndicatorView>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="52" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dS1-Ny-rnC" customClass="DotsActivityIndicatorView" customModule="MetaCom_iOS" customModuleProvider="target">
+                            <rect key="frame" x="151" y="106" width="52" height="12"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimating" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="uu4-23-hZh" firstAttribute="centerY" secondItem="IjT-he-j9p" secondAttribute="centerY" id="Iyg-aX-JXB"/>
-                        <constraint firstItem="uu4-23-hZh" firstAttribute="centerX" secondItem="IjT-he-j9p" secondAttribute="centerX" id="SD1-UV-G7a"/>
+                        <constraint firstItem="dS1-Ny-rnC" firstAttribute="centerX" secondItem="IjT-he-j9p" secondAttribute="centerX" id="D8z-5d-Swb"/>
+                        <constraint firstItem="dS1-Ny-rnC" firstAttribute="centerY" secondItem="IjT-he-j9p" secondAttribute="centerY" id="Y5J-Bg-pyK"/>
                     </constraints>
                 </view>
             </subviews>

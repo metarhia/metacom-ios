@@ -15,11 +15,12 @@ class DataMediaView: UIView {
 	@IBOutlet weak var imageView: UIImageView!
 	
 	@IBOutlet weak var loadingOverlay: UIView!
-	@IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+	@IBOutlet weak var loadingIndicator: DotsActivityIndicatorView!
 	
 	var isLoading: Bool = false {
 		didSet {
 			loadingOverlay.isHidden = !isLoading
+			loadingIndicator.isAnimating = isLoading
 		}
 	}
 	

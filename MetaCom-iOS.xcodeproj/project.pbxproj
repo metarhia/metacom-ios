@@ -35,6 +35,8 @@
 		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
 		8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */; };
 		8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */; };
+		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
+		8F70D5E11EF57E7900AAB2B5 /* DotsActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotsActivityIndicatorView.swift */; };
 		8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
 		8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */; };
@@ -91,6 +93,8 @@
 		8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Root.swift"; sourceTree = "<group>"; };
 		8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
 		8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Content.swift"; sourceTree = "<group>"; };
+		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		8F70D5E01EF57E7900AAB2B5 /* DotsActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotsActivityIndicatorView.swift; sourceTree = "<group>"; };
 		8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */,
 				8FAB32EC1ED823670004BEFF /* DataMediaView.swift */,
 				8FAB32EA1ED823560004BEFF /* DataMediaView.xib */,
+				8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */,
+				8F70D5E01EF57E7900AAB2B5 /* DotsActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */,
 				142318E01ECCE14B00F63687 /* AppDelegate.swift in Sources */,
 				8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */,
+				8F70D5E11EF57E7900AAB2B5 /* DotsActivityIndicatorView.swift in Sources */,
 				14CBECC91ED08ECD008B6587 /* Events.swift in Sources */,
 				8F3F87B11EE9762A00B64B99 /* UIAlertController+Templates.swift in Sources */,
 				8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */,
@@ -418,6 +425,7 @@
 				8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */,
 				8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */,
 				8FAB32E91ED81B250004BEFF /* JSQDataMediaItem.swift in Sources */,
+				8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */,
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
 				8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */,
 				8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */,
