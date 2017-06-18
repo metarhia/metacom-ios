@@ -113,12 +113,12 @@ class ChatViewController: JSQMessagesViewController {
 	// TODO: Temporary. For demonstration only.
 	private func showFileLoadingIfNeeded() {
 		if let media = messages.last?.media as? JSQDataMediaItem {
-			media.isLoading = true
+			media.setLoading(true)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
 				guard self != nil else {
 					return
 				}
-				media.isLoading = false
+				media.setLoading(false)
 			}
 		}
 	}

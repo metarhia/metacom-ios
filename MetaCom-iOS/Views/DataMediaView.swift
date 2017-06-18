@@ -54,7 +54,7 @@ class DataMediaView: UIView {
 	}
 	
 	private func updateLoadingUI() {
-		loadingOverlay.isHidden = !isLoading
+		loadingOverlay.alpha = isLoading ? 1 : 0
 		loadingIndicator.isAnimating = isLoading
 	}
 	

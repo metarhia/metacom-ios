@@ -25,6 +25,12 @@ class JSQDataMediaItem: JSQMediaItem {
 		}
 	}
 	
+	func setLoading(_ loading: Bool, animated: Bool = true) {
+		UIView.animate(withDuration: animated ? 0.3 : 0) {
+			self.isLoading = loading
+		}
+	}
+	
 	// MARK: - Initialization
 	
 	init(data: Data, maskAsOutgoing outgoing: Bool) {
