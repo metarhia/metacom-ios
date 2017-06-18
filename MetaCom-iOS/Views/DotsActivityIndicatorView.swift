@@ -10,6 +10,12 @@ import UIKit
 
 @IBDesignable class DotsActivityIndicatorView: UIView {
 	
+	private weak var dotsStackView: UIStackView!
+	
+	private var dots: [DotView] {
+		return dotsStackView.arrangedSubviews as? [DotView] ?? []
+	}
+	
 	@IBInspectable var isAnimating: Bool = false {
 		didSet {
 			guard isAnimating != oldValue else {
@@ -21,22 +27,14 @@ import UIKit
 			#endif
 			
 			if isAnimating {
-				startAnimation()
+				startAnimating()
 			} else {
-				stopAnimation()
+				stopAnimating()
 			}
 		}
 	}
 	
-	private weak var dotsStackView: UIStackView!
-	
-	private var dots: [DotView] {
-		return dotsStackView.arrangedSubviews as? [DotView] ?? []
-	}
-	
-	private var highlightedDotIndex: Int = 0
-	
-	private weak var animationTimer: Timer?
+	// MARK: - Initialization
 	
 	override init(frame: CGRect = .zero) {
 		super.init(frame: frame)
@@ -53,9 +51,9 @@ import UIKit
 		let stackView = UIStackView(frame: bounds)
 		stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		stackView.distribution = .fillEqually
-		stackView.spacing = 8
+		stackView.spacing = Constants.dotsSpacing
 		
-		for _ in 0 ..< 3 {
+		for _ in 0 ..< Constants.dotsCount {
 			stackView.addArrangedSubview(DotView())
 		}
 
@@ -66,19 +64,30 @@ import UIKit
 		dots.first?.isHighlighted = true
 	}
 	
+	// MARK: - Sizing
+	
 	override var intrinsicContentSize: CGSize {
-		return CGSize(width: 52, height: 12)
+		let dotsCount = CGFloat(Constants.dotsCount)
+		let width = Constants.dotDiameter * dotsCount + Constants.dotsSpacing * (dotsCount - 1)
+		let height = Constants.dotDiameter
+		return CGSize(width: width, height: height)
 	}
 	
-	private func startAnimation() {
+	// MARK: - Animating
+	
+	private weak var animationTimer: Timer?
+	
+	private var highlightedDotIndex: Int = 0
+	
+	private func startAnimating() {
 		let timer = Timer(timeInterval: 0.2, repeats: true) { _ in
 			self.highlightNextDot()
 		}
-		RunLoop.main.add(timer, forMode: .commonModes)
 		animationTimer = timer
+		RunLoop.main.add(timer, forMode: .commonModes)
 	}
 	
-	private func stopAnimation() {
+	private func stopAnimating() {
 		animationTimer?.invalidate()
 	}
 	
@@ -87,6 +96,14 @@ import UIKit
 		dots[highlightedDotIndex].setHighlighted(false)
 		highlightedDotIndex = (highlightedDotIndex + 1) % dots.count
 		dots[highlightedDotIndex].setHighlighted(true)
+	}
+	
+	// MARK: - Constants
+	
+	private struct Constants {
+		static let dotsCount: Int = 3
+		static let dotDiameter: CGFloat = 12
+		static let dotsSpacing: CGFloat = 8
 	}
 	
 }
