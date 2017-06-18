@@ -26,8 +26,8 @@ extension JSQMessage {
 		switch message.content {
 		case .text(let text):
 			self.init(senderId: id, displayName: "", text: text)
-		default:
-			let media = JSQDataMediaItem(data: Data(), maskAsOutgoing: !message.isIncoming)
+		case .file(let data):
+			let media = JSQDataMediaItem(data: data, maskAsOutgoing: !message.isIncoming)
 			self.init(senderId: id, displayName: "", media: media)
 		}
 	}
@@ -99,11 +99,28 @@ class ChatViewController: JSQMessagesViewController {
 		
 		messages += [JSQMessage(message: message)]
 		finishSendingMessage(animated: true)
+		
+		showFileLoadingIfNeeded()
 	}
 	
 	fileprivate func receive(_ message: Message) {
 		messages += [JSQMessage(message: message)]
 		finishReceivingMessage(animated: true)
+		
+		showFileLoadingIfNeeded()
+	}
+	
+	// TODO: Temporary. For demonstration only.
+	private func showFileLoadingIfNeeded() {
+		if let media = messages.last?.media as? JSQDataMediaItem {
+			media.isLoading = true
+			DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+				guard self != nil else {
+					return
+				}
+				media.isLoading = false
+			}
+		}
 	}
 	
 	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
@@ -188,5 +205,7 @@ extension ChatViewController: FilePickerDelegate {
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
 		// TODO: Upload
+		let message = Message(content: .file(Data()), incoming: false)
+		send(message)
 	}
 }
