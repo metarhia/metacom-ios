@@ -8,12 +8,16 @@
 
 import UIKit
 
+// MARK: - DotViewDelegate
+
 protocol DotViewDelegate: class {
 	
 	func dotViewColor(_ dotView: DotView) -> UIColor?
 	func dotViewHighlitedColor(_ dotView: DotView) -> UIColor?
 	func dotViewStateChangeDuration(_ dotView: DotView) -> TimeInterval
 }
+
+// MARK: - DotView
 
 @IBDesignable class DotView: UIView {
 	
@@ -61,6 +65,8 @@ protocol DotViewDelegate: class {
 			(delegate?.dotViewColor(self) ?? color)
 	}
 	
+	// MARK: - Initialization
+	
 	convenience init(delegate: DotViewDelegate) {
 		self.init()
 		self.delegate = delegate
@@ -86,6 +92,8 @@ protocol DotViewDelegate: class {
 		clipsToBounds = true
 		update()
 	}
+	
+	// MARK: - Sizing
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
