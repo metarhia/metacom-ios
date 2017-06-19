@@ -245,26 +245,40 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downlading / uploading info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idE-hv-BEr">
-                                <rect key="frame" x="93.5" y="592" width="188" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ifU-Xd-3fe">
+                                <rect key="frame" x="85" y="588" width="205" height="22"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iby-dp-3Ev">
+                                        <rect key="frame" x="0.0" y="0.0" width="13" height="22"/>
+                                        <state key="normal" image="cancel"/>
+                                        <connections>
+                                            <action selector="cancel" destination="9mn-GY-DcA" eventType="touchUpInside" id="AvD-ZU-sbr"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downlading / uploading info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idE-hv-BEr">
+                                        <rect key="frame" x="17" y="0.0" width="188" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vyo-0b-WAs" firstAttribute="centerY" secondItem="f7v-3Q-Rdt" secondAttribute="centerY" id="0qk-R3-bJc"/>
                             <constraint firstItem="vyo-0b-WAs" firstAttribute="centerX" secondItem="f7v-3Q-Rdt" secondAttribute="centerX" id="5es-Cu-jqB"/>
-                            <constraint firstItem="kyZ-qS-325" firstAttribute="top" secondItem="idE-hv-BEr" secondAttribute="bottom" constant="8" symbolic="YES" id="dy0-D1-Mgm"/>
-                            <constraint firstItem="idE-hv-BEr" firstAttribute="width" relation="lessThanOrEqual" secondItem="f7v-3Q-Rdt" secondAttribute="width" constant="-32" id="mIq-dg-1Us"/>
-                            <constraint firstItem="idE-hv-BEr" firstAttribute="centerX" secondItem="f7v-3Q-Rdt" secondAttribute="centerX" id="mOX-W0-jol"/>
+                            <constraint firstItem="ifU-Xd-3fe" firstAttribute="centerX" secondItem="f7v-3Q-Rdt" secondAttribute="centerX" id="IjI-3w-Zbn"/>
+                            <constraint firstItem="ifU-Xd-3fe" firstAttribute="width" relation="lessThanOrEqual" secondItem="f7v-3Q-Rdt" secondAttribute="width" constant="-32" id="eVW-mf-IsU"/>
+                            <constraint firstItem="kyZ-qS-325" firstAttribute="top" secondItem="ifU-Xd-3fe" secondAttribute="bottom" constant="8" symbolic="YES" id="kdI-lc-Z7m"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Files" image="files" id="zzx-5z-Zl0"/>
                     <connections>
+                        <outlet property="cancelButton" destination="Iby-dp-3Ev" id="uVc-Np-Spw"/>
                         <outlet property="downloadButton" destination="ad8-0F-QUi" id="VpZ-fF-xse"/>
                         <outlet property="infoLabel" destination="idE-hv-BEr" id="WWO-gP-4uJ"/>
+                        <outlet property="infoStackView" destination="ifU-Xd-3fe" id="x8w-26-MQR"/>
                         <outlet property="uploadButton" destination="ZGb-Da-BFY" id="tI1-cl-Z6D"/>
                     </connections>
                 </viewController>
@@ -347,6 +361,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="13" height="13"/>
         <image name="chat" width="25" height="25"/>
         <image name="download" width="45" height="59"/>
         <image name="files" width="25" height="20"/>

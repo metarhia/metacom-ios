@@ -12,14 +12,10 @@ class FilesViewController: UIViewController {
 	
 	@IBOutlet weak var uploadButton: UIButton!
 	@IBOutlet weak var downloadButton: UIButton!
+	
+	@IBOutlet weak var infoStackView: UIStackView!
 	@IBOutlet weak var infoLabel: UILabel!
-	
-	// MARK: - Upload
-	
-	@IBAction func upload() {
-		let filePicker = FilePickerController(delegate: self)
-		present(filePicker, animated: false)
-	}
+	@IBOutlet weak var cancelButton: UIButton!
 	
 	var isInterfaceLocked: Bool = false {
 		didSet {
@@ -28,11 +24,18 @@ class FilesViewController: UIViewController {
 		}
 	}
 	
+	// MARK: - Upload
+	
+	@IBAction func upload() {
+		let filePicker = FilePickerController(delegate: self)
+		present(filePicker, animated: false)
+	}
+	
 	// Temporary. For demonstration.
 	fileprivate func showUploading() {
 		isInterfaceLocked = true
 		infoLabel.text = "Uploading..."
-		infoLabel.isHidden = false
+		infoStackView.isHidden = false
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
 			guard let `self` = self else {
@@ -40,7 +43,7 @@ class FilesViewController: UIViewController {
 			}
 			
 			self.isInterfaceLocked = false
-			self.infoLabel.isHidden = true
+			self.infoStackView.isHidden = true
 			
 			let code = "31415926535"
 			self.present(UIAlertController.upload(code: code), animated: true)
@@ -81,7 +84,13 @@ class FilesViewController: UIViewController {
 	@objc private func codeTextChanged(_ textField: UITextField) {
 		downloadAction?.isEnabled = textField.text?.isEmpty == false
 	}
-
+	
+	// MARK: -
+	
+	@IBAction func cancel() {
+		
+	} 
+	
 }
 
 // MARK: - FilePickerDelegate
