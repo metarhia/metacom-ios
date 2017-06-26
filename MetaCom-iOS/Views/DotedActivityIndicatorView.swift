@@ -1,5 +1,5 @@
 //
-//  DotsActivityIndicatorView.swift
+//  DotedActivityIndicatorView.swift
 //  MetaCom-iOS
 //
 //  Created by iKing on 17.06.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class DotsActivityIndicatorView: UIView {
+@IBDesignable class DotedActivityIndicatorView: UIView {
 	
 	private weak var dotsStackView: UIStackView!
 	
@@ -122,7 +122,7 @@ import UIKit
 
 // MARK: - DotViewDelegate
 
-extension DotsActivityIndicatorView: DotViewDelegate {
+extension DotedActivityIndicatorView: DotViewDelegate {
 	
 	func dotViewColor(_ dotView: DotView) -> UIColor? {
 		return color

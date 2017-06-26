@@ -15,7 +15,7 @@ class DataMediaView: UIView {
 	@IBOutlet weak var imageView: UIImageView!
 	
 	@IBOutlet weak var loadingOverlay: UIView!
-	@IBOutlet weak var loadingIndicator: DotsActivityIndicatorView!
+	@IBOutlet weak var loadingIndicator: DotedActivityIndicatorView!
 	
 	var isLoading: Bool = false {
 		didSet {
