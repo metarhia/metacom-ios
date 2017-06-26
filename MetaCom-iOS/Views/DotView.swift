@@ -14,7 +14,7 @@ protocol DotViewDelegate: class {
 	
 	func dotViewColor(_ dotView: DotView) -> UIColor?
 	func dotViewHighlitedColor(_ dotView: DotView) -> UIColor?
-	func dotViewStateChangeDuration(_ dotView: DotView) -> TimeInterval
+	func dotViewAnimationDuration(_ dotView: DotView) -> TimeInterval
 }
 
 // MARK: - DotView
@@ -50,7 +50,7 @@ protocol DotViewDelegate: class {
 	}
 	
 	func setHighlighted(_ highlighted: Bool, animated: Bool = true) {
-		let duration = animated ? (delegate?.dotViewStateChangeDuration(self) ?? 0.3) : 0
+		let duration = animated ? (delegate?.dotViewAnimationDuration(self) ?? 0.3) : 0
 		UIView.animate(withDuration: duration) {
 			self.isHighlighted = highlighted
 		}

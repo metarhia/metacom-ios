@@ -132,7 +132,7 @@ extension DotedActivityIndicatorView: DotViewDelegate {
 		return highlightedColor
 	}
 	
-	func dotViewStateChangeDuration(_ dotView: DotView) -> TimeInterval {
+	func dotViewAnimationDuration(_ dotView: DotView) -> TimeInterval {
 		return 0.4
 	}
 }
