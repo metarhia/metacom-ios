@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjT-he-j9p">
                     <rect key="frame" x="-10" y="-10" width="355" height="224"/>
                     <subviews>
-                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="52" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dS1-Ny-rnC" customClass="DotsActivityIndicatorView" customModule="MetaCom_iOS" customModuleProvider="target">
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="52" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="dS1-Ny-rnC" customClass="DotedActivityIndicatorView" customModule="MetaCom_iOS" customModuleProvider="target">
                             <rect key="frame" x="151" y="106" width="52" height="12"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
