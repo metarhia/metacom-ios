@@ -37,6 +37,7 @@
 		8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */; };
 		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
 		8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
+		8F8425C81F1A528300C5AC6E /* UINavigationController+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */; };
 		8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
 		8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */; };
@@ -95,6 +96,7 @@
 		8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Content.swift"; sourceTree = "<group>"; };
 		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotedActivityIndicatorView.swift; sourceTree = "<group>"; };
+		8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Progress.swift"; sourceTree = "<group>"; };
 		8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */,
 				8F146CCE1EDD914100BC1733 /* Array+Remove.swift */,
 				8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */,
+				8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F8425C81F1A528300C5AC6E /* UINavigationController+Progress.swift in Sources */,
 				142319071ECDEA2000F63687 /* ChatRoomDelegate.swift in Sources */,
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,

@@ -84,11 +84,25 @@ class ChatViewController: JSQMessagesViewController {
 	
 	// MARK: - Sending / receiving messages
 	
+	private var sendingMessagesCount = 0 {
+		didSet {
+			if sendingMessagesCount == 0 {
+				self.navigationController?.showProgress(percentage: 100, duration: 0.1)
+				self.navigationController?.hideProgress()
+			} else {
+				self.navigationController?.showProgress(percentage: Double(90 / sendingMessagesCount))
+			}
+		}
+	}
+	
 	fileprivate func send(_ message: Message) {
+		sendingMessagesCount += 1
 		chat?.send(message: message) { [weak self] error in
 			guard let `self` = self else {
 				return
 			}
+			
+			self.sendingMessagesCount -= 1
 			
 			guard error == nil else {
 				// TODO: Handle error. Maybe show an alert, make message bubble red etc.
