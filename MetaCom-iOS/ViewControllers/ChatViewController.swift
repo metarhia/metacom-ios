@@ -82,6 +82,13 @@ class ChatViewController: JSQMessagesViewController {
 		collectionView?.layoutIfNeeded()
 	}
 	
+	@IBAction func closeChat(_ sender: UIBarButtonItem) {
+		let alert = UIAlertController.leaveChat(confirm: { 
+			self.performSegue(withIdentifier: "closeChat", sender: nil)
+		})
+		self.present(alert, animated: true)
+	}
+	
 	// MARK: - Sending / receiving messages
 	
 	private var sendingMessagesCount = 0 {

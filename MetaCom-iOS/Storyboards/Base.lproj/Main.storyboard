@@ -200,10 +200,13 @@
                     <navigationItem key="navigationItem" title="Chat name" id="dmo-YO-J5M">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="YHD-xZ-UXy">
                             <connections>
-                                <segue destination="B8L-2J-k0H" kind="unwind" unwindAction="unwindToChatSetup:" id="nDj-mg-Sbv"/>
+                                <action selector="closeChat:" destination="AXY-ZM-hLC" id="Pau-3j-enH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="B8L-2J-k0H" kind="unwind" identifier="closeChat" unwindAction="unwindToChatSetup:" id="OE6-wz-RC0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADP-5Y-euR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="B8L-2J-k0H" userLabel="Exit" sceneMemberID="exit"/>

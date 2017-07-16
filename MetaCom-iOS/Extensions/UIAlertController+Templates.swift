@@ -27,6 +27,22 @@ extension UIAlertController {
 		return alert
 	}
 	
+	static func leaveChat(confirm: (() -> ())? = nil, deny: (() -> ())? = nil) -> UIAlertController {
+		let alert = UIAlertController(title: "Leave Chat",
+		                              message: "Leaving the chat will cause losing conversation history.",
+		                              preferredStyle: .alert)
+		
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+			deny?()
+		}))
+		
+		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+			confirm?()
+		}))
+		
+		return alert
+	}
+	
 	// MARK: - Errors
 	
 	static func chatJoiningFailed() -> UIAlertController {
