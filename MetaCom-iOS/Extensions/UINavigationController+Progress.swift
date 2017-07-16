@@ -74,7 +74,7 @@ extension UINavigationController {
 			return view
 		}
 		
-		let progressHeight: CGFloat = 2
+		let progressHeight: CGFloat = 2.5
 		let navBarRect = self.navigationBar.bounds
 		let progressFrame = CGRect(x: 0, y: navBarRect.height - progressHeight, width: navBarRect.width, height: progressHeight)
 		let progressView = ProgressView(frame: progressFrame)
