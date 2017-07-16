@@ -35,8 +35,11 @@
 		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
 		8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */; };
 		8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */; };
+		8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */; };
 		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
 		8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
+		8F7370E01F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7370DF1F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib */; };
+		8F7370E71F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7370E61F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift */; };
 		8F8425C81F1A528300C5AC6E /* UINavigationController+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */; };
 		8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
 		8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
@@ -94,8 +97,11 @@
 		8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Root.swift"; sourceTree = "<group>"; };
 		8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
 		8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Content.swift"; sourceTree = "<group>"; };
+		8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessagesBubbleImage.swift; sourceTree = "<group>"; };
 		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotedActivityIndicatorView.swift; sourceTree = "<group>"; };
+		8F7370DF1F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesCollectionViewCellSystem.xib; sourceTree = "<group>"; };
+		8F7370E61F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQMessagesCollectionViewCellSystem.swift; sourceTree = "<group>"; };
 		8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Progress.swift"; sourceTree = "<group>"; };
 		8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
@@ -281,9 +287,20 @@
 			name = DataMediaItem;
 			sourceTree = "<group>";
 		};
+		8F2EF3CF1F1B8E55002E7C8B /* SystemCell */ = {
+			isa = PBXGroup;
+			children = (
+				8F7370E61F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift */,
+				8F7370DF1F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib */,
+				8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */,
+			);
+			name = SystemCell;
+			sourceTree = "<group>";
+		};
 		8FAB32E71ED8199C0004BEFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F2EF3CF1F1B8E55002E7C8B /* SystemCell */,
 				8F0BFBAE1EF6852E00074837 /* DataMediaItem */,
 				8F0BFBAD1EF684F000074837 /* DotsActivityIndicator */,
 			);
@@ -363,6 +380,7 @@
 				142318E71ECCE14B00F63687 /* Assets.xcassets in Resources */,
 				142318E51ECCE14B00F63687 /* Main.storyboard in Resources */,
 				8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */,
+				8F7370E01F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,11 +446,13 @@
 				8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */,
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
+				8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */,
 				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
 				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
 				8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */,
+				8F7370E71F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift in Sources */,
 				142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */,
 				142318E01ECCE14B00F63687 /* AppDelegate.swift in Sources */,
 				8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */,

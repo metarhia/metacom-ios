@@ -14,11 +14,12 @@ import JSQMessagesViewController
 private struct ChatConstants {
 	static let incomingSenderId = "incomingId"
 	static let outgoingSenderId = "outgoingId"
+	static let systemSenderId = "systemId"
 }
 
 // MARK: - Initialization `JSQMessage` from `Message`
 
-extension JSQMessage {
+private extension JSQMessage {
 	
 	convenience init(message: Message) {
 		// TODO: Handle messages with file content
@@ -30,6 +31,13 @@ extension JSQMessage {
 			let media = JSQDataMediaItem(data: data, maskAsOutgoing: !message.isIncoming)
 			self.init(senderId: id, displayName: "", media: media)
 		}
+	}
+}
+
+private extension JSQMessage {
+	
+	var isSystem: Bool {
+		return senderId == ChatConstants.systemSenderId
 	}
 }
 
@@ -53,6 +61,7 @@ class ChatViewController: JSQMessagesViewController {
 	
 	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())!
 	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())!
+	private var systemBubble = SystemMessagesBubbleImage()
 	
 	// MARK: - View Conrtroller Lifecycle
 
@@ -60,6 +69,9 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
 
 		self.title = chat?.name
+		
+		collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
+		                        forCellWithReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier())
 		
 		collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
 		collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
@@ -125,7 +137,11 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	fileprivate func receive(_ message: Message) {
-		messages += [JSQMessage(message: message)]
+		receive(JSQMessage(message: message))
+	}
+	
+	fileprivate func receive(_ message: JSQMessage) {
+		messages += [message]
 		finishReceivingMessage(animated: true)
 		
 		showFileLoadingIfNeeded()
@@ -154,7 +170,7 @@ class ChatViewController: JSQMessagesViewController {
 		present(filePicker, animated: false)
 	}
 	
-	//MARK: - JSQMessagesCollectionViewDataSource
+	// MARK: - JSQMessagesCollectionViewDataSource
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return messages.count
@@ -166,17 +182,41 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource {
 		
-		return messages[indexPath.item].senderId == self.senderId ? outgoingBubble : incomingBubble
+		let bubble: JSQMessageBubbleImageDataSource
+		
+		switch messages[indexPath.item].senderId {
+		case ChatConstants.outgoingSenderId:
+			bubble = outgoingBubble
+		case ChatConstants.incomingSenderId:
+			bubble = incomingBubble
+		default:
+			bubble = systemBubble
+		}
+		
+		return bubble
 	}
 	
-	//MARK: - UICollectionViewDataSource
+	// MARK: - UICollectionViewDataSource
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		
+		let message = messages[indexPath.item]
+		
+		if message.isSystem {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier(), for: indexPath) as! JSQMessagesCollectionViewCell
+			
+			cell.textView.text = message.text
+			cell.textView.textColor = .lightGray
+			cell.textView.textAlignment = .center
+			cell.textView.font = UIFont.preferredFont(forTextStyle: .body).withSize(15)
+			cell.textView.textContainerInset = .zero
+			
+			return cell
+		}
+		
 		let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
 		
 		if let messageCell = cell as? JSQMessagesCollectionViewCell {
-			let message = messages[indexPath.item]
-			
 			let textColor: UIColor = message.senderId == self.senderId ? .white : .black
 			messageCell.textView?.textColor = textColor
 			
@@ -189,6 +229,15 @@ class ChatViewController: JSQMessagesViewController {
 		}
 		
 		return cell
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		var size = super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
+		if messages[indexPath.item].isSystem {
+			size.height = 20
+		}
+		return size
+		
 	}
 	
 	override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
@@ -210,6 +259,26 @@ extension ChatViewController: ChatRoomDelegate {
 		}
 		
 		receive(message)
+	}
+	
+	func chatRoomDidJoin(_ chatRoom: ChatRoom) {
+		guard chatRoom == chat else {
+			return
+		}
+		
+		if let message = JSQMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has joined the chat") {
+			receive(message)
+		}
+	}
+	
+	func chatRoomDidLeave(_ chatRoom: ChatRoom) {
+		guard chatRoom == chat else {
+			return
+		}
+		
+		if let message = JSQMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has left the chat") {
+			receive(message)
+		}
 	}
 	
 }
