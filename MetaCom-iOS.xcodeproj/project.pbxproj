@@ -187,7 +187,7 @@
 				8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */,
 				8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */,
 				8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */,
-				8F035ED11EEEDE5A00E597A0 /* File Picker */,
+				8F035ED11EEEDE5A00E597A0 /* FilePicker */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -259,22 +259,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8F035ED11EEEDE5A00E597A0 /* File Picker */ = {
+		8F035ED11EEEDE5A00E597A0 /* FilePicker */ = {
 			isa = PBXGroup;
 			children = (
 				8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */,
 				8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */,
 			);
-			path = "File Picker";
+			path = FilePicker;
 			sourceTree = "<group>";
 		};
-		8F0BFBAD1EF684F000074837 /* DotsActivityIndicator */ = {
+		8F0BFBAD1EF684F000074837 /* DotedActivityIndicator */ = {
 			isa = PBXGroup;
 			children = (
 				8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */,
 				8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */,
 			);
-			name = DotsActivityIndicator;
+			name = DotedActivityIndicator;
 			sourceTree = "<group>";
 		};
 		8F0BFBAE1EF6852E00074837 /* DataMediaItem */ = {
@@ -302,7 +302,7 @@
 			children = (
 				8F2EF3CF1F1B8E55002E7C8B /* SystemCell */,
 				8F0BFBAE1EF6852E00074837 /* DataMediaItem */,
-				8F0BFBAD1EF684F000074837 /* DotsActivityIndicator */,
+				8F0BFBAD1EF684F000074837 /* DotedActivityIndicator */,
 			);
 			path = Views;
 			sourceTree = "<group>";
