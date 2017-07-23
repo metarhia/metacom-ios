@@ -13,7 +13,7 @@ extension String {
 	/**
 		Returns a new string made by removing from both ends of the String whitespaces and newlines.
 	*/
-	func trim() -> String {
-		return self.trimmingCharacters(in: .whitespacesAndNewlines)
+	func trim(in set: CharacterSet = .whitespacesAndNewlines) -> String {
+		return self.trimmingCharacters(in: set)
 	}
 }
