@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-	A type representing a chat conversation file manager.
+	A type representing a user connection file manager.
 */
 final class FileManager {
 	
@@ -20,7 +20,7 @@ final class FileManager {
 		- parameters:
 			- connection: transport connection.
 	*/
-	init(_ connection: Connection) {
+	init(connection: Connection) {
 		self.connection = connection
 	}
 	

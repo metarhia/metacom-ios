@@ -16,6 +16,7 @@ protocol ChatRoomDelegate: class {
 	func chatRoomDidJoin(_ chatRoom: ChatRoom)
 	func chatRoomDidLeave(_ chatRoom: ChatRoom)
 	func chatRoom(_ chatRoom: ChatRoom, didReceive message: Message)
+  func chatRoom(_ chatRoom: ChatRoom, didReceive error: Error)
 }
 
 extension ChatRoomDelegate {
@@ -23,4 +24,5 @@ extension ChatRoomDelegate {
 	func chatRoomDidJoin(_ chatRoom: ChatRoom) { }
 	func chatRoomDidLeave(_ chatRoom: ChatRoom) { }
 	func chatRoom(_ chatRoom: ChatRoom, didReceive message: Message) { }
+  func chatRoom(_ chatRoom: ChatRoom, didReceive error: Error) { }
 }

@@ -8,13 +8,10 @@
 
 import Foundation
 
-struct Constants {
+enum Constants {
 	
 	static let notificationObject: String = "metacom.default.room"
 	static let applicationName: String = "metarhia.com"
 	static let interfaceName: String = "metacom"
 	static let roomDefault: String = "default"
-	
-	private init() { }
-	
 }

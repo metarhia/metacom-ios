@@ -18,7 +18,8 @@ class Message {
 	*/
 	public enum Content {
 		case text(String)
-		case file(Data)
+    case file(Data, type: String?)
+    case fileURL(URL)
 	}
 	
 	public let content: Content

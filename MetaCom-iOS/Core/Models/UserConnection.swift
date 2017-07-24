@@ -50,7 +50,7 @@ final class UserConnection {
 		connection = Connection(config: config, delegate: self)
 		
 		chatManager = ChatRoomManager(connection: connection)
-		fileManager = FileManager(self.connection)
+    fileManager = FileManager(connection: connection)
 	}
 	
 	/**
@@ -132,10 +132,10 @@ extension UserConnection: ConnectionDelegate {
 	}
 	
 	private func handle(received event: Event) {
-		
+    
 		let params = [Constants.notificationObject : event]
-		let eventName = Events.get(event: event.name, for: chatManager.currentChat?.name ?? "")
-		let notification = Notification.Name(eventName)
+		let eventName = Events.name(ofEvent: event.name)
+    let notification = Notification.Name(eventName)
 		
 		NotificationCenter.default.post(name: notification, object: connection, userInfo: params)
 	}

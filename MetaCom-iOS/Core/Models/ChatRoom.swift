@@ -90,19 +90,18 @@ class ChatRoom {
 			Events.chatLeave : #selector(onLeaveChat(_:))
 		]
 		
-		let notifications = selectors.map { pair -> (Notification.Name, Selector) in
-			let event = Events.get(event: pair.key, for: self.name)
+    let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
+			let event = Events.name(ofEvent: pair.key)
 			return (Notification.Name(event), pair.value)
 		}
-		
-		notifications.forEach { [weak self] (name, selector) in
+		notifications.forEach { [weak self] pair in
 			
 			guard let this = self else {
 				return
 			}
 			
 			let center = NotificationCenter.default
-			center.addObserver(this, selector: selector, name: name, object: this.connection)
+			center.addObserver(this, selector: pair.method, name: pair.event, object: this.connection)
 		}
 	}
 	
