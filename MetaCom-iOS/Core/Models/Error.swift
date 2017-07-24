@@ -28,6 +28,12 @@ class MCError {
 		self.type = errorType
 		self.code = code
 	}
+  
+  convenience init?(from error: Error) {
+    
+    let code = (error as NSError).code
+    self.init(with: code)
+  }
 }
 
 extension MCError {
@@ -37,8 +43,11 @@ extension MCError {
 		31 : "Tried to perform chat-related action while not in chat.",
 		32 : "Chat room contains only the sender.",
 		33 : "Tried to download file with incorrect code.",
+		34 : "Occurs when user tries to finish uploading file to the server without starting it first.",
+		35 : "Occurs when user tries to upload next file chunk to the server without first receiving callback for the previous chunk.",
 		133 : "Connection lost due to unknown reasons.",
-		134 : "Chat not found."
+		134 : "Chat not found.",
+		135 : "File wasn`t sent."
 	]
 	
 	public enum ErrorType: Int {
@@ -46,8 +55,11 @@ extension MCError {
 		case notInChat = 31
 		case noInterlocutor = 32
 		case noSuchfile = 33
+    case uploadNotStarted = 34
+    case previousUploadNotFinished = 35
 		case connectionLost = 133
 		case noChat = 134
+		case fileFailed = 135
 	}
 }
 
