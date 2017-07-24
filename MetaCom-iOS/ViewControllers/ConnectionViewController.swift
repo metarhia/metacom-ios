@@ -17,14 +17,14 @@ class ConnectionViewController: UIViewController {
 	@IBOutlet weak var bottomSpace: NSLayoutConstraint!
 	
 	private var host: String? {
-		guard let host = hostTextField.text?.trim(), !host.isEmpty else {
+		guard let host = hostTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else {
 			return nil
 		}
 		return host
 	}
 	
 	private var port: Int? {
-		guard let port = portTextField.text?.trim(), !port.isEmpty else {
+		guard let port = portTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !port.isEmpty else {
 			return nil
 		}
 		return Int(port)
@@ -95,19 +95,19 @@ class ConnectionViewController: UIViewController {
 	
 	@IBAction func connect() {
 		guard let host = host, let port = port else {
-			present(UIAlertController.connectionFailed(), animated: true)
+      present(alert: UIErrors.connectionFailed, animated: true)
 			return
 		}
 		
 		isInterfaceLocked = true
-		
+    
 		UserConnectionManager.instance.addConnection(host: host, port: port) { [weak self] connection in
 			guard let `self` = self else {
 				return
 			}
 			
 			guard let userConnection = connection else {
-				self.present(UIAlertController.connectionFailed(), animated: true)
+        self.present(alert: UIErrors.connectionFailed, animated: true)
 				self.isInterfaceLocked = false
 				return
 			}
@@ -127,8 +127,11 @@ class ConnectionViewController: UIViewController {
 		guard let host = host, let port = port else {
 			return
 		}
-		
-		segue.destination.content.title = "\(host):\(port)"
+    
+    let navigationController = segue.destination as? UINavigationController
+    let destinationController = navigationController?.viewControllers.first ?? segue.destination
+    
+    destinationController.title = "\(host):\(port)"
 	}
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {

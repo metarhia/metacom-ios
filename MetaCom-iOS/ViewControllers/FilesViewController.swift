@@ -45,8 +45,8 @@ class FilesViewController: UIViewController {
 			self.isInterfaceLocked = false
 			self.infoStackView.isHidden = true
 			
-			let code = "31415926535"
-			self.present(UIAlertController.upload(code: code), animated: true)
+			let fileCode = "31415926535"
+      self?.present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
 		}
 	}
 	

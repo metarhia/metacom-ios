@@ -33,12 +33,8 @@
 		8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
 		8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */; };
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
-		8F3F87B11EE9762A00B64B99 /* UIAlertController+Templates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */; };
 		8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */; };
 		8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */; };
-		8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */; };
-		8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */; };
-		8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */; };
 		8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */; };
 		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
 		8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
@@ -99,12 +95,8 @@
 		8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerController.swift; sourceTree = "<group>"; };
 		8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerDelegate.swift; sourceTree = "<group>"; };
 		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
-		8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Templates.swift"; sourceTree = "<group>"; };
 		8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertRepresentable.swift"; sourceTree = "<group>"; };
 		8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ActivityIndicator.swift"; sourceTree = "<group>"; };
-		8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Root.swift"; sourceTree = "<group>"; };
-		8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Trim.swift"; sourceTree = "<group>"; };
-		8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Content.swift"; sourceTree = "<group>"; };
 		8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessagesBubbleImage.swift; sourceTree = "<group>"; };
 		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotedActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -224,12 +216,8 @@
 			children = (
 				142319111ED07B4400F63687 /* NotificationName+Extensions.swift */,
 				8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */,
-				8F42B8AC1ED57C1100C34520 /* UINavigationController+Root.swift */,
-				8F42B8B01ED5A13E00C34520 /* UIViewController+Content.swift */,
 				8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */,
-				8F42B8AE1ED57F1B00C34520 /* String+Trim.swift */,
 				8F146CCE1EDD914100BC1733 /* Array+Remove.swift */,
-				8F3F87B01EE9762A00B64B99 /* UIAlertController+Templates.swift */,
 				8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */,
 				8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */,
 				14084C071F1004DB005DE87C /* String+Localized.swift */,
@@ -465,15 +453,12 @@
 				147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
-				8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */,
 				8F7370E71F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift in Sources */,
 				142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */,
 				142318E01ECCE14B00F63687 /* AppDelegate.swift in Sources */,
 				8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */,
 				8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */,
 				14CBECC91ED08ECD008B6587 /* Events.swift in Sources */,
-				8F3F87B11EE9762A00B64B99 /* UIAlertController+Templates.swift in Sources */,
-				8F42B8B11ED5A13E00C34520 /* UIViewController+Content.swift in Sources */,
 				8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */,
 				142319021ECCF2F800F63687 /* Constants.swift in Sources */,
 				14E3BA661EE467A100739F46 /* Error.swift in Sources */,
@@ -484,7 +469,6 @@
 				14084C081F1004DB005DE87C /* String+Localized.swift in Sources */,
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
 				8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */,
-				8F42B8AF1ED57F1B00C34520 /* String+Trim.swift in Sources */,
 				8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */,
 				8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */,
 			);
