@@ -27,9 +27,13 @@ private extension JSQMessage {
 		switch message.content {
 		case .text(let text):
 			self.init(senderId: id, displayName: "", text: text)
-		case .file(let data):
+		case .file(let data, _):
 			let media = JSQDataMediaItem(data: data, maskAsOutgoing: !message.isIncoming)
 			self.init(senderId: id, displayName: "", media: media)
+    case .fileURL(let url):
+      let data = try? Data(contentsOf: url)
+      let media = JSQDataMediaItem(data: data ?? Data(), maskAsOutgoing: !message.isIncoming)
+      self.init(senderId: id, displayName: "", media: media)
 		}
 	}
 }

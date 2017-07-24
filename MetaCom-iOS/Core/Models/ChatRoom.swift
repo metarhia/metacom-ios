@@ -84,10 +84,11 @@ class ChatRoom {
 	*/
 	private func addObservers() {
 		
-		let selectors = [
-			Events.message : #selector(onReceiveMessage(_:)),
-			Events.chatJoin : #selector(onJoinChat(_:)),
-			Events.chatLeave : #selector(onLeaveChat(_:))
+    let selectors: [Events : Selector] = [
+			.message : #selector(onReceiveMessage(_:)),
+			.chatJoin : #selector(onJoinChat(_:)),
+			.chatLeave : #selector(onLeaveChat(_:)),
+			.chatFileTransferStart : #selector(onChatFileTransferStart(_:))
 		]
 		
     let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
@@ -147,6 +148,40 @@ extension ChatRoom {
 		
 		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
+  
+  /**
+   	Receive upon chat interlocutor starts file transfer.
+   	- parameters:
+   		- notification: notification containing a message.
+   */
+  @objc fileprivate func onChatFileTransferStart(_ notification: Notification) {
+    
+    guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
+        return
+    }
+    
+    let mimeType = event.arguments.first as? String ?? ""
+    let fileExtension = FileManager.extractExtension(from: mimeType)
+    
+    let chunkDownloadName = Events.name(ofEvent: .chatFileTransferChunk)
+    let fileDownloadName = Events.name(ofEvent: .chatFileTransferEnd)
+    
+    let chunkNotification = Notification.Name(chunkDownloadName)
+    let fileNotification = Notification.Name(fileDownloadName)
+    let notifications = (onChunkDownload: chunkNotification, onDownloadEnd: fileNotification)
+    
+    FileManager.download(listenTo: notifications, on: connection) { [unowned self] data, error in
+      
+      guard let data = data else {
+        let fileError = error ?? MCError(of: .fileFailed)
+        self.receivers.forEach { $0.chatRoom(self, didReceive: fileError) }
+        return
+      }
+      
+      let message = Message(content: .file(data, type: fileExtension))
+      self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
+    }
+  }
 }
 
 extension ChatRoom {

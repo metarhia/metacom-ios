@@ -44,6 +44,97 @@ final class FileManager {
 	func download(_ code: String, _ completion: (Data?, Error?) -> Void) {
 		
 	}
+  
+  /**
+   	Download data specified by the code from server.
+   	- parameters:
+   		- code: code specifying the file to download
+   		- block: block called upon failure or successful completion of the download.
+   */
+  func download(from code: String, completion block: @escaping ((data: Data, extension: String)?, Error?) -> Void) {
+    
+    let downloadNotification = Events.notification(ofEvent: .downloadFileStart)
+    let chunkNotification = Events.notification(ofEvent: .downloadFileChunk)
+    let fileNotification = Events.notification(ofEvent: .downloadFileEnd)
+    
+    var tokens = [NSObjectProtocol]()
+    let center = NotificationCenter.default
+    let token = center.addObserver(forName: downloadNotification, object: connection, queue: nil) { [unowned self] notification in
+      
+      let event = notification.userInfo?[Constants.notificationObject] as? Event
+      let argument = event?.arguments.first as? String
+      let mimeType = argument ?? FileManager.extractMimeType(from: nil)
+      let fileExtension = FileManager.extractExtension(from: mimeType)
+      
+      let notifications = (onChunkDownload: chunkNotification, onDownloadEnd: fileNotification)
+      let onDownloadFinished: (Data?, Error?) -> () = { data, error in
+        
+        guard let fileData = data else {
+          return block(nil, error)
+        }
+        
+        block((data: fileData, extension: fileExtension), nil)
+      }
+
+      FileManager.download(listenTo: notifications, on: self.connection, completion: onDownloadFinished)
+      tokens.forEach { center.removeObserver($0) }
+    }
+    
+    tokens.append(token)
+    
+    connection.call(Constants.interfaceName, "downloadFile", [code]) { _, serverError in
+      
+      guard let error = serverError else {
+        return
+      }
+      
+      block(nil, MCError(from: error) ?? MCError(of: .noSuchfile))
+      tokens.forEach { center.removeObserver($0) }
+    }
+  }
+}
+
+extension FileManager {
+  
+  /// Alias for the tuple representing notification names for the chunk download and download end events.
+  typealias DownloadEvents = (onChunkDownload: Notification.Name, onDownloadEnd: Notification.Name)
+  
+  /**
+   	Download data from server via specified connection.
+   	- parameters:
+   		- events: events to subscribe in order to receive chunks and download end events.
+   		- connection: connection used to receive data.
+   		- block: block called upon failure or successful completion of the download.
+   */
+  class func download(listenTo events: DownloadEvents, on connection: Connection, completion block: @escaping (Data?, Error?) -> ()) {
+    
+    var buffer: Data? = Data()
+    var tokens = [NSObjectProtocol]()
+    let center = NotificationCenter.default
+    
+    let onChunkBlock: (Notification) -> Void = { notification in
+      
+      guard let event = notification.userInfo?[Constants.notificationObject] as? Event,
+        let chunk = event.arguments.first as? String else {
+          buffer = nil
+          return block(buffer, MCError(of: .fileFailed))
+      }
+      
+      let dataChunk = Data(base64Encoded: chunk) ?? Data()
+      buffer?.append(dataChunk)
+    }
+    
+    let onFileBlock: (Notification) -> Void = { notification in
+      tokens.forEach({ NotificationCenter.default.removeObserver($0) })
+      block(buffer, nil)
+    }
+    
+    let t1 = center.addObserver(forName: events.onChunkDownload, object: connection, queue: nil, using: onChunkBlock)
+    let t2 = center.addObserver(forName: events.onDownloadEnd, object: connection, queue: nil, using: onFileBlock)
+    
+    tokens = [t1, t2]
+  }
+  
 extension FileManager {
   
   /**

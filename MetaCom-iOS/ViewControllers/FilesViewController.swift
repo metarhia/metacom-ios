@@ -51,46 +51,27 @@ class FilesViewController: UIViewController {
 	}
 	
 	// MARK: - Download
-	
-	private weak var downloadAction: UIAlertAction?
-	
 	@IBAction func download() {
-		let alert = UIAlertController(title: "Enter download code:",
-		                              message: nil,
-		                              preferredStyle: .alert)
-		alert.addTextField { textField in
-			textField.returnKeyType = .done
-			textField.enablesReturnKeyAutomatically = true
-			textField.addTarget(self, action: #selector(self.codeTextChanged(_:)), for: .editingChanged)
-		}
-		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-		let download = UIAlertAction(title: "Download", style: .default) { [weak alert] action in
-			guard let code = alert?.textFields?.first?.text, !code.isEmpty else {
-				print("No any code typed.")
-				return
-			}
-			print("Downloading file with code: \(code).")
-			// TODO: Try to perform download with specified `code`
-			// TODO: Handle download errors
-			// TODO: Visualize downloading process (show some status bar, perhaps)
-		}
-		download.isEnabled = false
-		downloadAction = download
-		alert.addAction(cancel)
-		alert.addAction(download)
-		present(alert, animated: true)
+    
+    let downloadCompletion = { (file: (data: Data, extension: String)?, error: Error?) in
+
+      // TODO: - Handle downloaded file or error here
+    }
+    
+    let downloadAlert = UIAlerts.download { code in
+      
+      let manager = UserConnectionManager.instance.currentConnection?.fileManager
+      manager?.download(from: code, completion: downloadCompletion)
+    }
+    
+    present(alert: downloadAlert, animated: true)
 	}
-	
-	@objc private func codeTextChanged(_ textField: UITextField) {
-		downloadAction?.isEnabled = textField.text?.isEmpty == false
-	}
-	
+  
 	// MARK: -
 	
 	@IBAction func cancel() {
 		
-	} 
-	
+	}
 }
 
 // MARK: - FilePickerDelegate
