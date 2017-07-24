@@ -43,4 +43,8 @@ final class FileManager {
 	func download(_ code: String, _ completion: (Data?, Error?) -> Void) {
 		
 	}
+extension Constants {
+	
+	/// Chunk Size currently has to be < 4 mb.
+	fileprivate static let chunkSize = 1024 * 1024
 }
