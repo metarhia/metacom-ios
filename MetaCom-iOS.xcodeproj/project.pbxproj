@@ -26,6 +26,7 @@
 		1474A72B1ED2FA87009464BD /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; };
 		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		14E3BA661EE467A100739F46 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3BA651EE467A100739F46 /* Error.swift */; };
 		404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
@@ -88,6 +89,7 @@
 		142319111ED07B4400F63687 /* NotificationName+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extensions.swift"; sourceTree = "<group>"; };
 		1474A7261ED2F9F3009464BD /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
 		1474A7271ED2F9F3009464BD /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
+		147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Extensions.swift"; sourceTree = "<group>"; };
 		14CBECC81ED08ECD008B6587 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		14E3BA651EE467A100739F46 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */,
 				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
 				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,
+				147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
 				8F42B8AD1ED57C1100C34520 /* UINavigationController+Root.swift in Sources */,
