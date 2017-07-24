@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 // MARK: - UIImagePickerController convenience init
 
@@ -16,9 +17,9 @@ private extension UIImagePickerController {
 		self.init()
 		self.sourceType = type
 		self.delegate = delegate
-		if let types = UIImagePickerController.availableMediaTypes(for: type) {
-			self.mediaTypes = types
-		}
+    if let types = UIImagePickerController.availableMediaTypes(for: type) {
+      self.mediaTypes = types
+    }
 	}
 }
 
@@ -57,49 +58,14 @@ class FilePickerController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		if !alertAlreadyPresented {
-			present(createAlert(), animated: true)
+      present(alert: UIPicker.filePicker(self), animated: true)
 			alertAlreadyPresented = true
 		}
 	}
 	
 	fileprivate func dismiss() {
-		self.presentingViewController?.dismiss(animated: false)
+		presentingViewController?.dismiss(animated: false)
 	}
-	
-	private func createAlert() -> UIAlertController {
-		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-		
-		let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { _ in
-			let imagePicker = UIImagePickerController(sourceType: .photoLibrary, delegate: self)
-			self.present(imagePicker, animated: true)
-		}
-		
-		let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-			let imagePicker = UIImagePickerController(sourceType: .camera, delegate: self)
-			self.present(imagePicker, animated: true)
-		}
-		
-		let iCloudDrive = UIAlertAction(title: "iCloud Drive", style: .default) { _ in
-			let documentPickerController = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
-			documentPickerController.delegate = self
-			self.present(documentPickerController, animated: true)
-		}
-		
-		let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-			self.dismiss()
-		}
-		
-		photoLibrary.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
-		camera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-		
-		alert.addAction(photoLibrary)
-		alert.addAction(camera)
-		alert.addAction(iCloudDrive)
-		alert.addAction(cancel)
-		
-		return alert
-	}
-	
 }
 
 extension FilePickerController: UIDocumentPickerDelegate {
@@ -119,17 +85,17 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 		picker.dismiss(animated: true, completion: self.dismiss)
-		
-		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			guard let data = UIImagePNGRepresentation(image) else {
-				return
-			}
-			
-			delegate?.filePicker(self, didPickData: data)
-			
-		} else if let url = info[UIImagePickerControllerMediaURL] as? URL {
-			delegate?.filePicker(self, didPickFileAt: url)
-		}
+    
+    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+      
+      guard let data = UIImagePNGRepresentation(image) else {
+        return
+      }
+      
+      delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypePNG))
+    } else if let url = info[UIImagePickerControllerMediaURL] as? URL {
+      delegate?.filePicker(self, didPickFileAt: url)
+    }
 	}
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

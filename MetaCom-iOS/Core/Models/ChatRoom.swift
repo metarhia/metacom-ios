@@ -73,11 +73,51 @@ class ChatRoom {
 		switch message.content {
 		case .text(let text):
 			connection.call(Constants.interfaceName, "send", [text], { completion?($1) })
-		case .file(let data):
-			// TODO: Send file
-			break
+		
+    case .file(let data, let uti):
+      sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
+    
+    case .fileURL(let url):
+      guard let data = try? Data(contentsOf: url) else {
+        completion?(MCError(of: .fileFailed))
+        return
+      }
+      
+      sendFile(data, mimeType: FileManager.extractMimeType(from: url))
 		}
 	}
+  
+  /**
+   	Send a file via current connection.
+   	- parameters:
+   		- data: sent raw data
+   		- mimeType: data mime type.
+   		- completion: callback on completion.
+   */
+  private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
+    
+    let onTransferEnd = { [unowned self] (error: Error?) in
+      
+      guard error == nil else {
+        completion?(error)
+        return
+      }
+      
+      self.connection.call(Constants.interfaceName, "endChatFileTransfer") { completion?($1) }
+    }
+    
+    let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
+      
+      guard error == nil else {
+        completion?(error)
+        return
+      }
+      
+      FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
+    }
+    
+    connection.call(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+  }
 	
 	/**
 		Create observers for the common events.

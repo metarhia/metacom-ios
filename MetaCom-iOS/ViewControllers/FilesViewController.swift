@@ -77,12 +77,29 @@ class FilesViewController: UIViewController {
 // MARK: - FilePickerDelegate
 
 extension FilesViewController: FilePickerDelegate {
-	
-	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
-		showUploading()
-	}
+  
+  private var manager: FileManager? {
+    return UserConnectionManager.instance.currentConnection?.fileManager
+  }
+  
+  private func uploadCompletion(code: String?, error: Error?) {
+    
+    guard let fileCode = code else {
+      return
+    }
+    
+    present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
+  }
+  
+  func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
+    
+    manager?.upload(data, completion: uploadCompletion)
+//    showUploading()
+  }
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
-		showUploading()
+    
+    manager?.upload(from: url, completion: uploadCompletion)
+//		showUploading()
 	}
 }

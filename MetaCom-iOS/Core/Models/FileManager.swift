@@ -31,18 +31,31 @@ final class FileManager {
 			- data: data being uploaded.
 			- completion: callback on completion.
 	*/
-	func upload(_ data: Data, _ completion: (String?, Error?) -> Void) {
-		
-	}
+	func upload(_ data: Data, completion block: @escaping (String?, Error?) -> Void) {
+    
+    FileManager.upload(data: data, via: connection, method: "uploadFileChunk") { [unowned self] error in
+      
+      guard error == nil else {
+        return block(nil, error)
+      }
+      
+      self.connection.call(Constants.interfaceName, "endFileUpload") { block($0?.first as? String, $1) }
+    }
+  }
 	
-	/**
-		Upload specified data to server.
-		- parameters:
-			- code: identifier of the downloaded file.
-			- completion: callback on completion.
-	*/
-	func download(_ code: String, _ completion: (Data?, Error?) -> Void) {
+  /**
+   	Upload data from the specified url to server.
+    - parameters:
+      - url: data url.
+      - completion: callback on completion.
+   */
+	func upload(from url: URL, completion block: @escaping (String?, Error?) -> Void) {
 		
+		guard let data = try? Data(contentsOf: url) else {
+			return block(nil, MCError(of: .fileFailed))
+		}
+		
+    upload(data, completion: block)
 	}
   
   /**
@@ -135,6 +148,78 @@ extension FileManager {
     tokens = [t1, t2]
   }
   
+  /**
+    Upload data to server via specified connection and chunk sending method.
+   	- parameters:
+   		- data: raw data that will be sent to the server.
+    	- connection: connection used to send data.
+   		- method: chunk sending method
+   		- block: block called upon failure or successful completion of the upload.
+   */
+  class func upload(data: Data, via connection: Connection, method: String, completion block: @escaping (Error?) -> ()) {
+    
+    let length = data.count
+    var offset = 0
+    var chunk = String()
+    var error: MCError? = nil
+    
+    let semaphore = DispatchSemaphore(value: 1)
+    let queueId = data.prefix(1).base.base64EncodedString()
+    let queue = DispatchQueue(label: queueId, qos: .utility, attributes: .concurrent, autoreleaseFrequency: .workItem)
+    
+    var onChunkSent: Callback?
+    onChunkSent = { _, serverError in
+      
+      defer {
+        semaphore.signal()
+      }
+      
+      guard let unwrappedError = serverError else {
+        return
+      }
+      
+      let localError = MCError(with: (unwrappedError as NSError).code) ?? MCError(of: .fileFailed)
+      
+      guard localError.type == .previousUploadNotFinished else {
+        error = localError
+        return
+      }
+      
+      Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
+        connection.call(Constants.interfaceName, method, [chunk], onChunkSent)
+        timer.invalidate()
+      }
+    }
+    
+    queue.async {
+    
+      repeat {
+        
+        semaphore.wait()
+        
+        let diff = length - offset
+        let size = diff > Constants.chunkSize ? Constants.chunkSize : diff
+        chunk = data.subdata(in: offset..<offset + size).base64EncodedString()
+        
+        guard error == nil else {
+          semaphore.signal()
+          break
+        }
+        
+        connection.call(Constants.interfaceName, method, [chunk], onChunkSent)
+        
+        offset += size
+      } while offset < length
+      
+      semaphore.wait()
+      DispatchQueue.main.async {
+        block(error)
+      }
+      semaphore.signal()
+    }
+  }
+}
+
 extension FileManager {
   
   /**

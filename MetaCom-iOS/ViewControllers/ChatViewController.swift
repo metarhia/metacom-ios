@@ -291,15 +291,15 @@ extension ChatViewController: ChatRoomDelegate {
 
 extension ChatViewController: FilePickerDelegate {
 	
-	func filePicker(_ controller: FilePickerController, didPickData data: Data) {
-		let message = Message(content: .file(data), incoming: false)
+  func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
+    
+		let message = Message(content: .file(data, type: uti), incoming: false)
 		send(message)
-		
 	}
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
-		// TODO: Upload
-		let message = Message(content: .file(Data()), incoming: false)
+    
+		let message = Message(content: .fileURL(url), incoming: false)
 		send(message)
 	}
 }
