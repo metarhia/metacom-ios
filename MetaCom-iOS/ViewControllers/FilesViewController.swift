@@ -38,12 +38,9 @@ class FilesViewController: UIViewController {
 		infoStackView.isHidden = false
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-			guard let `self` = self else {
-				return
-			}
 			
-			self.isInterfaceLocked = false
-			self.infoStackView.isHidden = true
+			self?.isInterfaceLocked = false
+			self?.infoStackView.isHidden = true
 			
 			let fileCode = "31415926535"
       self?.present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)

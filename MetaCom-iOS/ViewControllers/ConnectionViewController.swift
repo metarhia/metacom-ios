@@ -36,7 +36,7 @@ class ConnectionViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Developer hack. Will be removed. Later...
-		hostTextField.text = "dev.metarhia.com"
+    hostTextField.text = "dev.metarhia.com"
 		portTextField.text = "3000"
 		//
 		
@@ -44,7 +44,6 @@ class ConnectionViewController: UIViewController {
 		portTextField.delegate = self
 		
 		updateButtonState()
-		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 	}
 	

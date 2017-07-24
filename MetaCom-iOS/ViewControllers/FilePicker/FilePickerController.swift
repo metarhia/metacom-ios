@@ -50,7 +50,7 @@ class FilePickerController: UIViewController {
 		self.modalPresentationStyle = .overCurrentContext
 	}
 	
-	// MARK: - View Conrtroller Lifecycle
+	// MARK: - View Controller Lifecycle
 	
 	private var alertAlreadyPresented = false
 	

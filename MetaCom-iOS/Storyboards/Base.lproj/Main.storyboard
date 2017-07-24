@@ -200,7 +200,7 @@
                     <navigationItem key="navigationItem" title="Chat name" id="dmo-YO-J5M">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="YHD-xZ-UXy">
                             <connections>
-                                <action selector="closeChat:" destination="AXY-ZM-hLC" id="Pau-3j-enH"/>
+                                <action selector="closeChat" destination="AXY-ZM-hLC" id="Pau-3j-enH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -69,23 +69,23 @@ class ChatViewController: JSQMessagesViewController {
 	
 	// MARK: - View Conrtroller Lifecycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-		self.title = chat?.name
-		
-		collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
-		                        forCellWithReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier())
-		
-		collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
-		collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
-		
-		senderId = ChatConstants.outgoingSenderId
-		senderDisplayName = ""
-		
-		clearChat()
-    }
-	
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    self.title = chat?.name
+    
+    collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
+                            forCellWithReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier())
+    
+    collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
+    collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
+    
+    senderId = ChatConstants.outgoingSenderId
+    senderDisplayName = ""
+    
+    clearChat()
+  }
+  
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
@@ -98,11 +98,12 @@ class ChatViewController: JSQMessagesViewController {
 		collectionView?.layoutIfNeeded()
 	}
 	
-	@IBAction func closeChat(_ sender: UIBarButtonItem) {
-		let alert = UIAlertController.leaveChat(confirm: { 
-			self.performSegue(withIdentifier: "closeChat", sender: nil)
-		})
-		self.present(alert, animated: true)
+  @IBAction func closeChat() {
+    let confirmationBlock: (() -> ())? = { [weak self] in
+      self?.performSegue(withIdentifier: "closeChat", sender: nil)
+    }
+    
+    self.present(alert: UIAlerts.leavingChat(confirm: confirmationBlock, deny: nil), animated: true)
 	}
 	
 	// MARK: - Sending / receiving messages
@@ -129,12 +130,12 @@ class ChatViewController: JSQMessagesViewController {
 			
 			guard error == nil else {
 				// TODO: Handle error. Maybe show an alert, make message bubble red etc.
-				self.present(UIAlertController.messageSendingFailed(), animated: true)
+        self.present(alert: UIErrors.messageSendingFailed, animated: true)
 				return
 			}
 		}
 		
-		messages += [JSQMessage(message: message)]
+		messages.append(JSQMessage(message: message))
 		finishSendingMessage(animated: true)
 		
 		showFileLoadingIfNeeded()
@@ -145,7 +146,8 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	fileprivate func receive(_ message: JSQMessage) {
-		messages += [message]
+		
+    messages.append(message)
 		finishReceivingMessage(animated: true)
 		
 		showFileLoadingIfNeeded()
