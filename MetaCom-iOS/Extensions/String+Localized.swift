@@ -9,12 +9,12 @@
 import Foundation
 
 extension String {
-  
-  func localized(in bundle: Bundle = Bundle.main, table: String?) -> String {
-    return bundle.localizedString(forKey: self, value: self, table: table)
-  }
-  
-  var localized: String {
-    return localized(table: "Localizable")
-  }
+	
+	func localized(in bundle: Bundle = Bundle.main, table: String?) -> String {
+		return bundle.localizedString(forKey: self, value: self, table: table)
+	}
+	
+	var localized: String {
+		return localized(table: "Localizable")
+	}
 }

@@ -12,5 +12,5 @@ protocol FilePickerDelegate: class {
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL)
 	
-  func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?)
+	func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?)
 }

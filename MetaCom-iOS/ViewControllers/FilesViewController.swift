@@ -43,27 +43,27 @@ class FilesViewController: UIViewController {
 			self?.infoStackView.isHidden = true
 			
 			let fileCode = "31415926535"
-      self?.present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
+			self?.present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
 		}
 	}
 	
 	// MARK: - Download
 	@IBAction func download() {
-    
-    let downloadCompletion = { (file: (data: Data, extension: String)?, error: Error?) in
-
-      // TODO: - Handle downloaded file or error here
-    }
-    
-    let downloadAlert = UIAlerts.download { code in
-      
-      let manager = UserConnectionManager.instance.currentConnection?.fileManager
-      manager?.download(from: code, completion: downloadCompletion)
-    }
-    
-    present(alert: downloadAlert, animated: true)
+		
+		let downloadCompletion = { (file: (data: Data, extension: String)?, error: Error?) in
+			
+			// TODO: - Handle downloaded file or error here
+		}
+		
+		let downloadAlert = UIAlerts.download { code in
+			
+			let manager = UserConnectionManager.instance.currentConnection?.fileManager
+			manager?.download(from: code, completion: downloadCompletion)
+		}
+		
+		present(alert: downloadAlert, animated: true)
 	}
-  
+	
 	// MARK: -
 	
 	@IBAction func cancel() {
@@ -74,29 +74,29 @@ class FilesViewController: UIViewController {
 // MARK: - FilePickerDelegate
 
 extension FilesViewController: FilePickerDelegate {
-  
-  private var manager: FileManager? {
-    return UserConnectionManager.instance.currentConnection?.fileManager
-  }
-  
-  private func uploadCompletion(code: String?, error: Error?) {
-    
-    guard let fileCode = code else {
-      return
-    }
-    
-    present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
-  }
-  
-  func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
-    
-    manager?.upload(data, completion: uploadCompletion)
-//    showUploading()
-  }
+	
+	private var manager: FileManager? {
+		return UserConnectionManager.instance.currentConnection?.fileManager
+	}
+	
+	private func uploadCompletion(code: String?, error: Error?) {
+		
+		guard let fileCode = code else {
+			return
+		}
+		
+		present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
+	}
+	
+	func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
+		
+		manager?.upload(data, completion: uploadCompletion)
+		//    showUploading()
+	}
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
-    
-    manager?.upload(from: url, completion: uploadCompletion)
-//		showUploading()
+		
+		manager?.upload(from: url, completion: uploadCompletion)
+		//		showUploading()
 	}
 }

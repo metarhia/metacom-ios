@@ -17,9 +17,9 @@ private extension UIImagePickerController {
 		self.init()
 		self.sourceType = type
 		self.delegate = delegate
-    if let types = UIImagePickerController.availableMediaTypes(for: type) {
-      self.mediaTypes = types
-    }
+		if let types = UIImagePickerController.availableMediaTypes(for: type) {
+			self.mediaTypes = types
+		}
 	}
 }
 
@@ -58,7 +58,7 @@ class FilePickerController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		if !alertAlreadyPresented {
-      present(alert: UIPicker.filePicker(self), animated: true)
+			present(alert: UIPicker.filePicker(self), animated: true)
 			alertAlreadyPresented = true
 		}
 	}
@@ -85,17 +85,17 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 		picker.dismiss(animated: true, completion: self.dismiss)
-    
-    if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-      
-      guard let data = UIImagePNGRepresentation(image) else {
-        return
-      }
-      
-      delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypePNG))
-    } else if let url = info[UIImagePickerControllerMediaURL] as? URL {
-      delegate?.filePicker(self, didPickFileAt: url)
-    }
+		
+		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			
+			guard let data = UIImagePNGRepresentation(image) else {
+				return
+			}
+			
+			delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypePNG))
+		} else if let url = info[UIImagePickerControllerMediaURL] as? URL {
+			delegate?.filePicker(self, didPickFileAt: url)
+		}
 	}
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
