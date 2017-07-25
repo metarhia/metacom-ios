@@ -23,7 +23,7 @@ class NewChatViewController: UIViewController {
 		chatNameTextField.delegate = self
 		
 		updateButtonState()
-    
+		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 	}
 	
@@ -73,12 +73,12 @@ class NewChatViewController: UIViewController {
 	
 	@IBAction func joinChat() {
 		guard let name = chatNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
-      present(alert: UIErrors.chatJoiningFailed, animated: true, completion: nil)
+			present(alert: UIErrors.chatJoiningFailed, animated: true, completion: nil)
 			return
 		}
 		
 		guard let chatManager = UserConnectionManager.instance.currentConnection?.chatManager else {
-      present(alert: UIErrors.genericError, animated: true, completion: nil)
+			present(alert: UIErrors.genericError, animated: true, completion: nil)
 			return
 		}
 		
@@ -90,7 +90,7 @@ class NewChatViewController: UIViewController {
 			}
 			
 			guard error == nil else {
-        self.present(alert: UIErrors.chatJoiningFailed, animated: true)
+				self.present(alert: UIErrors.chatJoiningFailed, animated: true)
 				self.isInterfaceLocked = false
 				return
 			}
@@ -106,9 +106,9 @@ class NewChatViewController: UIViewController {
 			return
 		}
 		
-    let navigationController = segue.destination as? UINavigationController
-    let rootController = navigationController?.viewControllers.first ?? segue.destination
-    
+		let navigationController = segue.destination as? UINavigationController
+		let rootController = navigationController?.viewControllers.first ?? segue.destination
+		
 		guard let chatController = rootController as? ChatViewController else {
 			return
 		}

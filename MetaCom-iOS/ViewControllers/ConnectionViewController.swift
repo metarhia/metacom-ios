@@ -36,7 +36,7 @@ class ConnectionViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Developer hack. Will be removed. Later...
-    hostTextField.text = "dev.metarhia.com"
+		hostTextField.text = "dev.metarhia.com"
 		portTextField.text = "3000"
 		//
 		
@@ -94,19 +94,19 @@ class ConnectionViewController: UIViewController {
 	
 	@IBAction func connect() {
 		guard let host = host, let port = port else {
-      present(alert: UIErrors.connectionFailed, animated: true)
+			present(alert: UIErrors.connectionFailed, animated: true)
 			return
 		}
 		
 		isInterfaceLocked = true
-    
+		
 		UserConnectionManager.instance.addConnection(host: host, port: port) { [weak self] connection in
 			guard let `self` = self else {
 				return
 			}
 			
 			guard let userConnection = connection else {
-        self.present(alert: UIErrors.connectionFailed, animated: true)
+				self.present(alert: UIErrors.connectionFailed, animated: true)
 				self.isInterfaceLocked = false
 				return
 			}
@@ -115,7 +115,7 @@ class ConnectionViewController: UIViewController {
 			self.performSegue(withIdentifier: "submit", sender: nil)
 		}
 	}
-
+	
 	// MARK: - Navigation
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,11 +126,11 @@ class ConnectionViewController: UIViewController {
 		guard let host = host, let port = port else {
 			return
 		}
-    
-    let navigationController = segue.destination as? UINavigationController
-    let destinationController = navigationController?.viewControllers.first ?? segue.destination
-    
-    destinationController.title = "\(host):\(port)"
+		
+		let navigationController = segue.destination as? UINavigationController
+		let destinationController = navigationController?.viewControllers.first ?? segue.destination
+		
+		destinationController.title = "\(host):\(port)"
 	}
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {

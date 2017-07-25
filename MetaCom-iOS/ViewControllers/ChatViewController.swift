@@ -30,10 +30,10 @@ private extension JSQMessage {
 		case .file(let data, _):
 			let media = JSQDataMediaItem(data: data, maskAsOutgoing: !message.isIncoming)
 			self.init(senderId: id, displayName: "", media: media)
-    case .fileURL(let url):
-      let data = try? Data(contentsOf: url)
-      let media = JSQDataMediaItem(data: data ?? Data(), maskAsOutgoing: !message.isIncoming)
-      self.init(senderId: id, displayName: "", media: media)
+		case .fileURL(let url):
+			let data = try? Data(contentsOf: url)
+			let media = JSQDataMediaItem(data: data ?? Data(), maskAsOutgoing: !message.isIncoming)
+			self.init(senderId: id, displayName: "", media: media)
 		}
 	}
 }
@@ -68,24 +68,24 @@ class ChatViewController: JSQMessagesViewController {
 	private var systemBubble = SystemMessagesBubbleImage()
 	
 	// MARK: - View Conrtroller Lifecycle
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    self.title = chat?.name
-    
-    collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
-                            forCellWithReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier())
-    
-    collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
-    collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
-    
-    senderId = ChatConstants.outgoingSenderId
-    senderDisplayName = ""
-    
-    clearChat()
-  }
-  
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		self.title = chat?.name
+		
+		collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
+		                        forCellWithReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier())
+		
+		collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
+		collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
+		
+		senderId = ChatConstants.outgoingSenderId
+		senderDisplayName = ""
+		
+		clearChat()
+	}
+	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
@@ -98,12 +98,12 @@ class ChatViewController: JSQMessagesViewController {
 		collectionView?.layoutIfNeeded()
 	}
 	
-  @IBAction func closeChat() {
-    let confirmationBlock: (() -> ())? = { [weak self] in
-      self?.performSegue(withIdentifier: "closeChat", sender: nil)
-    }
-    
-    self.present(alert: UIAlerts.leavingChat(confirm: confirmationBlock, deny: nil), animated: true)
+	@IBAction func closeChat() {
+		let confirmationBlock: (() -> ())? = { [weak self] in
+			self?.performSegue(withIdentifier: "closeChat", sender: nil)
+		}
+		
+		self.present(alert: UIAlerts.leavingChat(confirm: confirmationBlock, deny: nil), animated: true)
 	}
 	
 	// MARK: - Sending / receiving messages
@@ -130,7 +130,7 @@ class ChatViewController: JSQMessagesViewController {
 			
 			guard error == nil else {
 				// TODO: Handle error. Maybe show an alert, make message bubble red etc.
-        self.present(alert: UIErrors.messageSendingFailed, animated: true)
+				self.present(alert: UIErrors.messageSendingFailed, animated: true)
 				return
 			}
 		}
@@ -147,7 +147,7 @@ class ChatViewController: JSQMessagesViewController {
 	
 	fileprivate func receive(_ message: JSQMessage) {
 		
-    messages.append(message)
+		messages.append(message)
 		finishReceivingMessage(animated: true)
 		
 		showFileLoadingIfNeeded()
@@ -248,9 +248,9 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
 		// TODO: Handle tap on message if it contains `JSQDataMediaItem`
-//		guard let media = messages[indexPath.item].media else {
-//			return
-//		}
+		//		guard let media = messages[indexPath.item].media else {
+		//			return
+		//		}
 	}
 	
 }
@@ -293,14 +293,14 @@ extension ChatViewController: ChatRoomDelegate {
 
 extension ChatViewController: FilePickerDelegate {
 	
-  func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
-    
+	func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
+		
 		let message = Message(content: .file(data, type: uti), incoming: false)
 		send(message)
 	}
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
-    
+		
 		let message = Message(content: .fileURL(url), incoming: false)
 		send(message)
 	}
