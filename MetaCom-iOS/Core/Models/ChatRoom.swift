@@ -38,7 +38,7 @@ class ChatRoom {
 	*/
 	func join(completion: Completion?) {
 		
-		self.connection.call(Constants.interfaceName, "join", [name]) { (_, error) in
+		self.connection.cacheCall(Constants.interfaceName, "join", [name]) { (_, error) in
 			
 			defer {
 				completion?(error)
@@ -59,7 +59,7 @@ class ChatRoom {
 	*/
 	func leave(completion: Completion?) {
 		
-		self.connection.call(Constants.interfaceName, "leave", [], { completion?($1) })
+		self.connection.cacheCall(Constants.interfaceName, "leave", [], { completion?($1) })
 	}
 	
 	/**
@@ -72,7 +72,7 @@ class ChatRoom {
 		
 		switch message.content {
 		case .text(let text):
-			connection.call(Constants.interfaceName, "send", [text], { completion?($1) })
+			connection.cacheCall(Constants.interfaceName, "send", [text], { completion?($1) })
 		
     case .file(let data, let uti):
       sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
@@ -103,7 +103,7 @@ class ChatRoom {
         return
       }
       
-      self.connection.call(Constants.interfaceName, "endChatFileTransfer") { completion?($1) }
+      self.connection.cacheCall(Constants.interfaceName, "endChatFileTransfer", []) { completion?($1) }
     }
     
     let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
@@ -116,7 +116,7 @@ class ChatRoom {
       FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
     }
     
-    connection.call(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+    connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
   }
 	
 	/**

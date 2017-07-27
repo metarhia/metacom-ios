@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-	A type representing a manager for user connections to various server hosts and ports.
+A type representing a manager for user connections to various server hosts and ports.
 */
 final class UserConnectionManager {
 	
@@ -50,7 +50,7 @@ final class UserConnectionManager {
 	
 	/**
 		Establish new connection.
-		- parameters: 
+		- parameters:
 			- host: server host.
 			- port: server port.
 			- callback: called on completion.
@@ -60,7 +60,7 @@ final class UserConnectionManager {
 		let id = (userConnections.last?.id ?? -1) + 1
 		let config = Configuration(host: host, port, true, Constants.applicationName, nil)
 		let connection = UserConnection(identifier: id, configuration: config)
-
+		
 		let completion: (Error?) -> Void = { [weak self, unowned connection] error in
 			
 			guard error == nil else {

@@ -27,6 +27,7 @@
 		1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; };
 		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */; };
+		148A782F1F2A13D1007415BA /* JSTPConnection+CacheCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		14E3BA661EE467A100739F46 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3BA651EE467A100739F46 /* Error.swift */; };
 		404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
@@ -88,6 +89,7 @@
 		1474A7261ED2F9F3009464BD /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
 		1474A7271ED2F9F3009464BD /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
 		147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Extensions.swift"; sourceTree = "<group>"; };
+		148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSTPConnection+CacheCall.swift"; sourceTree = "<group>"; };
 		14CBECC81ED08ECD008B6587 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		14E3BA651EE467A100739F46 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */,
 				14084C071F1004DB005DE87C /* String+Localized.swift */,
 				147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */,
+				148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				142318FA1ECCE9BE00F63687 /* FileManager.swift in Sources */,
 				142318FC1ECCE9C700F63687 /* ChatRoomManager.swift in Sources */,
 				8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */,
+				148A782F1F2A13D1007415BA /* JSTPConnection+CacheCall.swift in Sources */,
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */,

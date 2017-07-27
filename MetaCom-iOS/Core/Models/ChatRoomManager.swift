@@ -86,7 +86,7 @@ final class ChatRoomManager {
 	}
 	
 	/**
-	Remove existing chatroom.
+		Remove existing chatroom.
 		- parameters:
 			- chatRoom: chat room to remove.
 	*/
