@@ -44,13 +44,13 @@ final class UserConnection {
 			- configuration: connection configuration.
 	*/
 	init(identifier: Int, configuration: Configuration) {
-
+		
 		id = identifier
 		config = configuration
 		connection = Connection(config: config, delegate: self)
 		
 		chatManager = ChatRoomManager(connection: connection)
-    fileManager = FileManager(connection: connection)
+		fileManager = FileManager(connection: connection)
 	}
 	
 	/**
@@ -59,7 +59,7 @@ final class UserConnection {
 			- callback: block called on operation completion.
 	*/
 	func connect(with callback: @escaping (Error?) -> Void) {
-	
+		
 		let queue = OperationQueue.current
 		let center = NotificationCenter.default
 		
@@ -132,10 +132,10 @@ extension UserConnection: ConnectionDelegate {
 	}
 	
 	private func handle(received event: Event) {
-    
+		
 		let params = [Constants.notificationObject : event]
 		let eventName = Events.name(ofEvent: event.name)
-    let notification = Notification.Name(eventName)
+		let notification = Notification.Name(eventName)
 		
 		NotificationCenter.default.post(name: notification, object: connection, userInfo: params)
 	}

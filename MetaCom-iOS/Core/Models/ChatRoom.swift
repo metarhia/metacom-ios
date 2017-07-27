@@ -73,65 +73,65 @@ class ChatRoom {
 		switch message.content {
 		case .text(let text):
 			connection.call(Constants.interfaceName, "send", [text], { completion?($1) })
-		
-    case .file(let data, let uti):
-      sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
-    
-    case .fileURL(let url):
-      guard let data = try? Data(contentsOf: url) else {
-        completion?(MCError(of: .fileFailed))
-        return
-      }
-      
-      sendFile(data, mimeType: FileManager.extractMimeType(from: url))
+			
+		case .file(let data, let uti):
+			sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
+			
+		case .fileURL(let url):
+			guard let data = try? Data(contentsOf: url) else {
+				completion?(MCError(of: .fileFailed))
+				return
+			}
+			
+			sendFile(data, mimeType: FileManager.extractMimeType(from: url))
 		}
 	}
-  
-  /**
-   	Send a file via current connection.
-   	- parameters:
-   		- data: sent raw data
-   		- mimeType: data mime type.
-   		- completion: callback on completion.
-   */
-  private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
-    
-    let onTransferEnd = { [unowned self] (error: Error?) in
-      
-      guard error == nil else {
-        completion?(error)
-        return
-      }
-      
-      self.connection.call(Constants.interfaceName, "endChatFileTransfer") { completion?($1) }
-    }
-    
-    let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
-      
-      guard error == nil else {
-        completion?(error)
-        return
-      }
-      
-      FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
-    }
-    
-    connection.call(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
-  }
+	
+	/**
+		Send a file via current connection.
+		- parameters:
+			- data: sent raw data
+			- mimeType: data mime type.
+			- completion: callback on completion.
+	*/
+	private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
+		
+		let onTransferEnd = { [unowned self] (error: Error?) in
+			
+			guard error == nil else {
+				completion?(error)
+				return
+			}
+			
+			self.connection.call(Constants.interfaceName, "endChatFileTransfer") { completion?($1) }
+		}
+		
+		let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
+			
+			guard error == nil else {
+				completion?(error)
+				return
+			}
+			
+			FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
+		}
+		
+		connection.call(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+	}
 	
 	/**
 		Create observers for the common events.
 	*/
 	private func addObservers() {
 		
-    let selectors: [Events : Selector] = [
+		let selectors: [Events : Selector] = [
 			.message : #selector(onReceiveMessage(_:)),
 			.chatJoin : #selector(onJoinChat(_:)),
 			.chatLeave : #selector(onLeaveChat(_:)),
 			.chatFileTransferStart : #selector(onChatFileTransferStart(_:))
 		]
 		
-    let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
+		let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
 			let event = Events.name(ofEvent: pair.key)
 			return (Notification.Name(event), pair.value)
 		}
@@ -188,40 +188,40 @@ extension ChatRoom {
 		
 		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
-  
-  /**
-   	Receive upon chat interlocutor starts file transfer.
-   	- parameters:
-   		- notification: notification containing a message.
-   */
-  @objc fileprivate func onChatFileTransferStart(_ notification: Notification) {
-    
-    guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
-        return
-    }
-    
-    let mimeType = event.arguments.first as? String ?? ""
-    let fileExtension = FileManager.extractExtension(from: mimeType)
-    
-    let chunkDownloadName = Events.name(ofEvent: .chatFileTransferChunk)
-    let fileDownloadName = Events.name(ofEvent: .chatFileTransferEnd)
-    
-    let chunkNotification = Notification.Name(chunkDownloadName)
-    let fileNotification = Notification.Name(fileDownloadName)
-    let notifications = (onChunkDownload: chunkNotification, onDownloadEnd: fileNotification)
-    
-    FileManager.download(listenTo: notifications, on: connection) { [unowned self] data, error in
-      
-      guard let data = data else {
-        let fileError = error ?? MCError(of: .fileFailed)
-        self.receivers.forEach { $0.chatRoom(self, didReceive: fileError) }
-        return
-      }
-      
-      let message = Message(content: .file(data, type: fileExtension))
-      self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
-    }
-  }
+	
+	/**
+		Receive upon chat interlocutor starts file transfer.
+		- parameters:
+			- notification: notification containing a message.
+	*/
+	@objc fileprivate func onChatFileTransferStart(_ notification: Notification) {
+		
+		guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
+			return
+		}
+		
+		let mimeType = event.arguments.first as? String ?? ""
+		let fileExtension = FileManager.extractExtension(from: mimeType)
+		
+		let chunkDownloadName = Events.name(ofEvent: .chatFileTransferChunk)
+		let fileDownloadName = Events.name(ofEvent: .chatFileTransferEnd)
+		
+		let chunkNotification = Notification.Name(chunkDownloadName)
+		let fileNotification = Notification.Name(fileDownloadName)
+		let notifications = (onChunkDownload: chunkNotification, onDownloadEnd: fileNotification)
+		
+		FileManager.download(listenTo: notifications, on: connection) { [unowned self] data, error in
+	  
+	  guard let data = data else {
+		let fileError = error ?? MCError(of: .fileFailed)
+		self.receivers.forEach { $0.chatRoom(self, didReceive: fileError) }
+		return
+	  }
+	  
+	  let message = Message(content: .file(data, type: fileExtension))
+	  self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
+		}
+	}
 }
 
 extension ChatRoom {
