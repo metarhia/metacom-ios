@@ -12,7 +12,7 @@ class ConnectionViewController: UIViewController {
 	
 	@IBOutlet weak var hostTextField: UITextField!
 	@IBOutlet weak var portTextField: UITextField!
-	@IBOutlet weak var connectButton: UIButton!
+	@IBOutlet weak var connectButton: ActivityButton!
 	
 	@IBOutlet weak var bottomSpace: NSLayoutConstraint!
 	
