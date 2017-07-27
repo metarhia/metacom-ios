@@ -50,12 +50,41 @@ class FilesViewController: UIViewController {
 	// MARK: - Download
 	@IBAction func download() {
 		
-		let downloadCompletion = { (file: (data: Data, extension: String)?, error: Error?) in
+		var fileCode: String?
+		
+		let downloadCompletion = { [weak self] (file: (data: Data, extension: String)?, error: Error?) in
 			
-			// TODO: - Handle downloaded file or error here
+			// `fileCode` never shouldn't be `nil`
+			let code = fileCode ?? ""
+			
+			guard error == nil, let file = file else {
+				self?.present(alert: UIErrors.fileDownloadFailed(fileCode: code), animated: true)
+				return
+			}
+			
+			guard let path = UIKit.FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+				self?.present(alert: UIErrors.genericError, animated: true)
+				return
+			}
+			
+			let fileURL = path.appendingPathComponent(code).appendingPathExtension(file.extension)
+			
+			guard (try? file.data.write(to: fileURL)) != nil else {
+				self?.present(alert: UIErrors.genericError, animated: true)
+				return
+			}
+			
+			let share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+			share.completionWithItemsHandler = { _ in
+				try? UIKit.FileManager.default.removeItem(at: fileURL)
+			}
+			
+			self?.present(share, animated: true)
 		}
 		
 		let downloadAlert = UIAlerts.download { code in
+			
+			fileCode = code
 			
 			let manager = UserConnectionManager.instance.currentConnection?.fileManager
 			manager?.download(from: code, completion: downloadCompletion)

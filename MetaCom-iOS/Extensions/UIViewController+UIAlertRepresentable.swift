@@ -174,7 +174,7 @@ enum UIErrors: UIAlertRepresentable {
 	case chatJoiningFailed
 	case chatOnlyInterlocutor
 	case fileUploadFailed
-	case fileDownloadFailed
+	case fileDownloadFailed(fileCode: String)
 	case connectionFailed
 	case messageSendingFailed
 	case genericError
@@ -196,8 +196,8 @@ enum UIErrors: UIAlertRepresentable {
 			return errorController(with: "You are the only chat interlocutor")
 		case .fileUploadFailed:
 			return errorController(with: "Upload failed")
-		case .fileDownloadFailed:
-			return errorController(with: "Download failed")
+		case .fileDownloadFailed(let code):
+			return errorController(with: "Downloading file with code \"\(code)\" failed. Check the code and try again.")
 		case .connectionFailed:
 			return errorController(with: "Impossible to connect to server. Please check specified host and port and try again.")
 		case .messageSendingFailed:
