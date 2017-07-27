@@ -6,6 +6,7 @@
 //  Copyright © 2017 Metarhia. All rights reserved.
 //
 
+import ReachabilitySwift
 import Foundation
 import JSTP
 
@@ -17,17 +18,30 @@ typealias Configuration = JSTP.Configuration
 typealias ConnectionDelegate = JSTP.ConnectionDelegate
 
 /**
-	A type representing a user in the anonymous chat.
+A type representing a user in the anonymous chat.
 */
 final class UserConnection {
 	
 	private let config: Configuration!
+	private let reachability: Reachability!
 	fileprivate var connection: Connection!
 	
 	private(set) var chatManager: ChatRoomManager!
 	private(set) var fileManager: FileManager!
 	
 	public let id: Int
+	public var currentReachability: Reachability.NetworkStatus? = nil {
+		didSet {
+			if oldValue == .notReachable {
+				
+				connection.reconnect(config: config)
+				connection.handshake(Constants.applicationName) { [unowned self] _, error in
+					let name: Notification.Name = (error != nil) ? .MCConnectionDidFail : .MCConnectionRestored
+					NotificationCenter.default.post(name: name, object: self.connection)
+				}
+			}
+		}
+	}
 	
 	public var host: String {
 		return config.host
@@ -44,13 +58,21 @@ final class UserConnection {
 			- configuration: connection configuration.
 	*/
 	init(identifier: Int, configuration: Configuration) {
-
+		
 		id = identifier
 		config = configuration
+		reachability = Reachability()
 		connection = Connection(config: config, delegate: self)
 		
 		chatManager = ChatRoomManager(connection: connection)
-    fileManager = FileManager(connection: connection)
+		fileManager = FileManager(connection: connection)
+		
+		let onStatusChanged: Reachability.NetworkUnreachable? = { [unowned self] status in
+			self.currentReachability = status.currentReachabilityStatus
+		}
+		
+		reachability.whenReachable = onStatusChanged
+		reachability.whenUnreachable = onStatusChanged
 	}
 	
 	/**
@@ -59,23 +81,22 @@ final class UserConnection {
 			- callback: block called on operation completion.
 	*/
 	func connect(with callback: @escaping (Error?) -> Void) {
-	
+		
 		let queue = OperationQueue.current
 		let center = NotificationCenter.default
 		
-		var didFailToken: NSObjectProtocol? = nil
-		var didDisconnectToken: NSObjectProtocol? = nil
+		var tokens = [NSObjectProtocol?]()
 		
 		/// Callback on operation completion.
-		let completion: Callback = { _, error in
+		let completion: Callback = { [unowned self] _, serverError in
 			
-			didFailToken != nil ? center.removeObserver(didFailToken!) : ()
-			didDisconnectToken != nil ? center.removeObserver(didDisconnectToken!) : ()
+			tokens.forEach(center.removeObserver)
+			tokens.removeAll()
 			
-			didFailToken = nil
-			didDisconnectToken = nil
+			let didInitReachability: Void? = try? self.reachability.startNotifier()
+			let error = (didInitReachability != nil) ? nil : MCError(of: .connectionLost)
 			
-			callback(error)
+			callback(serverError ?? error)
 		}
 		
 		/// Block called if any transport related error occures.
@@ -84,8 +105,10 @@ final class UserConnection {
 			completion(nil, error)
 		}
 		
-		didFailToken = center.addObserver(forName: .MCConnectionDidFail, object: connection, queue: queue, using: block)
-		didDisconnectToken = center.addObserver(forName: .MCConnectionLost, object: connection, queue: queue, using: block)
+		let t1 = center.addObserver(forName: .MCConnectionDidFail, object: connection, queue: queue, using: block)
+		let t2 = center.addObserver(forName: .MCConnectionLost, object: connection, queue: queue, using: block)
+		
+		tokens.append(contentsOf: [t1, t2])
 		
 		connection.connect()
 		connection.handshake(Constants.applicationName, completion)
@@ -127,15 +150,15 @@ extension UserConnection: ConnectionDelegate {
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
 	
-	func connectionShouldRestoreState(_ connection: Connection, callback: @escaping () -> Void) {
+	func connectionShouldRestoreState(_ connection: JSTP.Connection, callback: @escaping () -> Void) {
 		callback()
 	}
 	
 	private func handle(received event: Event) {
-    
+		
 		let params = [Constants.notificationObject : event]
 		let eventName = Events.name(ofEvent: event.name)
-    let notification = Notification.Name(eventName)
+		let notification = Notification.Name(eventName)
 		
 		NotificationCenter.default.post(name: notification, object: connection, userInfo: params)
 	}

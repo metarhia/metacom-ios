@@ -2,14 +2,17 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - ReachabilitySwift (3)
 
 DEPENDENCIES:
   - JSQMessagesViewController
+  - ReachabilitySwift
 
 SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
 
-PODFILE CHECKSUM: e6eccc3e44cf5d3c7319c3eebaedaba5f26cdd8a
+PODFILE CHECKSUM: 89dc343c6b62a4684fb1383ad3dd4e299bd547d4
 
 COCOAPODS: 1.2.1

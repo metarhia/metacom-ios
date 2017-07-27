@@ -6,6 +6,7 @@ target 'MetaCom-iOS' do
 
   # Pods for MetaCom-iOS
 	pod 'JSQMessagesViewController'
+	pod 'ReachabilitySwift'
 
 end
 
