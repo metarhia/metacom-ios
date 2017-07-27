@@ -11,7 +11,7 @@ import UIKit
 class NewChatViewController: UIViewController {
 	
 	@IBOutlet weak var chatNameTextField: UITextField!
-	@IBOutlet weak var joinButton: UIButton!
+	@IBOutlet weak var joinButton: ActivityButton!
 	
 	@IBOutlet weak var bottomSpace: NSLayoutConstraint!
 	

@@ -33,8 +33,8 @@
 		8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
 		8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */; };
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
+		8F3CAC341F29D49D00382D9A /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CAC331F29D49D00382D9A /* ActivityButton.swift */; };
 		8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */; };
-		8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */; };
 		8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */; };
 		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
 		8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
@@ -95,8 +95,8 @@
 		8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerController.swift; sourceTree = "<group>"; };
 		8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerDelegate.swift; sourceTree = "<group>"; };
 		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
+		8F3CAC331F29D49D00382D9A /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertRepresentable.swift"; sourceTree = "<group>"; };
-		8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessagesBubbleImage.swift; sourceTree = "<group>"; };
 		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotedActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -215,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				142319111ED07B4400F63687 /* NotificationName+Extensions.swift */,
-				8F42B8AA1ED5708400C34520 /* UIButton+ActivityIndicator.swift */,
 				8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */,
 				8F146CCE1EDD914100BC1733 /* Array+Remove.swift */,
 				8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */,
@@ -303,6 +302,7 @@
 				8F2EF3CF1F1B8E55002E7C8B /* SystemCell */,
 				8F0BFBAE1EF6852E00074837 /* DataMediaItem */,
 				8F0BFBAD1EF684F000074837 /* DotedActivityIndicator */,
+				8F3CAC331F29D49D00382D9A /* ActivityButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -448,7 +448,6 @@
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */,
-				8F42B8AB1ED5708400C34520 /* UIButton+ActivityIndicator.swift in Sources */,
 				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,
 				147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
@@ -464,6 +463,7 @@
 				14E3BA661EE467A100739F46 /* Error.swift in Sources */,
 				8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */,
 				8F9E9FA31ECEEC8F004F5CD1 /* ConnectionViewController.swift in Sources */,
+				8F3CAC341F29D49D00382D9A /* ActivityButton.swift in Sources */,
 				8FAB32E91ED81B250004BEFF /* JSQDataMediaItem.swift in Sources */,
 				8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */,
 				14084C081F1004DB005DE87C /* String+Localized.swift in Sources */,
