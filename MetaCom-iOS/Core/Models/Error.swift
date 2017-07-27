@@ -28,12 +28,12 @@ class MCError {
 		self.type = errorType
 		self.code = code
 	}
-  
-  convenience init?(from error: Error) {
-    
-    let code = (error as NSError).code
-    self.init(with: code)
-  }
+	
+	convenience init?(from error: Error) {
+		
+		let code = (error as NSError).code
+		self.init(with: code)
+	}
 }
 
 extension MCError {
@@ -55,8 +55,8 @@ extension MCError {
 		case notInChat = 31
 		case noInterlocutor = 32
 		case noSuchfile = 33
-    case uploadNotStarted = 34
-    case previousUploadNotFinished = 35
+		case uploadNotStarted = 34
+		case previousUploadNotFinished = 35
 		case connectionLost = 133
 		case noChat = 134
 		case fileFailed = 135
