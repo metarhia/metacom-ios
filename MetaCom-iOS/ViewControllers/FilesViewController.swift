@@ -31,22 +31,6 @@ class FilesViewController: UIViewController {
 		present(filePicker, animated: false)
 	}
 	
-	// Temporary. For demonstration.
-	fileprivate func showUploading() {
-		isInterfaceLocked = true
-		infoLabel.text = "Uploading..."
-		infoStackView.isHidden = false
-		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-			
-			self?.isInterfaceLocked = false
-			self?.infoStackView.isHidden = true
-			
-			let fileCode = "31415926535"
-			self?.present(alert: UIAlerts.uploaded(withCode: fileCode), animated: true)
-		}
-	}
-	
 	// MARK: - Download
 	@IBAction func download() {
 		
@@ -110,7 +94,11 @@ extension FilesViewController: FilePickerDelegate {
 	
 	private func uploadCompletion(code: String?, error: Error?) {
 		
+		isInterfaceLocked = false
+		infoStackView.isHidden = true
+		
 		guard let fileCode = code else {
+			present(alert: UIErrors.fileUploadFailed, animated: true)
 			return
 		}
 		
@@ -118,18 +106,23 @@ extension FilesViewController: FilePickerDelegate {
 	}
 	
 	func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
-		
 		manager?.upload(data, completion: uploadCompletion)
-		//    showUploading()
 	}
 	
 	func filePicker(_ controller: FilePickerController, didPickFileAt url: URL) {
-		
 		manager?.upload(from: url, completion: uploadCompletion)
-		//		showUploading()
+	}
+	
+	func filePickerDidEndPicking(_ controller: FilePickerController) {
+		isInterfaceLocked = true
+		infoLabel.text = "Uploading..."
+		infoStackView.isHidden = false
 	}
 	
 	func filePickerHasFailed(_ controller: FilePickerController) {
+		isInterfaceLocked = false
+		infoStackView.isHidden = true
+		
 		present(alert: UIErrors.genericError, animated: true)
 	}
 }

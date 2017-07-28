@@ -251,7 +251,7 @@
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ifU-Xd-3fe">
                                 <rect key="frame" x="85" y="588" width="205" height="22"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iby-dp-3Ev">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iby-dp-3Ev">
                                         <rect key="frame" x="0.0" y="0.0" width="13" height="22"/>
                                         <state key="normal" image="cancel"/>
                                         <connections>
