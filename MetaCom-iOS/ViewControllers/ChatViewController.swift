@@ -120,24 +120,24 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	fileprivate func send(_ message: Message) {
+		
+		let jsqMessage = JSQMessage(message: message)
 		sendingMessagesCount += 1
 		chat?.send(message: message) { [weak self] error in
-			guard let `self` = self else {
-				return
-			}
 			
-			self.sendingMessagesCount -= 1
+			self?.sendingMessagesCount -= 1
 			
 			guard error == nil else {
 				// TODO: Handle error. Maybe show an alert, make message bubble red etc.
-				self.present(alert: UIErrors.messageSendingFailed, animated: true)
+				self?.messages.remove(jsqMessage)
+				self?.present(alert: UIErrors.chatOnlyInterlocutor, animated: true)
 				return
 			}
+			
+			self?.finishSendingMessage(animated: true)
 		}
 		
-		messages.append(JSQMessage(message: message))
-		finishSendingMessage(animated: true)
-		
+		messages.append(jsqMessage)
 		showFileLoadingIfNeeded()
 	}
 	
