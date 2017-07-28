@@ -71,13 +71,14 @@ class FilePickerController: UIViewController {
 extension FilePickerController: UIDocumentPickerDelegate {
 	
 	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-		delegate?.filePicker(self, didPickFileAt: url)
-		
 		self.dismiss()
+		delegate?.filePickerDidEndPicking(self)
+		delegate?.filePicker(self, didPickFileAt: url)
 	}
 	
 	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
 		self.dismiss()
+		delegate?.filePickerWasCancelled(self)
 	}
 }
 
@@ -85,14 +86,19 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 		picker.dismiss(animated: true, completion: self.dismiss)
+		delegate?.filePickerDidEndPicking(self)
 		
 		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			
-			guard let data = UIImagePNGRepresentation(image) else {
-				return
+			DispatchQueue.global().async {
+				guard let data = UIImagePNGRepresentation(image) else {
+					return
+				}
+				
+				DispatchQueue.main.async {
+					self.delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypePNG))
+				}
 			}
-			
-			delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypePNG))
 		} else if let url = info[UIImagePickerControllerMediaURL] as? URL {
 			delegate?.filePicker(self, didPickFileAt: url)
 		}
@@ -100,5 +106,6 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		picker.dismiss(animated: true, completion: self.dismiss)
+		delegate?.filePickerWasCancelled(self)
 	}
 }
