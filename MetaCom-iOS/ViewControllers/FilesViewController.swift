@@ -128,4 +128,8 @@ extension FilesViewController: FilePickerDelegate {
 		manager?.upload(from: url, completion: uploadCompletion)
 		//		showUploading()
 	}
+	
+	func filePickerHasFailed(_ controller: FilePickerController) {
+		present(alert: UIErrors.genericError, animated: true)
+	}
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 import MobileCoreServices
 
 // MARK: - UIImagePickerController convenience init
@@ -88,19 +89,36 @@ extension FilePickerController: UIImagePickerControllerDelegate, UINavigationCon
 		picker.dismiss(animated: true, completion: self.dismiss)
 		delegate?.filePickerDidEndPicking(self)
 		
-		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+		if let mediaUrl = info[UIImagePickerControllerMediaURL] as? URL {
+			delegate?.filePicker(self, didPickFileAt: mediaUrl)
+		} else if let assetsLibraryURL = info[UIImagePickerControllerReferenceURL] as? URL {
+			let assets = PHAsset.fetchAssets(withALAssetURLs: [assetsLibraryURL], options: nil)
 			
+			guard let asset = assets.firstObject else {
+				delegate?.filePickerHasFailed(self)
+				return
+			}
+			
+			PHImageManager.default().requestImageData(for: asset, options: nil) { (data, uti, _, _) in
+				guard let data = data, let uti = uti else {
+					self.delegate?.filePickerHasFailed(self)
+					return
+				}
+				self.delegate?.filePicker(self, didPickData: data, withUTI: uti)
+			}
+		} else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			DispatchQueue.global().async {
-				guard let data = UIImagePNGRepresentation(image) else {
+				guard let data = UIImageJPEGRepresentation(image, 1) else {
+					self.delegate?.filePickerHasFailed(self)
 					return
 				}
 				
 				DispatchQueue.main.async {
-					self.delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypePNG))
+					self.delegate?.filePicker(self, didPickData: data, withUTI: String(kUTTypeJPEG))
 				}
 			}
-		} else if let url = info[UIImagePickerControllerMediaURL] as? URL {
-			delegate?.filePicker(self, didPickFileAt: url)
+		} else {
+			self.delegate?.filePickerHasFailed(self)
 		}
 	}
 	

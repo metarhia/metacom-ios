@@ -20,10 +20,13 @@ protocol FilePickerDelegate: class {
 	/// but should perform some processing before calling 
 	/// `filePicker(_:didPickFileAt:)` or filePicker(_:didPickData:uti:)
 	func filePickerDidEndPicking(_ controller: FilePickerController)
+	
+	func filePickerHasFailed(_ controller: FilePickerController)
 }
 
 extension FilePickerDelegate {
 	
 	func filePickerWasCancelled(_ controller: FilePickerController) { }
 	func filePickerDidEndPicking(_ controller: FilePickerController) { }
+	func filePickerHasFailed(_ controller: FilePickerController) { }
 }
