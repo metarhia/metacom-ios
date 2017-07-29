@@ -73,20 +73,20 @@ class ChatRoom {
 		switch message.content {
 		case .text(let text):
 			connection.cacheCall(Constants.interfaceName, "send", [text], { completion?($1) })
-		
-    case .file(let data, let uti):
-      sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
-    
-    case .fileURL(let url):
-      guard let data = try? Data(contentsOf: url) else {
-        completion?(MCError(of: .fileFailed))
-        return
-      }
-      
-      sendFile(data, mimeType: FileManager.extractMimeType(from: url))
+			
+		case .file(let data, let uti):
+			sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
+			
+		case .fileURL(let url):
+			guard let data = try? Data(contentsOf: url) else {
+				completion?(MCError(of: .fileFailed))
+				return
+			}
+			
+			sendFile(data, mimeType: FileManager.extractMimeType(from: url), completion: completion)
 		}
 	}
-  
+	
   /**
    	Send a file via current connection.
    	- parameters:
