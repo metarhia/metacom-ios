@@ -32,14 +32,7 @@ final class UserConnection {
 	public let id: Int
 	public var currentReachability: Reachability.NetworkStatus? = nil {
 		didSet {
-			if oldValue == .notReachable {
-				
-				connection.reconnect(config: config)
-				connection.handshake(Constants.applicationName) { [unowned self] _, error in
-					let name: Notification.Name = (error != nil) ? .MCConnectionDidFail : .MCConnectionRestored
-					NotificationCenter.default.post(name: name, object: self.connection)
-				}
-			}
+			oldValue == .notReachable ? reconnect() : ()
 		}
 	}
 	
@@ -115,6 +108,18 @@ final class UserConnection {
 	}
 	
 	/**
+		Attempt to reconnect to a `MetaCom` server.
+	*/
+	func reconnect() {
+		
+		connection.reconnect(config: config)
+		connection.handshake(Constants.applicationName) { [unowned self] _, error in
+			let name: Notification.Name = (error != nil) ? .MCConnectionDidFail : .MCConnectionRestored
+			NotificationCenter.default.post(name: name, object: self.connection)
+		}
+	}
+	
+	/**
 		Disconnect from a `MetaCom` server.
 	*/
 	func disconnect() {
@@ -148,6 +153,7 @@ extension UserConnection: ConnectionDelegate {
 	public func connection(_ connection: Connection, didFailWithError error: Error) {
 		NotificationCenter.default.post(name: .MCConnectionDidFail, object: connection, userInfo: ["error": error])
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
+		reconnect()
 	}
 	
 	func connectionShouldRestoreState(_ connection: JSTP.Connection, callback: @escaping () -> Void) {
