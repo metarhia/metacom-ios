@@ -75,7 +75,7 @@ class ChatRoom {
 			connection.cacheCall(Constants.interfaceName, "send", [text], { completion?($1) })
 			
 		case .file(let data, let uti):
-			sendFile(data, mimeType: FileManager.extractMimeType(from: uti))
+			sendFile(data, mimeType: FileManager.extractMimeType(from: uti), completion: completion)
 			
 		case .fileURL(let url):
 			guard let data = try? Data(contentsOf: url) else {
