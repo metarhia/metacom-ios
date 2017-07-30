@@ -145,7 +145,7 @@ class ChatRoom {
 			.chatFileTransferStart : onChatFileTransferStart(_:)
 		]
 		
-		let systemSelectors: [Notification.Name : (Notification) -> ()] = [//Selector] = [
+		let systemSelectors: [Notification.Name : (Notification) -> ()] = [
 			.MCConnectionDidFail : onConnectionFailed(_:),
 			.MCConnectionRestored : onConnectionRestored(_:)
 		]
