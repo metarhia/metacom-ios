@@ -13,12 +13,6 @@ class JSQDataMediaItem: JSQMediaItem {
 	
 	private var cachedView: DataMediaView?
 	
-	var data: Data {
-		didSet {
-			cachedView = nil
-		}
-	}
-	
 	var isLoading: Bool = false {
 		didSet {
 			cachedView?.isLoading = isLoading
@@ -31,12 +25,20 @@ class JSQDataMediaItem: JSQMediaItem {
 		}
 	}
 	
-	// MARK: - Initialization
+	var isFailed: Bool = false {
+		didSet {
+			updateBackground()
+		}
+	}
 	
-	init(data: Data, maskAsOutgoing outgoing: Bool) {
-		self.data = data
-		
-		super.init(maskAsOutgoing: outgoing)
+	private func updateBackground() {
+		let color: UIColor
+		if appliesMediaViewMaskAsOutgoing {
+			color = isFailed ? .jsq_messageBubbleRed() : .jsq_messageBubbleBlue()
+		} else {
+			color = .jsq_messageBubbleLightGray()
+		}
+		cachedView?.backgroundColor = color
 	}
 	
 	// MARK: - JSQMediaItem
@@ -59,7 +61,6 @@ class JSQDataMediaItem: JSQMediaItem {
 		
 		let isOutgoing = appliesMediaViewMaskAsOutgoing
 		let view = DataMediaView(frame: CGRect(origin: .zero, size: mediaViewDisplaySize()))
-		view.backgroundColor = isOutgoing ? .jsq_messageBubbleBlue() : .jsq_messageBubbleLightGray()
 		view.tintColor = isOutgoing ? .white : UIColor.black.withAlphaComponent(0.7)
 		view.clipsToBounds = true
 		view.isLoading = isLoading
@@ -74,6 +75,8 @@ class JSQDataMediaItem: JSQMediaItem {
 		
 		cachedView = view
 		
+		updateBackground()
+		
 		return view
 	}
 	
@@ -81,19 +84,4 @@ class JSQDataMediaItem: JSQMediaItem {
 		return CGSize(width: 78, height: 90)
 	}
 	
-	// MARK: - NSObject
-	
-	override var hash: Int {
-		return super.hash ^ data.hashValue
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		self.data = aDecoder.decodeObject(forKey: NSStringFromSelector(#selector(getter: data))) as? Data ?? Data()
-		super.init(coder: aDecoder)
-	}
-	
-	override func encode(with aCoder: NSCoder) {
-		super.encode(with: aCoder)
-		aCoder.encode(data, forKey: NSStringFromSelector(#selector(getter: data)))
-	}
 }

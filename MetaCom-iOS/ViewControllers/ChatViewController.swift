@@ -17,32 +17,60 @@ private struct ChatConstants {
 	static let systemSenderId = "systemId"
 }
 
-// MARK: - Initialization `JSQMessage` from `Message`
+// MARK: - ChatMessage
 
-private extension JSQMessage {
+private class ChatMessage: JSQMessage {
+	
+	var message: Message?
 	
 	convenience init(message: Message) {
-		// TODO: Handle messages with file content
 		let id = message.isIncoming ? ChatConstants.incomingSenderId : ChatConstants.outgoingSenderId
 		switch message.content {
 		case .text(let text):
-			self.init(senderId: id, displayName: "", text: text)
-		case .file(let data, _):
-			let media = JSQDataMediaItem(data: data, maskAsOutgoing: !message.isIncoming)
-			self.init(senderId: id, displayName: "", media: media)
-		case .fileURL(let url):
-			let data = try? Data(contentsOf: url)
-			let media = JSQDataMediaItem(data: data ?? Data(), maskAsOutgoing: !message.isIncoming)
-			self.init(senderId: id, displayName: "", media: media)
+			self.init(senderId: id, senderDisplayName: "", date: Date(), text: text)
+		case .file, .fileURL:
+			let media = JSQDataMediaItem(maskAsOutgoing: !message.isIncoming)
+			self.init(senderId: id, senderDisplayName: "", date: Date(), media: media)
 		}
+		self.message = message
 	}
-}
-
-private extension JSQMessage {
 	
 	var isSystem: Bool {
 		return senderId == ChatConstants.systemSenderId
 	}
+}
+
+private extension Message {
+	
+	var isDataMessage: Bool {
+		switch content {
+		case .file, .fileURL:
+			return true
+		default:
+			return false
+		}
+	}
+}
+
+// MARK: JSQMessagesCollectionViewCell+Resend
+
+extension JSQMessagesCollectionViewCell {
+	
+	open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+		guard let collectionView = superview as? UICollectionView else {
+			return false
+		}
+		return collectionView.delegate?.collectionView?(collectionView, canPerformAction: action, forItemAt: collectionView.indexPath(for: self)!, withSender: sender) ?? false
+	}
+	
+	func resend(_ sender: Any) {
+		guard let collectionView = superview as? UICollectionView else {
+			return
+		}
+		
+		collectionView.delegate?.collectionView?(collectionView, performAction: #selector(resend(_:)), forItemAt: collectionView.indexPath(for: self)!, withSender: sender)
+	}
+	
 }
 
 // MARK: - ChatViewController
@@ -61,13 +89,15 @@ class ChatViewController: JSQMessagesViewController {
 		}
 	}
 	
-	fileprivate var messages = [JSQMessage]()
+	fileprivate var messages = [ChatMessage]()
+	fileprivate var failedMessages = [Message]()
 	
 	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())!
 	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())!
+	private var failedBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleRed())!
 	private var systemBubble = SystemMessagesBubbleImage()
 	
-	// MARK: - View Conrtroller Lifecycle
+	// MARK: - View Controller Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -84,6 +114,9 @@ class ChatViewController: JSQMessagesViewController {
 		senderDisplayName = ""
 		
 		clearChat()
+		
+		let resendItem = UIMenuItem(title: "Resend", action: #selector(JSQMessagesCollectionViewCell.resend(_:)))
+		UIMenuController.shared.menuItems = [resendItem]
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -119,8 +152,17 @@ class ChatViewController: JSQMessagesViewController {
 		}
 	}
 	
+	private func isMessageFailed(_ message: Message) -> Bool {
+		return failedMessages.contains(where: { $0 === message })
+	}
+	
 	fileprivate func send(_ message: Message) {
 		sendingMessagesCount += 1
+		
+		let sendingMessageIndex = messages.count
+		messages.append(ChatMessage(message: message))
+		finishSendingMessage(animated: true)
+		
 		chat?.send(message: message) { [weak self] error in
 			guard let `self` = self else {
 				return
@@ -129,41 +171,41 @@ class ChatViewController: JSQMessagesViewController {
 			self.sendingMessagesCount -= 1
 			
 			guard error == nil else {
-				// TODO: Handle error. Maybe show an alert, make message bubble red etc.
 				self.present(alert: UIErrors.messageSendingFailed, animated: true)
+				self.failedMessages.append(message)
+				self.collectionView.reloadItems(at: [IndexPath(item: sendingMessageIndex, section: 0)])
 				return
 			}
 		}
+	}
+	
+	// Perhaps this method will be removed later.
+	fileprivate func resend(at indexPath: IndexPath) {
+		guard let message = messages[indexPath.item].message else {
+			return
+		}
 		
-		messages.append(JSQMessage(message: message))
-		finishSendingMessage(animated: true)
+		messages.remove(at: indexPath.item)
 		
-		showFileLoadingIfNeeded()
+		resend(message)
+	}
+	
+	fileprivate func resend(_ message: Message) {
+		if let index = failedMessages.index(where: { $0 === message }) {
+			failedMessages.remove(at: index)
+		}
+		
+		collectionView.reloadData()
+		send(message)
 	}
 	
 	fileprivate func receive(_ message: Message) {
-		receive(JSQMessage(message: message))
+		receive(ChatMessage(message: message))
 	}
 	
-	fileprivate func receive(_ message: JSQMessage) {
-		
+	fileprivate func receive(_ message: ChatMessage) {
 		messages.append(message)
 		finishReceivingMessage(animated: true)
-		
-		showFileLoadingIfNeeded()
-	}
-	
-	// TODO: Temporary. For demonstration only.
-	private func showFileLoadingIfNeeded() {
-		if let media = messages.last?.media as? JSQDataMediaItem {
-			media.setLoading(true)
-			DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-				guard self != nil else {
-					return
-				}
-				media.setLoading(false)
-			}
-		}
 	}
 	
 	override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
@@ -192,7 +234,11 @@ class ChatViewController: JSQMessagesViewController {
 		
 		switch messages[indexPath.item].senderId {
 		case ChatConstants.outgoingSenderId:
-			bubble = outgoingBubble
+			if let message = messages[indexPath.item].message {
+				bubble = isMessageFailed(message) ? failedBubble : outgoingBubble
+			} else {
+				bubble = outgoingBubble
+			}
 		case ChatConstants.incomingSenderId:
 			bubble = incomingBubble
 		default:
@@ -206,24 +252,29 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		let message = messages[indexPath.item]
+		let chatMessage = messages[indexPath.item]
 		
-		if message.isSystem {
+		if chatMessage.isSystem {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier(), for: indexPath) as! JSQMessagesCollectionViewCell
 			
-			cell.textView.text = message.text
+			cell.textView.text = chatMessage.text
 			cell.textView.textColor = .lightGray
 			cell.textView.textAlignment = .center
 			cell.textView.font = UIFont.preferredFont(forTextStyle: .body).withSize(15)
 			cell.textView.textContainerInset = .zero
+			cell.textView.isUserInteractionEnabled = false
 			
 			return cell
+		}
+		
+		if let message = chatMessage.message, message.isDataMessage {
+			(chatMessage.media as? JSQDataMediaItem)?.isFailed = isMessageFailed(message)
 		}
 		
 		let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
 		
 		if let messageCell = cell as? JSQMessagesCollectionViewCell {
-			let textColor: UIColor = message.senderId == self.senderId ? .white : .black
+			let textColor: UIColor = chatMessage.senderId == self.senderId ? .white : .black
 			messageCell.textView?.textColor = textColor
 			
 			// Disabling user interaction and (unfortunately) data detectors to prevent text selection.
@@ -253,6 +304,70 @@ class ChatViewController: JSQMessagesViewController {
 		//		}
 	}
 	
+	// MARK: - Handling `resend` menu action
+	
+	private var selectedMediaMessageIndexPathForMenu: IndexPath?
+	
+	override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+		super.collectionView(collectionView, shouldShowMenuForItemAt: indexPath)
+		let chatMessage = messages[indexPath.item]
+		if let message = chatMessage.message, message.isDataMessage, isMessageFailed(message) {
+			selectedMediaMessageIndexPathForMenu = indexPath
+		} else {
+			selectedMediaMessageIndexPathForMenu = nil
+		}
+		return !chatMessage.isSystem
+	}
+
+	override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+		guard let message = messages[indexPath.item].message else {
+			return false
+		}
+		
+		let canCopy = action == #selector(copy(_:)) && !message.isDataMessage
+		let canResend = action == #selector(JSQMessagesCollectionViewCell.resend(_:)) && isMessageFailed(message)
+		return canCopy || canResend
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+		if action == #selector(JSQMessagesCollectionViewCell.resend(_:)) {
+			resend(at: indexPath)
+			return
+		}
+		super.collectionView(collectionView, performAction: action, forItemAt: indexPath, withSender: sender)
+	}
+	
+	override func didReceiveMenuWillShow(_ notification: Notification!) {
+		guard let indexPath = selectedMediaMessageIndexPathForMenu else {
+			super.didReceiveMenuWillShow(notification)
+			return
+		}
+		
+		NotificationCenter.default.removeObserver(self, name: .UIMenuControllerWillShowMenu, object: nil)
+		
+		guard let menu = notification.object as? UIMenuController else {
+			return
+		}
+		
+		menu.setMenuVisible(false, animated: false)
+		
+		guard let cell = collectionView.cellForItem(at: indexPath) as? JSQMessagesCollectionViewCell else {
+			return
+		}
+		
+		let bubbleRect = cell.convert(cell.messageBubbleContainerView.frame, to: self.view)
+		
+		menu.setTargetRect(bubbleRect, in: self.view)
+		menu.setMenuVisible(true, animated: true)
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(didReceiveMenuWillShow(_:)), name: .UIMenuControllerWillShowMenu, object: nil)
+	}
+	
+	override func didReceiveMenuWillHide(_ notification: Notification!) {
+		super.didReceiveMenuWillHide(notification)
+		selectedMediaMessageIndexPathForMenu = nil
+	}
+	
 }
 
 // MARK: - ChatRoomDelegate
@@ -272,7 +387,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		if let message = JSQMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has joined the chat") {
+		if let message = ChatMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has joined the chat") {
 			receive(message)
 		}
 	}
@@ -282,7 +397,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		if let message = JSQMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has left the chat") {
+		if let message = ChatMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has left the chat") {
 			receive(message)
 		}
 	}
