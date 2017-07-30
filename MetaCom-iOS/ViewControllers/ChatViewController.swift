@@ -171,9 +171,10 @@ class ChatViewController: JSQMessagesViewController {
 			self.sendingMessagesCount -= 1
 			
 			guard error == nil else {
-				self.present(alert: UIErrors.messageSendingFailed, animated: true)
 				self.failedMessages.append(message)
-				self.collectionView.reloadItems(at: [IndexPath(item: sendingMessageIndex, section: 0)])
+				UIView.performWithoutAnimation {
+					self.collectionView.reloadItems(at: [IndexPath(item: sendingMessageIndex, section: 0)])
+				}
 				return
 			}
 		}
