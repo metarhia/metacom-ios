@@ -16,8 +16,18 @@ typealias Completion = (Error?) -> ()
 class ChatRoom {
 	
 	public let name: String
+	private(set) var isEmpty: Bool
 	fileprivate let connection: Connection
 	fileprivate var receivers: Array<ChatRoomDelegate> = []
+	
+	fileprivate var hasInterlocutor: Bool {
+		set {
+			isEmpty = !newValue
+		}
+		get {
+			return !isEmpty
+		}
+	}
 	
 	/**
 		Create a new `ChatRoom` instance.
@@ -28,6 +38,7 @@ class ChatRoom {
 	init(name: String, connection: Connection) {
 		
 		self.name = name
+		self.isEmpty = true
 		self.connection = connection
 	}
 	
@@ -38,7 +49,7 @@ class ChatRoom {
 	*/
 	func join(completion: Completion?) {
 		
-		self.connection.cacheCall(Constants.interfaceName, "join", [name]) { (_, error) in
+		self.connection.cacheCall(Constants.interfaceName, "join", [name]) { values, error in
 			
 			defer {
 				completion?(error)
@@ -47,6 +58,9 @@ class ChatRoom {
 			guard error == nil else {
 				return
 			}
+			
+			let hasInterlocutor = values?.first as? Bool ?? false
+			self.hasInterlocutor = hasInterlocutor
 			
 			self.addObservers()
 		}
@@ -176,6 +190,7 @@ extension ChatRoom {
 	*/
 	@objc fileprivate func onJoinChat(_ notification: Notification) {
 		
+		hasInterlocutor = true
 		receivers.forEach { $0.chatRoomDidJoin(self) }
 	}
 	
@@ -186,6 +201,7 @@ extension ChatRoom {
 	*/
 	@objc fileprivate func onLeaveChat(_ notification: Notification) {
 		
+		hasInterlocutor = false
 		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
   
