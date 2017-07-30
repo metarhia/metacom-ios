@@ -181,7 +181,8 @@ extension FileManager {
 		var error: MCError? = nil
 		
 		let semaphore = DispatchSemaphore(value: 1)
-		let queueId = Date.timeIntervalSinceReferenceDate.squareRoot().description
+		let timeStamp = Date.timeIntervalSinceReferenceDate * 10
+		let queueId = timeStamp.rounded(.towardZero).description
 		let queue = DispatchQueue(label: queueId, qos: .utility, attributes: .concurrent, autoreleaseFrequency: .workItem)
 		
 		let center = NotificationCenter.default
