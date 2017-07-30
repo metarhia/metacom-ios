@@ -145,11 +145,19 @@ class ChatRoom {
 			.chatFileTransferStart : #selector(onChatFileTransferStart(_:))
 		]
 		
-    let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
+		let systemSelectors: [Notification.Name : Selector] = [
+			.MCConnectionDidFail : #selector(onConnectionFailed(_:)),
+			.MCConnectionRestored : #selector(onConnectionRestored(_:))
+		]
+		
+		let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
 			let event = Events.name(ofEvent: pair.key)
 			return (Notification.Name(event), pair.value)
 		}
-		notifications.forEach { [weak self] pair in
+		
+		let systemNotifications = systemSelectors.map { (event: $0.key, method: $0.value) }
+		
+		(notifications + systemNotifications).forEach { [weak self] pair in
 			
 			guard let this = self else {
 				return
@@ -238,6 +246,32 @@ extension ChatRoom {
       self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
     }
   }
+	
+	/**
+		Receive upon connection lost.
+		- parameters:
+			- notification: notification containing a message.
+	*/
+	@objc fileprivate func onConnectionFailed(_ notification: Notification) {
+		
+		self.receivers.forEach { $0.chatRoom(self, connectionDidChange: false) }
+	}
+	
+	/**
+		Receive upon connection restored.
+		- parameters:
+			- notification: notification containing a message.
+	*/
+	@objc fileprivate func onConnectionRestored(_ notification: Notification) {
+		
+		join { [unowned self] error in
+			
+			self.receivers.forEach { error != nil ?
+				$0.chatRoom(self, didReceive: error!) :
+				$0.chatRoom(self, connectionDidChange: true)
+			}
+		}
+	}
 }
 
 extension ChatRoom {
