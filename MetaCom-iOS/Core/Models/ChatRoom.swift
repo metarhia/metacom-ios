@@ -138,19 +138,19 @@ class ChatRoom {
 	*/
 	private func addObservers() {
 		
-    let selectors: [Events : Selector] = [
-			.message : #selector(onReceiveMessage(_:)),
-			.chatJoin : #selector(onJoinChat(_:)),
-			.chatLeave : #selector(onLeaveChat(_:)),
-			.chatFileTransferStart : #selector(onChatFileTransferStart(_:))
+		let selectors: [Events : (Notification) -> ()] = [
+			.message : onReceiveMessage(_:),
+			.chatJoin : onJoinChat(_:),
+			.chatLeave : onLeaveChat(_:),
+			.chatFileTransferStart : onChatFileTransferStart(_:)
 		]
 		
-		let systemSelectors: [Notification.Name : Selector] = [
-			.MCConnectionDidFail : #selector(onConnectionFailed(_:)),
-			.MCConnectionRestored : #selector(onConnectionRestored(_:))
+		let systemSelectors: [Notification.Name : (Notification) -> ()] = [//Selector] = [
+			.MCConnectionDidFail : onConnectionFailed(_:),
+			.MCConnectionRestored : onConnectionRestored(_:)
 		]
 		
-		let notifications = selectors.map { pair -> (event: Notification.Name, method: Selector) in
+		let notifications = selectors.map { pair -> (event: Notification.Name, method: (Notification) -> ()) in
 			let event = Events.name(ofEvent: pair.key)
 			return (Notification.Name(event), pair.value)
 		}
@@ -164,7 +164,7 @@ class ChatRoom {
 			}
 			
 			let center = NotificationCenter.default
-			center.addObserver(this, selector: pair.method, name: pair.event, object: this.connection)
+			center.addObserver(forName: pair.event, object: this.connection, queue: nil, using: pair.method)
 		}
 	}
 	
@@ -181,7 +181,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc fileprivate func onReceiveMessage(_ notification: Notification) {
+	fileprivate func onReceiveMessage(_ notification: Notification) {
 		
 		guard let event = notification.userInfo?[Constants.notificationObject] as? Event, let content = event.arguments.first as? String else {
 			return
@@ -196,7 +196,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc fileprivate func onJoinChat(_ notification: Notification) {
+	fileprivate func onJoinChat(_ notification: Notification) {
 		
 		hasInterlocutor = true
 		receivers.forEach { $0.chatRoomDidJoin(self) }
@@ -207,7 +207,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc fileprivate func onLeaveChat(_ notification: Notification) {
+	fileprivate func onLeaveChat(_ notification: Notification) {
 		
 		hasInterlocutor = false
 		receivers.forEach { $0.chatRoomDidLeave(self) }
@@ -218,7 +218,7 @@ extension ChatRoom {
    	- parameters:
    		- notification: notification containing a message.
    */
-  @objc fileprivate func onChatFileTransferStart(_ notification: Notification) {
+  fileprivate func onChatFileTransferStart(_ notification: Notification) {
     
     guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
         return
@@ -252,7 +252,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc fileprivate func onConnectionFailed(_ notification: Notification) {
+	fileprivate func onConnectionFailed(_ notification: Notification) {
 		
 		self.receivers.forEach { $0.chatRoom(self, connectionDidChange: false) }
 	}
@@ -262,7 +262,7 @@ extension ChatRoom {
 		- parameters:
 			- notification: notification containing a message.
 	*/
-	@objc fileprivate func onConnectionRestored(_ notification: Notification) {
+	fileprivate func onConnectionRestored(_ notification: Notification) {
 		
 		join { [unowned self] error in
 			
