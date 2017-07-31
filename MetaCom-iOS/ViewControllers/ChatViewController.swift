@@ -176,7 +176,6 @@ class ChatViewController: JSQMessagesViewController {
 	fileprivate func send(_ message: Message) {
 		sendingMessagesCount += 1
 		
-		let sendingMessageIndex = messages.count
 		messages.append(ChatMessage(message: message))
 		finishSendingMessage(animated: true)
 		
@@ -188,32 +187,29 @@ class ChatViewController: JSQMessagesViewController {
 			self.sendingMessagesCount -= 1
 			
 			guard error == nil else {
-				self.failedMessages.append(message)
-				UIView.performWithoutAnimation {
-					self.collectionView.reloadItems(at: [IndexPath(item: sendingMessageIndex, section: 0)])
+				if !self.isMessageFailed(message) {
+					self.failedMessages.append(message)
+					self.reloadCell(for: message)
 				}
+
 				return
+			}
+			
+			if let index = self.failedMessages.index(where: { $0 === message }) {
+				self.failedMessages.remove(at: index)
+				self.reloadCell(for: message)
 			}
 		}
 	}
 	
-	// Perhaps this method will be removed later.
 	fileprivate func resend(at indexPath: IndexPath) {
 		guard let message = messages[indexPath.item].message else {
 			return
 		}
 		
 		messages.remove(at: indexPath.item)
-		
-		resend(message)
-	}
-	
-	fileprivate func resend(_ message: Message) {
-		if let index = failedMessages.index(where: { $0 === message }) {
-			failedMessages.remove(at: index)
-		}
-		
 		collectionView.reloadData()
+		
 		send(message)
 	}
 	
@@ -234,6 +230,14 @@ class ChatViewController: JSQMessagesViewController {
 	override func didPressAccessoryButton(_ sender: UIButton) {
 		let filePicker = FilePickerController(delegate: self)
 		present(filePicker, animated: false)
+	}
+	
+	private func reloadCell(for message: Message) {
+		if let index = self.messages.index(where: { $0.message === message }) {
+			UIView.performWithoutAnimation {
+				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+			}
+		}
 	}
 	
 	// MARK: - JSQMessagesCollectionViewDataSource
