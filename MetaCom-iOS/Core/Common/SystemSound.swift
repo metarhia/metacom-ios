@@ -9,12 +9,11 @@
 import UIKit
 import AudioToolbox
 
-func play(systemSoundID: Int) {
-	
+func playSystemSound(with id: Int) {
 	guard let delegate = UIApplication.shared.delegate as? AppDelegate, delegate.isSoundEnabled == true else {
 		return
 	}
 	
-	let id = SystemSoundID(systemSoundID)
+	let id = SystemSoundID(id)
 	AudioServicesPlaySystemSound(id)
 }

@@ -186,6 +186,9 @@ class ChatViewController: JSQMessagesViewController {
 			
 			self.sendingMessagesCount -= 1
 			
+			let soundId = (error == nil) ? Constants.sentMessageSound : Constants.errorSound
+			playSystemSound(with: soundId)
+			
 			guard error == nil else {
 				if !self.isMessageFailed(message) {
 					self.failedMessages.append(message)
@@ -214,6 +217,7 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	fileprivate func receive(_ message: Message) {
+		playSystemSound(with: Constants.receivedMessageSound)
 		receive(ChatMessage(message: message))
 	}
 	

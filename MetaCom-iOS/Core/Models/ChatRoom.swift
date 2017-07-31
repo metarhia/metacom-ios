@@ -84,28 +84,20 @@ class ChatRoom {
 	*/
 	func send(message: Message, completion: Completion?) {
 		
-		let soundCompletion: Completion? = { error in
-			
-			let soundId = (error != nil) ? Constants.errorSound : Constants.sentMessageSound
-			play(systemSoundID: soundId)
-			
-			completion?(error)
-		}
-		
 		switch message.content {
 		case .text(let text):
-			connection.cacheCall(Constants.interfaceName, "send", [text], { soundCompletion?($1) })
+			connection.cacheCall(Constants.interfaceName, "send", [text], { completion?($1) })
 			
 		case .file(let data, let uti):
-			sendFile(data, mimeType: FileManager.extractMimeType(from: uti), completion: soundCompletion)
+			sendFile(data, mimeType: FileManager.extractMimeType(from: uti), completion: completion)
 			
 		case .fileURL(let url):
 			guard let data = try? Data(contentsOf: url) else {
-				soundCompletion?(MCError(of: .fileFailed))
+				completion?(MCError(of: .fileFailed))
 				return
 			}
 			
-			sendFile(data, mimeType: FileManager.extractMimeType(from: url), completion: soundCompletion)
+			sendFile(data, mimeType: FileManager.extractMimeType(from: url), completion: completion)
 		}
 	}
 	
@@ -194,8 +186,6 @@ extension ChatRoom {
 		guard let event = notification.userInfo?[Constants.notificationObject] as? Event, let content = event.arguments.first as? String else {
 			return
 		}
-		
-		play(systemSoundID: Constants.receivedMessageSound)
 		
 		let message = Message(content: .text(content))
 		receivers.forEach { $0.chatRoom(self, didReceive: message) }
