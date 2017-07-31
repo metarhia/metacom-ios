@@ -14,4 +14,8 @@ enum Constants {
 	static let applicationName: String = "metarhia.com"
 	static let interfaceName: String = "metacom"
 	static let roomDefault: String = "default"
+	
+	static let receivedMessageSound: Int = 1003
+	static let sentMessageSound: Int = 1004
+	static let errorSound: Int = 4095
 }
