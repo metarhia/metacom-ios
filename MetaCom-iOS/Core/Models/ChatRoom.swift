@@ -40,6 +40,8 @@ class ChatRoom {
 		self.name = name
 		self.isEmpty = true
 		self.connection = connection
+		
+		self.addObservers()
 	}
 	
 	/**
@@ -61,8 +63,6 @@ class ChatRoom {
 			
 			let hasInterlocutor = values?.first as? Bool ?? false
 			self.hasInterlocutor = hasInterlocutor
-			
-			self.addObservers()
 		}
 	}
 	
@@ -253,7 +253,6 @@ extension ChatRoom {
 			- notification: notification containing a message.
 	*/
 	fileprivate func onConnectionFailed(_ notification: Notification) {
-		
 		self.receivers.forEach { $0.chatRoom(self, connectionDidChange: false) }
 	}
 	
@@ -264,12 +263,21 @@ extension ChatRoom {
 	*/
 	fileprivate func onConnectionRestored(_ notification: Notification) {
 		
-		join { [unowned self] error in
+		let onJoin: Completion? = { [unowned self] error in
 			
 			self.receivers.forEach { error != nil ?
 				$0.chatRoom(self, didReceive: error!) :
 				$0.chatRoom(self, connectionDidChange: true)
 			}
+		}
+		
+		join { [unowned self] error in
+			
+			guard error == nil else {
+				return self.join(completion: onJoin)
+			}
+			
+			onJoin?(error)
 		}
 	}
 }

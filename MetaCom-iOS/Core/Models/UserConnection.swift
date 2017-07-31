@@ -30,6 +30,7 @@ final class UserConnection {
 	private(set) var fileManager: FileManager!
 	
 	public let id: Int
+	public var isActive: Bool = false
 	public var currentReachability: Reachability.NetworkStatus? = nil {
 		didSet {
 			oldValue == .notReachable ? reconnect() : ()
@@ -114,6 +115,7 @@ final class UserConnection {
 		
 		connection.reconnect(config: config)
 		connection.handshake(Constants.applicationName) { [unowned self] _, error in
+			self.isActive = true
 			let name: Notification.Name = (error != nil) ? .MCConnectionDidFail : .MCConnectionRestored
 			NotificationCenter.default.post(name: name, object: self.connection)
 		}
@@ -147,13 +149,21 @@ extension UserConnection: ConnectionDelegate {
 	}
 	
 	public func connectionDidConnect(_ connection: JSTP.Connection) {
+		isActive = true
 		NotificationCenter.default.post(name: .MCConnectionEstablished, object: connection)
 	}
 	
 	public func connection(_ connection: Connection, didFailWithError error: Error) {
+		
+		guard isActive else {
+			return
+		}
+		
+		isActive = false
 		NotificationCenter.default.post(name: .MCConnectionDidFail, object: connection, userInfo: ["error": error])
-		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 		reconnect()
+		
+		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
 	
 	func connectionShouldRestoreState(_ connection: JSTP.Connection, callback: @escaping () -> Void) {
