@@ -50,8 +50,8 @@ extension AppDelegate {
 	fileprivate func setSoundAvailability() {
 		
 		DispatchQueue.main.async {
-			let rawValue = UserDefaults.standard.object(forKey: "enabled_preference") as! NSNumber
-			self.isSoundEnabled = Bool(rawValue)
+			let rawValue = UserDefaults.standard.object(forKey: "enabled_preference") as? NSNumber
+			self.isSoundEnabled = Bool(rawValue ?? 1)
 		}
 	}
 }
