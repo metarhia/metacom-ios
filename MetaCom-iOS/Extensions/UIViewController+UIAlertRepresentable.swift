@@ -16,12 +16,12 @@ typealias PickerDelegate = ImagePickerDelegate & UIDocumentPickerDelegate
 
 protocol UIAlertRepresentable {
 	
-	var value: UIAlertController { get }
+	var alertController: UIAlertController { get }
 }
 
 private protocol UIAlertActionRepresentable {
 	
-	var value: UIAlertAction { get }
+	var alertAction: UIAlertAction { get }
 }
 
 private enum Actions: UIAlertActionRepresentable {
@@ -32,7 +32,7 @@ private enum Actions: UIAlertActionRepresentable {
 	case confirm(withBlock: (() -> ())?)
 	case cancel(withBlock: (() -> ())?)
 	
-	var value: UIAlertAction {
+	var alertAction: UIAlertAction {
 		
 		switch self {
 		case .download(handler: let block):
@@ -66,7 +66,7 @@ extension Actions {
 		case photoLibrary(controller: Controller)
 		case camera(controller: Controller)
 		
-		var value: UIAlertAction {
+		var alertAction: UIAlertAction {
 			
 			switch self {
 			case .photoLibrary(let controller):
@@ -115,7 +115,7 @@ extension Actions {
 		
 		case iCloudDrive(controller: Controller)
 		
-		var value: UIAlertAction {
+		var alertAction: UIAlertAction {
 			
 			switch self {
 			case .iCloudDrive(let controller):
@@ -145,7 +145,7 @@ enum UIPicker<PickerController: UIViewController>: UIAlertRepresentable where Pi
 		return alert
 	}
 	
-	var value: UIAlertController {
+	var alertController: UIAlertController {
 		
 		switch self {
 		case .filePicker(let picker):
@@ -153,13 +153,13 @@ enum UIPicker<PickerController: UIViewController>: UIAlertRepresentable where Pi
 			let photoPickerActions = Actions.PhotoPicker<PickerController>.self
 			let documentPickerActions = Actions.DocumentPicker<PickerController>.self
 			
-			let photoLibrary = photoPickerActions.photoLibrary(controller: picker).value
-			let camera = photoPickerActions.camera(controller: picker).value
-			let drive = documentPickerActions.iCloudDrive(controller: picker).value
+			let photoLibrary = photoPickerActions.photoLibrary(controller: picker).alertAction
+			let camera = photoPickerActions.camera(controller: picker).alertAction
+			let drive = documentPickerActions.iCloudDrive(controller: picker).alertAction
 			
 			let dismiss = Actions.cancel {
 				picker.presentingViewController?.dismiss(animated: false)
-				}.value
+				}.alertAction
 			
 			photoLibrary.isEnabled = UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
 			camera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -182,12 +182,12 @@ enum UIErrors: UIAlertRepresentable {
 	private func errorController(with message: String) -> UIAlertController {
 		
 		let error = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-		error.addAction(Actions.confirm(withBlock: nil).value)
+		error.addAction(Actions.confirm(withBlock: nil).alertAction)
 		
 		return error
 	}
 	
-	var value: UIAlertController {
+	var alertController: UIAlertController {
 		
 		switch self {
 		case .chatJoiningFailed:
@@ -222,28 +222,28 @@ enum UIAlerts: UIAlertRepresentable {
 		return alert
 	}
 	
-	var value: UIAlertController {
+	var alertController: UIAlertController {
 		
 		switch self {
 		case .leavingChat(confirm: let confirmation, deny: let denial):
 			return alertController(
 				entitled: "Leave Chat",
 				message: "Leaving the chat will cause losing conversation history.",
-				actions: Actions.confirm(withBlock: confirmation).value, Actions.cancel(withBlock: denial).value
+				actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
 			)
 			
 		case .uploaded(withCode: let fileCode):
 			return alertController(
 				entitled: "Upload",
 				message: "Your file was uploaded. Code is \(fileCode).",
-				actions: Actions.copy(code: fileCode).value, Actions.confirm(withBlock: nil).value
+				actions: Actions.copy(code: fileCode).alertAction, Actions.confirm(withBlock: nil).alertAction
 			)
 			
 		case .download(handler: let handler):
 			
 			let alert = alertController(
 				entitled: "Enter download code:",
-				actions: Actions.cancel(withBlock: nil).value
+				actions: Actions.cancel(withBlock: nil).alertAction
 			)
 			
 			let downloadHandler: ((UIAlertAction) -> Void)? = { [weak alert] _ in
@@ -255,7 +255,7 @@ enum UIAlerts: UIAlertRepresentable {
 				handler(code)
 			}
 			
-			let load = Actions.download(handler: downloadHandler).value
+			let load = Actions.download(handler: downloadHandler).alertAction
 			load.isEnabled = false
 			
 			let textFieldConfiguration: ((UITextField) -> Void)? = { textField in
@@ -277,6 +277,6 @@ enum UIAlerts: UIAlertRepresentable {
 extension UIViewController {
 	
 	func present(alert: UIAlertRepresentable, animated flag: Bool, completion: (() -> Swift.Void)? = nil) {
-		present(alert.value, animated: flag, completion: completion)
+		present(alert.alertController, animated: flag, completion: completion)
 	}
 }
