@@ -35,6 +35,14 @@ private class ChatMessage: JSQMessage {
 		self.message = message
 	}
 	
+	convenience init(senderId id: String, text: String) {
+		self.init(senderId: id, senderDisplayName: "", date: Date(), text: text)
+	}
+	
+	convenience init(senderId id: String, media: JSQMediaItem) {
+		self.init(senderId: id, senderDisplayName: "", date: Date(), media: media)
+	}
+	
 	var isSystem: Bool {
 		return senderId == ChatConstants.systemSenderId
 	}
@@ -86,6 +94,7 @@ class ChatViewController: JSQMessagesViewController {
 			oldValue?.unsubscribe(self)
 			chat?.subscribe(self)
 			clearChat()
+			showChatStatus()
 		}
 	}
 	
@@ -114,6 +123,7 @@ class ChatViewController: JSQMessagesViewController {
 		senderDisplayName = ""
 		
 		clearChat()
+		showChatStatus()
 		
 		let resendItem = UIMenuItem(title: "Resend", action: #selector(JSQMessagesCollectionViewCell.resend(_:)))
 		UIMenuController.shared.menuItems = [resendItem]
@@ -129,6 +139,13 @@ class ChatViewController: JSQMessagesViewController {
 		messages = []
 		collectionView?.reloadData()
 		collectionView?.layoutIfNeeded()
+	}
+	
+	private func showChatStatus() {
+		if let chat = chat {
+			let text = chat.isEmpty ? "There is no one in the chat" : "There is someone in the chat"
+			receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: text))
+		}
 	}
 	
 	@IBAction func closeChat() {
@@ -388,9 +405,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		if let message = ChatMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has joined the chat") {
-			receive(message)
-		}
+		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "Somebody has joined the chat"))
 	}
 	
 	func chatRoomDidLeave(_ chatRoom: ChatRoom) {
@@ -398,9 +413,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		if let message = ChatMessage(senderId: ChatConstants.systemSenderId, displayName: "", text: "Somebody has left the chat") {
-			receive(message)
-		}
+		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "Somebody has left the chat"))
 	}
 	
 }
