@@ -263,22 +263,17 @@ extension ChatRoom {
 	*/
 	fileprivate func onConnectionRestored(_ notification: Notification) {
 		
-		let onJoin: Completion? = { [unowned self] error in
-			
-			self.receivers.forEach { error != nil ?
-				$0.chatRoom(self, didReceive: error!) :
-				$0.chatRoom(self, connectionDidChange: true)
-			}
-		}
-		
-		join { [unowned self] error in
+		var onJoin: Completion?
+		onJoin = { [unowned self] error in
 			
 			guard error == nil else {
 				return self.join(completion: onJoin)
 			}
 			
-			onJoin?(error)
+			self.receivers.forEach { $0.chatRoom(self, connectionDidChange: true) }
 		}
+		
+		join(completion: onJoin)
 	}
 }
 
