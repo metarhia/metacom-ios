@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 import JSQMessagesViewController
 
 // MARK: - Constants related to chat displaying
@@ -324,10 +325,39 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
 	override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-		// TODO: Handle tap on message if it contains `JSQDataMediaItem`
-		//		guard let media = messages[indexPath.item].media else {
-		//			return
-		//		}
+		guard let message = messages[indexPath.item].message else {
+			return
+		}
+		
+		switch message.content {
+		case .file(let data, let uti):
+			guard let path = UIKit.FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+				self.present(alert: UIErrors.genericError, animated: true)
+				return
+			}
+			
+			let uti = (uti ?? "") as CFString
+			let fileExtension = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassFilenameExtension)?.takeUnretainedValue() as String? ?? ""
+			let fileName = (Date().timeIntervalSinceReferenceDate * 1000).rounded(.towardZero).description
+			let fileURL = path.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
+			
+			guard (try? data.write(to: fileURL)) != nil else {
+				self.present(alert: UIErrors.genericError, animated: true)
+				return
+			}
+			
+			let share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+			share.completionWithItemsHandler = { _ in
+				try? UIKit.FileManager.default.removeItem(at: fileURL)
+			}
+			
+			self.present(share, animated: true)
+		case .fileURL(let url):
+			let share = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+			self.present(share, animated: true)
+		default:
+			return
+		}
 	}
 	
 	// MARK: - Handling `resend` menu action
