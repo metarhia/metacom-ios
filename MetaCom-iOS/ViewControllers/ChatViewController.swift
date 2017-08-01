@@ -454,6 +454,15 @@ extension ChatViewController: ChatRoomDelegate {
 		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "Somebody has left the chat"))
 	}
 	
+	func chatRoom(_ chatRoom: ChatRoom, connectionDidChange connected: Bool) {
+		guard chatRoom == chat else {
+			return
+		}
+		
+		let text = connected ? "Connection established" : "Connection lost"
+		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: text))
+	}
+	
 }
 
 // MARK: - FilePickerDelegate
