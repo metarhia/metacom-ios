@@ -471,4 +471,8 @@ extension ChatViewController: FilePickerDelegate {
 		let message = Message(content: .fileURL(url), incoming: false)
 		send(message)
 	}
+	
+	func filePickerHasFailed(_ controller: FilePickerController) {
+		present(alert: UIErrors.genericError, animated: true)
+	}
 }
