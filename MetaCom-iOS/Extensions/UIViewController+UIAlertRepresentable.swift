@@ -1,5 +1,5 @@
 //
-//  UIAlertController+Templates.swift
+//  UIViewController+UIAlertRepresentable.swift
 //  MetaCom-iOS
 //
 //  Created by iKing on 08.06.17.
