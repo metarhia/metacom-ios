@@ -33,6 +33,7 @@
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		14E3BA661EE467A100739F46 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3BA651EE467A100739F46 /* Error.swift */; };
 		404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
+		8F02679D1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */; };
 		8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
 		8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */; };
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
@@ -99,6 +100,7 @@
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaCom_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+VerticalLayout.swift"; sourceTree = "<group>"; };
 		8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerController.swift; sourceTree = "<group>"; };
 		8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerDelegate.swift; sourceTree = "<group>"; };
 		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				14084C071F1004DB005DE87C /* String+Localized.swift */,
 				147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */,
 				148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */,
+				8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */,
 				142318FF1ECCE9DA00F63687 /* ChatRoom.swift in Sources */,
 				8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */,
+				8F02679D1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift in Sources */,
 				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,
 				147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,

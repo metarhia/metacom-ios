@@ -24,6 +24,13 @@ class FilesViewController: UIViewController {
 		}
 	}
 	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		uploadButton.centerLayoutVertically()
+		downloadButton.centerLayoutVertically()
+	}
+	
 	// MARK: - Upload
 	
 	@IBAction func upload() {
