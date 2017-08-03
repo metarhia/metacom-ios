@@ -471,7 +471,7 @@ extension ChatViewController: FilePickerDelegate {
 	
 	func filePicker(_ controller: FilePickerController, didPickData data: Data, withUTI uti: String?) {
 		
-		let message = Message(content: .file(data, type: uti), incoming: false)
+		let message = Message(content: .file(data, uti: uti), incoming: false)
 		send(message)
 	}
 	

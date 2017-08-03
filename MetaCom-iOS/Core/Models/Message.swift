@@ -18,7 +18,7 @@ class Message {
 	*/
 	public enum Content {
 		case text(String)
-    case file(Data, type: String?)
+    case file(Data, uti: String?)
     case fileURL(URL)
 	}
 	

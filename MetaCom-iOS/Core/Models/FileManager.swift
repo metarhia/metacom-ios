@@ -287,12 +287,36 @@ extension FileManager {
 	class func extractExtension(from mimeType: String) -> String {
 		
 		let emptyString = "" as CFString
-		
-		let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType as CFString, nil)
-		let utiValue = uti?.takeRetainedValue() ?? emptyString
+		let utiValue = extractUTI(from: mimeType) as CFString
 		let fileExtension = UTTypeCopyPreferredTagWithClass(utiValue, kUTTagClassFilenameExtension)
 		
 		return String(fileExtension?.takeRetainedValue() ?? emptyString)
+	}
+	
+	/**
+		Construct a uti from the given mime type.
+		- parameters:
+			- mimeType: mime type represented in string.
+			- returns: uti for the specified mime type or an empty string.
+	*/
+	class func extractUTI(from mimeType: String) -> String {
+		
+		let emptyString = "" as CFString
+		let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType as CFString, nil)
+		return String(uti?.takeRetainedValue() ?? emptyString)
+	}
+	
+	/**
+		Construct a file extension from the given UTI.
+		- parameters:
+			- UTI: mime type represented in string.
+			- returns: uti for the specified mime type or an empty string.
+	*/
+	class func extractExtension(using UTI: String) -> String {
+		
+		let emptyString = "" as CFString
+		let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, UTI as CFString, nil)
+		return String(uti?.takeRetainedValue() ?? emptyString)
 	}
 }
 

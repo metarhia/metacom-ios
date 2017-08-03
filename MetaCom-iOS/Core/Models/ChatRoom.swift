@@ -225,7 +225,7 @@ extension ChatRoom {
     }
     
     let mimeType = event.arguments.first as? String ?? ""
-    let fileExtension = FileManager.extractExtension(from: mimeType)
+    let fileUTI = FileManager.extractUTI(from: mimeType)
     
     let chunkDownloadName = Events.name(ofEvent: .chatFileTransferChunk)
     let fileDownloadName = Events.name(ofEvent: .chatFileTransferEnd)
@@ -242,7 +242,7 @@ extension ChatRoom {
         return
       }
       
-      let message = Message(content: .file(data, type: fileExtension))
+      let message = Message(content: .file(data, uti: fileUTI))
       self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
     }
   }
