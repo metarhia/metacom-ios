@@ -36,9 +36,10 @@ class ConnectionViewController: UIViewController {
 		super.viewDidLoad()
 		
 		// Developer hack. Will be removed. Later...
-		hostTextField.text = "dev.metarhia.com"
-		portTextField.text = "3000"
-		//
+		#if DEBUG
+			hostTextField.text = "dev.metarhia.com"
+			portTextField.text = "3000"
+		#endif
 		
 		hostTextField.delegate = self
 		portTextField.delegate = self
