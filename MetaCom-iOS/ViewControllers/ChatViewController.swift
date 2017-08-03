@@ -231,6 +231,11 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func didPressAccessoryButton(_ sender: UIButton) {
 		let filePicker = FilePickerController(delegate: self)
+		if let popover = filePicker.alertController.popoverPresentationController {
+			popover.sourceView = sender
+			popover.sourceRect = sender.bounds
+			popover.permittedArrowDirections = .down
+		}
 		present(filePicker, animated: false)
 	}
 	
@@ -326,6 +331,8 @@ class ChatViewController: JSQMessagesViewController {
 			return
 		}
 		
+		let share: UIActivityViewController
+		
 		switch message.content {
 		case .file(let data, let uti):
 			guard let path = UIKit.FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -343,18 +350,26 @@ class ChatViewController: JSQMessagesViewController {
 				return
 			}
 			
-			let share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+			share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
 			share.completionWithItemsHandler = { _ in
 				try? UIKit.FileManager.default.removeItem(at: fileURL)
 			}
-			
-			self.present(share, animated: true)
 		case .fileURL(let url):
-			let share = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-			self.present(share, animated: true)
+			share = UIActivityViewController(activityItems: [url], applicationActivities: nil)
 		default:
 			return
 		}
+		
+		if let popover = share.popoverPresentationController {
+			guard let cell = collectionView.cellForItem(at: indexPath) as? JSQMessagesCollectionViewCell else {
+				return
+			}
+
+			popover.sourceView = cell.messageBubbleContainerView
+			popover.sourceRect = cell.messageBubbleContainerView.bounds
+		}
+		
+		self.present(share, animated: true)
 	}
 	
 	// MARK: - Handling `resend` menu action
