@@ -44,24 +44,30 @@ class FilesViewController: UIViewController {
 		var fileCode: String?
 		
 		let downloadCompletion = { [weak self] (file: (data: Data, extension: String)?, error: Error?) in
+			guard let `self` = self else {
+				return
+			}
+			
+			self.isInterfaceLocked = false
+			self.infoStackView.isHidden = true
 			
 			// `fileCode` never shouldn't be `nil`
 			let code = fileCode ?? ""
 			
 			guard error == nil, let file = file else {
-				self?.present(alert: UIErrors.fileDownloadFailed(fileCode: code), animated: true)
+				self.present(alert: UIErrors.fileDownloadFailed(fileCode: code), animated: true)
 				return
 			}
 			
 			guard let path = UIKit.FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-				self?.present(alert: UIErrors.genericError, animated: true)
+				self.present(alert: UIErrors.genericError, animated: true)
 				return
 			}
 			
 			let fileURL = path.appendingPathComponent(code).appendingPathExtension(file.extension)
 			
 			guard (try? file.data.write(to: fileURL)) != nil else {
-				self?.present(alert: UIErrors.genericError, animated: true)
+				self.present(alert: UIErrors.genericError, animated: true)
 				return
 			}
 			
@@ -70,10 +76,17 @@ class FilesViewController: UIViewController {
 				try? UIKit.FileManager.default.removeItem(at: fileURL)
 			}
 			
-			self?.present(share, animated: true)
+			self.present(share, animated: true)
 		}
 		
-		let downloadAlert = UIAlerts.download { code in
+		let downloadAlert = UIAlerts.download { [weak self] code in
+			guard let `self` = self else {
+				return
+			}
+			
+			self.isInterfaceLocked = true
+			self.infoLabel.text = "Downloading..."
+			self.infoStackView.isHidden = false
 			
 			fileCode = code
 			
