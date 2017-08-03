@@ -45,5 +45,7 @@
 	<string>Required for sending photos or videos</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Required for video recording</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
