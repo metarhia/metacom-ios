@@ -125,9 +125,6 @@ class ChatViewController: JSQMessagesViewController {
 		
 		clearChat()
 		showChatStatus()
-		
-		let resendItem = UIMenuItem(title: "Resend", action: #selector(JSQMessagesCollectionViewCell.resend(_:)))
-		UIMenuController.shared.menuItems = [resendItem]
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -366,6 +363,8 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
 		super.collectionView(collectionView, shouldShowMenuForItemAt: indexPath)
+		let resendItem = UIMenuItem(title: "Resend", action: #selector(JSQMessagesCollectionViewCell.resend(_:)))
+		UIMenuController.shared.menuItems = [resendItem]
 		let chatMessage = messages[indexPath.item]
 		if let message = chatMessage.message, message.isDataMessage, isMessageFailed(message) {
 			selectedMediaMessageIndexPathForMenu = indexPath
