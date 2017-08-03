@@ -340,9 +340,8 @@ class ChatViewController: JSQMessagesViewController {
 				return
 			}
 			
-			let uti = (uti ?? "") as CFString
-			let fileExtension = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassFilenameExtension)?.takeUnretainedValue() as String? ?? ""
-			let fileName = (Date().timeIntervalSinceReferenceDate * 1000).rounded(.towardZero).description
+			let fileExtension = FileManager.extractExtension(using: uti ?? "")
+			let fileName = Int(Date().timeIntervalSinceReferenceDate * 1000).description
 			let fileURL = path.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
 			
 			guard (try? data.write(to: fileURL)) != nil else {
