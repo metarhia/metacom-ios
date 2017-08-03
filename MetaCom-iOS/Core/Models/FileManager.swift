@@ -315,8 +315,8 @@ extension FileManager {
 	class func extractExtension(using UTI: String) -> String {
 		
 		let emptyString = "" as CFString
-		let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, UTI as CFString, nil)
-		return String(uti?.takeRetainedValue() ?? emptyString)
+		let fileExtension = UTTypeCopyPreferredTagWithClass(UTI as CFString, kUTTagClassFilenameExtension)
+		return String(fileExtension?.takeRetainedValue() ?? emptyString)
 	}
 }
 
