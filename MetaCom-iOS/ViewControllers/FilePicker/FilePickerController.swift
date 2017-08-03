@@ -30,6 +30,8 @@ class FilePickerController: UIViewController {
 	
 	weak var delegate: FilePickerDelegate?
 	
+	private(set) lazy var alertController: UIAlertController = UIPicker.filePicker(self).alertController
+	
 	// MARK: - Initialization
 	
 	convenience init(delegate: FilePickerDelegate) {
@@ -59,7 +61,7 @@ class FilePickerController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		if !alertAlreadyPresented {
-			present(alert: UIPicker.filePicker(self), animated: true)
+			present(alertController, animated: true)
 			alertAlreadyPresented = true
 		}
 	}

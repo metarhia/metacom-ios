@@ -35,6 +35,11 @@ class FilesViewController: UIViewController {
 	
 	@IBAction func upload() {
 		let filePicker = FilePickerController(delegate: self)
+		if let popover = filePicker.alertController.popoverPresentationController {
+			popover.sourceView = uploadButton
+			popover.sourceRect = uploadButton.bounds
+			popover.permittedArrowDirections = .down
+		}
 		present(filePicker, animated: false)
 	}
 	
@@ -74,6 +79,12 @@ class FilesViewController: UIViewController {
 			let share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
 			share.completionWithItemsHandler = { _ in
 				try? UIKit.FileManager.default.removeItem(at: fileURL)
+			}
+			
+			if let popover = share.popoverPresentationController {
+				popover.sourceView = self.downloadButton
+				popover.sourceRect = self.downloadButton.bounds
+				popover.permittedArrowDirections = .down
 			}
 			
 			self.present(share, animated: true)
