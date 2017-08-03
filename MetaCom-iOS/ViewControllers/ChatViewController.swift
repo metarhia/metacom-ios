@@ -284,14 +284,9 @@ class ChatViewController: JSQMessagesViewController {
 		let chatMessage = messages[indexPath.item]
 		
 		if chatMessage.isSystem {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier(), for: indexPath) as! JSQMessagesCollectionViewCell
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier(), for: indexPath) as! JSQMessagesCollectionViewCellSystem
 			
-			cell.textView.text = chatMessage.text
-			cell.textView.textColor = .lightGray
-			cell.textView.textAlignment = .center
-			cell.textView.font = UIFont.preferredFont(forTextStyle: .body).withSize(15)
-			cell.textView.textContainerInset = .zero
-			cell.textView.isUserInteractionEnabled = false
+			cell.text = chatMessage.text
 			
 			return cell
 		}

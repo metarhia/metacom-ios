@@ -24,6 +24,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hwa-r4-Umg" userLabel="Bubble Image View">
                                 <rect key="frame" x="0.0" y="0.0" width="314" height="154"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDs-zM-aiT">
+                                <rect key="frame" x="0.0" y="0.0" width="314" height="154"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noU-9W-Cel" customClass="JSQMessagesCellTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="314" height="154"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -35,14 +41,23 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="noU-9W-Cel" secondAttribute="trailing" id="6hH-ip-IZK"/>
+                            <constraint firstAttribute="trailing" secondItem="PDs-zM-aiT" secondAttribute="trailing" id="CLb-GN-TZv"/>
                             <constraint firstItem="noU-9W-Cel" firstAttribute="top" secondItem="cPR-im-gIF" secondAttribute="top" id="Dpz-ez-huW"/>
                             <constraint firstItem="Hwa-r4-Umg" firstAttribute="leading" secondItem="cPR-im-gIF" secondAttribute="leading" id="Svw-84-Sp0"/>
+                            <constraint firstItem="PDs-zM-aiT" firstAttribute="top" secondItem="cPR-im-gIF" secondAttribute="top" id="Ym2-Zn-mlQ"/>
+                            <constraint firstItem="PDs-zM-aiT" firstAttribute="leading" secondItem="cPR-im-gIF" secondAttribute="leading" id="aEE-hM-Usy"/>
                             <constraint firstItem="Hwa-r4-Umg" firstAttribute="top" secondItem="cPR-im-gIF" secondAttribute="top" id="fHp-ls-wD5"/>
                             <constraint firstItem="noU-9W-Cel" firstAttribute="leading" secondItem="cPR-im-gIF" secondAttribute="leading" id="hed-Th-RU5"/>
                             <constraint firstAttribute="trailing" secondItem="Hwa-r4-Umg" secondAttribute="trailing" id="jH7-Hg-63n"/>
+                            <constraint firstAttribute="bottom" secondItem="PDs-zM-aiT" secondAttribute="bottom" id="vhZ-h3-VXB"/>
                             <constraint firstAttribute="bottom" secondItem="Hwa-r4-Umg" secondAttribute="bottom" id="xU0-l0-PaF"/>
                             <constraint firstAttribute="bottom" secondItem="noU-9W-Cel" secondAttribute="bottom" id="xXh-3f-oFb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="noU-9W-Cel"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
             </view>
@@ -56,6 +71,7 @@
             <connections>
                 <outlet property="messageBubbleContainerView" destination="cPR-im-gIF" id="qf4-Es-up0"/>
                 <outlet property="messageBubbleImageView" destination="Hwa-r4-Umg" id="vMu-tz-hXS"/>
+                <outlet property="textLabel" destination="PDs-zM-aiT" id="nv7-fD-3sd"/>
                 <outlet property="textView" destination="noU-9W-Cel" id="Osb-lV-IPn"/>
                 <outlet property="textViewAvatarHorizontalSpaceConstraint" destination="hed-Th-RU5" id="SPs-1d-Q1H"/>
                 <outlet property="textViewBottomVerticalSpaceConstraint" destination="xXh-3f-oFb" id="pQ3-1m-8rc"/>
