@@ -166,7 +166,7 @@ class ConnectionViewController: UIViewController {
 	}
 	
 	@objc private func keyboardWillHide(_ notification: Notification) {
-		setBottomSpace(0)
+		setBottomSpace(20)
 	}
 	
 	@objc private func keyboardWillChangeFrame(_ notification: Notification) {
