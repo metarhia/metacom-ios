@@ -57,6 +57,12 @@
                             <mask key="subviews">
                                 <exclude reference="noU-9W-Cel"/>
                             </mask>
+                            <mask key="constraints">
+                                <exclude reference="6hH-ip-IZK"/>
+                                <exclude reference="Dpz-ez-huW"/>
+                                <exclude reference="hed-Th-RU5"/>
+                                <exclude reference="xXh-3f-oFb"/>
+                            </mask>
                         </variation>
                     </view>
                 </subviews>
