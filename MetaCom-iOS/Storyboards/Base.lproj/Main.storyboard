@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGq-pz-TVy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,16 +24,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcp-SF-qnh">
-                                <rect key="frame" x="0.0" y="122" width="375" height="393"/>
+                                <rect key="frame" x="0.0" y="121.5" width="375" height="394"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="gRX-Nv-JAb">
-                                        <rect key="frame" x="112" y="0.0" width="150" height="149.5"/>
+                                        <rect key="frame" x="112" y="0.0" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gRX-Nv-JAb" secondAttribute="height" multiplier="1:1" id="7Ce-LN-kI9"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLm-L6-8F0" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="149.5" width="375" height="40.5"/>
+                                        <rect key="frame" x="0.0" y="150" width="375" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MetaCom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-ro-jze">
@@ -43,11 +43,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azi-qc-NC2" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="215.5" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="215.5" width="375" height="40.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="se1-8C-zA9">
-                                        <rect key="frame" x="63" y="255.5" width="250.5" height="68"/>
+                                        <rect key="frame" x="63" y="256" width="250.5" height="68"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="host" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-49-q5S">
                                                 <rect key="frame" x="0.0" y="0.0" width="250.5" height="30"/>
@@ -70,11 +70,11 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Bo-i5-Qwg" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="323.5" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="324" width="375" height="40.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfj-5I-109" customClass="ActivityButton" customModule="MetaCom_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="163" y="363.5" width="49" height="30"/>
+                                        <rect key="frame" x="163" y="364.5" width="49" height="30"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="connect" destination="BYZ-38-t0r" eventType="touchUpInside" id="F8K-BV-A8Y"/>
@@ -128,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.94202898550725" y="35.054347826086961"/>
+            <point key="canvasLocation" x="-767" y="969"/>
         </scene>
         <!--Chat-->
         <scene sceneID="slE-sd-rhr">
@@ -226,7 +226,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vyo-0b-WAs">
-                                <rect key="frame" x="80" y="284" width="216" height="100"/>
+                                <rect key="frame" x="79.5" y="283.5" width="216" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGb-Da-BFY">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -331,19 +331,6 @@
             </objects>
             <point key="canvasLocation" x="116" y="968"/>
         </scene>
-        <!--Split View Controller-->
-        <scene sceneID="b8J-3q-eg8">
-            <objects>
-                <splitViewController id="dGq-pz-TVy" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="masterViewController" id="p4M-5w-aPp"/>
-                        <segue destination="c0u-BN-ZGB" kind="relationship" relationship="detailViewController" id="pYO-45-LxP"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uDa-Gf-PTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-969" y="510"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hjn-f4-cTY">
             <objects>
@@ -371,7 +358,4 @@
         <image name="logo" width="1024" height="1024"/>
         <image name="upload" width="45" height="59"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="tNh-rn-NDO"/>
-    </inferredMetricsTieBreakers>
 </document>
