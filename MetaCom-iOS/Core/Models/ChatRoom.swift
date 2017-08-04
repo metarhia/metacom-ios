@@ -101,13 +101,13 @@ class ChatRoom {
 		}
 	}
 	
-  /**
-   	Send a file via current connection.
-   	- parameters:
-   		- data: sent raw data
-   		- mimeType: data mime type.
-   		- completion: callback on completion.
-   */
+	/**
+		Send a file via current connection.
+		- parameters:
+			- data: sent raw data
+			- mimeType: data mime type.
+			- completion: callback on completion.
+	*/
 	private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
 		
 		let onTransferEnd = { [unowned self] (error: Error?) in
@@ -213,11 +213,11 @@ extension ChatRoom {
 		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
   
-  /**
-   	Receive upon chat interlocutor starts file transfer.
-   	- parameters:
-   		- notification: notification containing a message.
-   */
+	/**
+		Receive upon chat interlocutor starts file transfer.
+		- parameters:
+			- notification: notification containing a message.
+	*/
 	fileprivate func onChatFileTransferStart(_ notification: Notification) {
 		
 		guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
