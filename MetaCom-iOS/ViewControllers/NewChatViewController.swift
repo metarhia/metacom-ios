@@ -15,6 +15,14 @@ class NewChatViewController: UIViewController {
 	
 	@IBOutlet weak var bottomSpace: NSLayoutConstraint!
 	
+	private var name: String? {
+		guard let name = chatNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
+			return nil
+		}
+		return name
+	}
+	
+	
 	// MARK: - View Controller Lifecycle
 	
 	override func viewDidLoad() {
@@ -62,7 +70,7 @@ class NewChatViewController: UIViewController {
 	}
 	
 	private func updateButtonState() {
-		joinButton.isEnabled = chatNameTextField.text?.isEmpty == false
+		joinButton.isEnabled = name != nil
 	}
 	
 	@IBAction func nameChanged() {
@@ -72,12 +80,7 @@ class NewChatViewController: UIViewController {
 	// MARK: - Joining Chat
 	
 	@IBAction func joinChat() {
-		guard let name = chatNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
-			present(alert: UIErrors.genericError, animated: true, completion: nil)
-			return
-		}
-		
-		guard let chatManager = UserConnectionManager.instance.currentConnection?.chatManager else {
+		guard let name = name, let chatManager = UserConnectionManager.instance.currentConnection?.chatManager else {
 			present(alert: UIErrors.genericError, animated: true, completion: nil)
 			return
 		}
