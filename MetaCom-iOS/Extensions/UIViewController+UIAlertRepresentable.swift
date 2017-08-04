@@ -36,20 +36,20 @@ private enum Actions: UIAlertActionRepresentable {
 		
 		switch self {
 		case .download(handler: let block):
-			return UIAlertAction(title: "Download", style: .default, handler: block)
+			return UIAlertAction(title: "download".localized, style: .default, handler: block)
 			
 		case .copy(let code):
-			return UIAlertAction(title: "Copy", style: .cancel) { _ in
+			return UIAlertAction(title: "copy".localized, style: .cancel) { _ in
 				UIPasteboard.general.string = code
 			}
 			
 		case .confirm(withBlock: let block):
-			return UIAlertAction(title: "OK", style: .default) { _ in
+			return UIAlertAction(title: "ok".localized, style: .default) { _ in
 				block?()
 			}
 			
 		case .cancel(withBlock: let block):
-			return UIAlertAction(title: "Cancel", style: .cancel) { _ in
+			return UIAlertAction(title: "cancel".localized, style: .cancel) { _ in
 				block?()
 			}
 		}
@@ -84,7 +84,7 @@ extension Actions {
 					controller.present(imagePicker, animated: true)
 				}
 				
-				return UIAlertAction(title: "Photo Library", style: .default, handler: block)
+				return UIAlertAction(title: "photo_library".localized, style: .default, handler: block)
 				
 			case .camera(let controller):
 				
@@ -101,7 +101,7 @@ extension Actions {
 					controller.present(imagePicker, animated: true)
 				}
 				
-				return UIAlertAction(title: "Camera", style: .default, handler: block)
+				return UIAlertAction(title: "camera".localized, style: .default, handler: block)
 			}
 		}
 	}
@@ -128,7 +128,7 @@ extension Actions {
 					controller.present(documentPickerController, animated: true)
 				}
 				
-				return UIAlertAction(title: "iCloud Drive", style: .default, handler: block)
+				return UIAlertAction(title: "idrive".localized, style: .default, handler: block)
 			}
 		}
 	}
@@ -179,7 +179,7 @@ enum UIErrors: UIAlertRepresentable {
 	
 	private func errorController(with message: String) -> UIAlertController {
 		
-		let error = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+		let error = UIAlertController(title: "error".localized, message: message, preferredStyle: .alert)
 		error.addAction(Actions.confirm(withBlock: nil).alertAction)
 		
 		return error
@@ -189,15 +189,15 @@ enum UIErrors: UIAlertRepresentable {
 		
 		switch self {
 		case .chatJoiningFailed:
-			return errorController(with: "An error occured while joining chat room. Try again.")
+			return errorController(with: "err_room_taken".localized)
 		case .fileUploadFailed:
-			return errorController(with: "Upload failed")
+			return errorController(with: "err_upload_failed".localized)
 		case .fileDownloadFailed(let code):
-			return errorController(with: "Downloading file with code \"\(code)\" failed. Check the code and try again.")
+			return errorController(with: String(format: "err_download_failed".localized, code))
 		case .connectionFailed:
-			return errorController(with: "Impossible to connect to server. Please check specified host and port and try again.")
+			return errorController(with: "err_connection_failed".localized)
 		case .genericError:
-			return errorController(with: "Something gone wrong...")
+			return errorController(with: "err_generic".localized)
 		}
 	}
 }
@@ -205,6 +205,7 @@ enum UIErrors: UIAlertRepresentable {
 enum UIAlerts: UIAlertRepresentable {
 	
 	case leavingChat(confirm: (() -> ())?, deny: (() -> ())?)
+    case leavingServer(confirm: (() -> ())?, deny: (() -> ())?)
 	
 	case uploaded(withCode: String)
 	case download(handler: (String) -> ())
@@ -221,22 +222,29 @@ enum UIAlerts: UIAlertRepresentable {
 		switch self {
 		case .leavingChat(confirm: let confirmation, deny: let denial):
 			return alertController(
-				entitled: "Leave Chat",
-				message: "Leaving the chat will cause losing conversation history.",
+				entitled: "leave_chat".localized,
+				message: "leave_chat_desc".localized,
 				actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
 			)
+            
+        case .leavingServer(confirm: let confirmation, deny: let denial):
+            return alertController(
+                entitled: "leave_server".localized,
+                message: "leave_server_desc".localized,
+                actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
+            )
 			
 		case .uploaded(withCode: let fileCode):
 			return alertController(
-				entitled: "Upload",
-				message: "Your file was uploaded. Code is \(fileCode).",
+				entitled: "upload".localized,
+				message: String(format: "upload_desc".localized, fileCode),
 				actions: Actions.copy(code: fileCode).alertAction, Actions.confirm(withBlock: nil).alertAction
 			)
 			
 		case .download(handler: let handler):
 			
 			let alert = alertController(
-				entitled: "Enter download code:",
+				entitled: "download_desc".localized,
 				actions: Actions.cancel(withBlock: nil).alertAction
 			)
 			

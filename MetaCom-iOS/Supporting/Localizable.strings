@@ -8,6 +8,7 @@
 	"event_chat_leave" = "Somebody has left the chat";
 	"connection_lost" = "Connection lost";
 	"connection_established" = "Connection established";
+	file = file;
 	upload = Upload;
 	download = Download;
 	ok = OK;

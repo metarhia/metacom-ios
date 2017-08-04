@@ -150,7 +150,7 @@ class ChatViewController: JSQMessagesViewController {
 	
 	private func showChatStatus() {
 		if let chat = chat {
-			let text = chat.isEmpty ? "There is no one in the chat" : "There is someone in the chat"
+            let text = chat.isEmpty ? "no_interlocutor".localized : "has_interlocutor".localized
 			receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: text))
 		}
 	}
@@ -383,7 +383,7 @@ class ChatViewController: JSQMessagesViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
 		super.collectionView(collectionView, shouldShowMenuForItemAt: indexPath)
-		let resendItem = UIMenuItem(title: "Resend", action: #selector(JSQMessagesCollectionViewCell.resend(_:)))
+		let resendItem = UIMenuItem(title: "resend".localized, action: #selector(JSQMessagesCollectionViewCell.resend(_:)))
 		UIMenuController.shared.menuItems = [resendItem]
 		let chatMessage = messages[indexPath.item]
 		if let message = chatMessage.message, message.isDataMessage, isMessageFailed(message) {
@@ -462,7 +462,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "Somebody has joined the chat"))
+		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "event_chat_join".localized))
 	}
 	
 	func chatRoomDidLeave(_ chatRoom: ChatRoom) {
@@ -470,7 +470,7 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "Somebody has left the chat"))
+		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: "event_chat_leave".localized))
 	}
 	
 	func chatRoom(_ chatRoom: ChatRoom, connectionDidChange connected: Bool) {
@@ -478,10 +478,18 @@ extension ChatViewController: ChatRoomDelegate {
 			return
 		}
 		
-		let text = connected ? "Connection established" : "Connection lost"
+		let text = connected ? "connection_established".localized : "connection_lost".localized
 		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: text))
 	}
 	
+    func chatRoom(_ chatRoom: ChatRoom, didReceive error: Error) {
+        guard chatRoom == chat else {
+            return
+        }
+        
+        let placeholder = "file".localized.capitalized
+        present(alert: UIErrors.fileDownloadFailed(filePlaceholder: placeholder), animated: true)
+    }
 }
 
 // MARK: - FilePickerDelegate

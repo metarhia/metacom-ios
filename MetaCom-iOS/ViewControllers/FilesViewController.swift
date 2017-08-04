@@ -60,7 +60,7 @@ class FilesViewController: UIViewController {
 			let code = fileCode ?? ""
 			
 			guard error == nil, let file = file else {
-				self.present(alert: UIErrors.fileDownloadFailed(fileCode: code), animated: true)
+				self.present(alert: UIErrors.fileDownloadFailed(filePlaceholder: "File with code \"\(code)\""), animated: true)
 				return
 			}
 			
@@ -96,7 +96,7 @@ class FilesViewController: UIViewController {
 			}
 			
 			self.isInterfaceLocked = true
-			self.infoLabel.text = "Downloading..."
+			self.infoLabel.text = "downloading_dots".localized
 			self.infoStackView.isHidden = false
 			
 			fileCode = code
@@ -146,7 +146,7 @@ extension FilesViewController: FilePickerDelegate {
 	
 	func filePickerDidEndPicking(_ controller: FilePickerController) {
 		isInterfaceLocked = true
-		infoLabel.text = "Uploading..."
+		infoLabel.text = "uploading_dots".localized
 		infoStackView.isHidden = false
 	}
 	

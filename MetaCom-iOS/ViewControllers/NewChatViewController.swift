@@ -73,7 +73,7 @@ class NewChatViewController: UIViewController {
 	
 	@IBAction func joinChat() {
 		guard let name = chatNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else {
-			present(alert: UIErrors.chatJoiningFailed, animated: true, completion: nil)
+			present(alert: UIErrors.genericError, animated: true, completion: nil)
 			return
 		}
 		
