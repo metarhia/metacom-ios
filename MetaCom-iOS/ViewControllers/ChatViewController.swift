@@ -133,6 +133,15 @@ class ChatViewController: JSQMessagesViewController {
 		self.inputToolbar.contentView.textView.becomeFirstResponder()
 	}
 	
+	/// Used to handle new `size` while rotating the device. 
+	/// `view.bounds` are accidentally incorrect straight after device rotation.
+	private var actualViewSize: CGSize?
+	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		actualViewSize = size
+		super.viewWillTransition(to: size, with: coordinator)
+	}
+	
 	private func clearChat() {
 		messages = []
 		collectionView?.reloadData()
@@ -317,6 +326,8 @@ class ChatViewController: JSQMessagesViewController {
 		if messages[indexPath.item].isSystem {
 			size.height = 20
 		}
+		let viewSize = actualViewSize ?? self.view.frame.size
+		size.width = viewSize.width - 8
 		return size
 		
 	}
