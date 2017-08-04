@@ -1,0 +1,42 @@
+
+/* Class = "UITextField"; placeholder = "host"; ObjectID = "2Ib-49-q5S"; */
+"2Ib-49-q5S.placeholder" = "Host";
+
+/* Class = "UITextField"; placeholder = "Chat name"; ObjectID = "9se-2w-j3G"; */
+"9se-2w-j3G.placeholder" = "Chat name";
+
+/* Class = "UIViewController"; title = "MetaCom"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "MetaCom";
+
+/* Class = "UINavigationItem"; title = "127.0.0.1:8080"; ObjectID = "IGd-Ep-un2"; */
+"IGd-Ep-un2.title" = "User Connection";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Lfj-5I-109"; */
+"Lfj-5I-109.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "Let's chat!"; ObjectID = "WmP-dB-xvp"; */
+"WmP-dB-xvp.normalTitle" = "Submit";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "ZGb-Da-BFY"; */
+"ZGb-Da-BFY.normalTitle" = "Upload";
+
+/* Class = "UIButton"; normalTitle = "Download"; ObjectID = "ad8-0F-QUi"; */
+"ad8-0F-QUi.normalTitle" = "Download";
+
+/* Class = "UINavigationItem"; title = "Chat name"; ObjectID = "dmo-YO-J5M"; */
+"dmo-YO-J5M.title" = "Chat name";
+
+/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "ehY-bO-MuR"; */
+"ehY-bO-MuR.title" = "Chat";
+
+/* Class = "UILabel"; text = "MetaCom"; ObjectID = "fP0-ro-jze"; */
+"fP0-ro-jze.text" = "MetaCom";
+
+/* Class = "UILabel"; text = "Downloading / uploading info"; ObjectID = "idE-hv-BEr"; */
+"idE-hv-BEr.text" = "Downloading / uploading info";
+
+/* Class = "UITextField"; placeholder = "port"; ObjectID = "uHg-qc-BlR"; */
+"uHg-qc-BlR.placeholder" = "Port";
+
+/* Class = "UITabBarItem"; title = "Files"; ObjectID = "zzx-5z-Zl0"; */
+"zzx-5z-Zl0.title" = "Files";
