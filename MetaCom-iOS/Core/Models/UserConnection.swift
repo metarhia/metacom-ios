@@ -18,7 +18,7 @@ typealias Configuration = JSTP.Configuration
 typealias ConnectionDelegate = JSTP.ConnectionDelegate
 
 /**
-A type representing a user in the anonymous chat.
+	A type representing a user in the anonymous chat.
 */
 final class UserConnection {
 	

@@ -68,7 +68,7 @@ import UIKit
 		for _ in 0 ..< Constants.dotsCount {
 			stackView.addArrangedSubview(DotView(delegate: self))
 		}
-
+		
 		addSubview(stackView)
 		
 		dotsStackView = stackView

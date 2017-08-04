@@ -9,13 +9,13 @@
 import UIKit
 
 class UserConnectionViewController: UITabBarController {
-
-    @IBAction func leaveChat() {
-        
-        let confirmation = {
-            self.performSegue(withIdentifier: "unwind_to_connection", sender: nil)
-        }
-        
-        present(alert: UIAlerts.leavingServer(confirm: confirmation, deny: nil), animated: true)
-    }
+	
+	@IBAction func leaveChat() {
+		
+		let confirmation = {
+			self.performSegue(withIdentifier: "unwind_to_connection", sender: nil)
+		}
+		
+		present(alert: UIAlerts.leavingServer(confirm: confirmation, deny: nil), animated: true)
+	}
 }

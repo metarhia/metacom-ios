@@ -18,8 +18,8 @@ class Message {
 	*/
 	public enum Content {
 		case text(String)
-    case file(Data, uti: String?)
-    case fileURL(URL)
+		case file(Data, uti: String?)
+		case fileURL(URL)
 	}
 	
 	public let content: Content
@@ -32,8 +32,9 @@ class Message {
 			- content: message contents.
 	*/
 	init(content: Content, incoming: Bool = true) {
-
+		
 		self.content = content
 		self.isIncoming = incoming
 	}
 }
+

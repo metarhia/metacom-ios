@@ -133,7 +133,7 @@ class ChatViewController: JSQMessagesViewController {
 		self.inputToolbar.contentView.textView.becomeFirstResponder()
 	}
 	
-	/// Used to handle new `size` while rotating the device. 
+	/// Used to handle new `size` while rotating the device.
 	/// `view.bounds` are accidentally incorrect straight after device rotation.
 	private var actualViewSize: CGSize?
 	
@@ -150,7 +150,7 @@ class ChatViewController: JSQMessagesViewController {
 	
 	private func showChatStatus() {
 		if let chat = chat {
-            let text = chat.isEmpty ? "no_interlocutor".localized : "has_interlocutor".localized
+			let text = chat.isEmpty ? "no_interlocutor".localized : "has_interlocutor".localized
 			receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: text))
 		}
 	}
@@ -201,7 +201,7 @@ class ChatViewController: JSQMessagesViewController {
 					self.failedMessages.append(message)
 					self.reloadCell(for: message)
 				}
-
+				
 				return
 			}
 			
@@ -369,7 +369,7 @@ class ChatViewController: JSQMessagesViewController {
 			guard let cell = collectionView.cellForItem(at: indexPath) as? JSQMessagesCollectionViewCell else {
 				return
 			}
-
+			
 			popover.sourceView = cell.messageBubbleContainerView
 			popover.sourceRect = cell.messageBubbleContainerView.bounds
 		}
@@ -393,7 +393,7 @@ class ChatViewController: JSQMessagesViewController {
 		}
 		return !chatMessage.isSystem
 	}
-
+	
 	override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
 		guard let message = messages[indexPath.item].message else {
 			return false
@@ -482,14 +482,14 @@ extension ChatViewController: ChatRoomDelegate {
 		receive(ChatMessage(senderId: ChatConstants.systemSenderId, text: text))
 	}
 	
-    func chatRoom(_ chatRoom: ChatRoom, didReceive error: Error) {
-        guard chatRoom == chat else {
-            return
-        }
-        
-        let placeholder = "file".localized.capitalized
-        present(alert: UIErrors.fileDownloadFailed(filePlaceholder: placeholder), animated: true)
-    }
+	func chatRoom(_ chatRoom: ChatRoom, didReceive error: Error) {
+		guard chatRoom == chat else {
+			return
+		}
+		
+		let placeholder = "file".localized.capitalized
+		present(alert: UIErrors.fileDownloadFailed(filePlaceholder: placeholder), animated: true)
+	}
 }
 
 // MARK: - FilePickerDelegate

@@ -17,7 +17,7 @@ protocol FilePickerDelegate: class {
 	func filePickerWasCancelled(_ controller: FilePickerController)
 	
 	/// Called when file picker did pick `file` or `data` and was dismissed
-	/// but should perform some processing before calling 
+	/// but should perform some processing before calling
 	/// `filePicker(_:didPickFileAt:)` or filePicker(_:didPickData:uti:)
 	func filePickerDidEndPicking(_ controller: FilePickerController)
 	

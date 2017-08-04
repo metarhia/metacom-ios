@@ -108,30 +108,30 @@ class ChatRoom {
    		- mimeType: data mime type.
    		- completion: callback on completion.
    */
-  private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
-    
-    let onTransferEnd = { [unowned self] (error: Error?) in
-      
-      guard error == nil else {
-        completion?(error)
-        return
-      }
-      
-      self.connection.cacheCall(Constants.interfaceName, "endChatFileTransfer", []) { completion?($1) }
-    }
-    
-    let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
-      
-      guard error == nil else {
-        completion?(error)
-        return
-      }
-      
-      FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
-    }
-    
-    connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
-  }
+	private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
+		
+		let onTransferEnd = { [unowned self] (error: Error?) in
+			
+			guard error == nil else {
+				completion?(error)
+				return
+			}
+			
+			self.connection.cacheCall(Constants.interfaceName, "endChatFileTransfer", []) { completion?($1) }
+		}
+		
+		let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
+			
+			guard error == nil else {
+				completion?(error)
+				return
+			}
+			
+			FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
+		}
+		
+		connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+	}
 	
 	/**
 		Create observers for the common events.
@@ -218,34 +218,34 @@ extension ChatRoom {
    	- parameters:
    		- notification: notification containing a message.
    */
-  fileprivate func onChatFileTransferStart(_ notification: Notification) {
-    
-    guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
-        return
-    }
-    
-    let mimeType = event.arguments.first as? String ?? ""
-    let fileUTI = FileManager.extractUTI(from: mimeType)
-    
-    let chunkDownloadName = Events.name(ofEvent: .chatFileTransferChunk)
-    let fileDownloadName = Events.name(ofEvent: .chatFileTransferEnd)
-    
-    let chunkNotification = Notification.Name(chunkDownloadName)
-    let fileNotification = Notification.Name(fileDownloadName)
-    let notifications = (onChunkDownload: chunkNotification, onDownloadEnd: fileNotification)
-    
-    FileManager.download(listenTo: notifications, on: connection) { [unowned self] data, error in
-      
-      guard let data = data else {
-        let fileError = error ?? MCError(of: .fileFailed)
-        self.receivers.forEach { $0.chatRoom(self, didReceive: fileError) }
-        return
-      }
-      
-      let message = Message(content: .file(data, uti: fileUTI))
-      self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
-    }
-  }
+	fileprivate func onChatFileTransferStart(_ notification: Notification) {
+		
+		guard let event = notification.userInfo?[Constants.notificationObject] as? Event else {
+			return
+		}
+		
+		let mimeType = event.arguments.first as? String ?? ""
+		let fileUTI = FileManager.extractUTI(from: mimeType)
+		
+		let chunkDownloadName = Events.name(ofEvent: .chatFileTransferChunk)
+		let fileDownloadName = Events.name(ofEvent: .chatFileTransferEnd)
+		
+		let chunkNotification = Notification.Name(chunkDownloadName)
+		let fileNotification = Notification.Name(fileDownloadName)
+		let notifications = (onChunkDownload: chunkNotification, onDownloadEnd: fileNotification)
+		
+		FileManager.download(listenTo: notifications, on: connection) { [unowned self] data, error in
+			
+			guard let data = data else {
+				let fileError = error ?? MCError(of: .fileFailed)
+				self.receivers.forEach { $0.chatRoom(self, didReceive: fileError) }
+				return
+			}
+			
+			let message = Message(content: .file(data, uti: fileUTI))
+			self.receivers.forEach { $0.chatRoom(self, didReceive: message) }
+		}
+	}
 	
 	/**
 		Receive upon connection lost.

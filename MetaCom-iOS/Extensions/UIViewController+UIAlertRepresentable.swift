@@ -205,7 +205,7 @@ enum UIErrors: UIAlertRepresentable {
 enum UIAlerts: UIAlertRepresentable {
 	
 	case leavingChat(confirm: (() -> ())?, deny: (() -> ())?)
-    case leavingServer(confirm: (() -> ())?, deny: (() -> ())?)
+	case leavingServer(confirm: (() -> ())?, deny: (() -> ())?)
 	
 	case uploaded(withCode: String)
 	case download(handler: (String) -> ())
@@ -226,13 +226,13 @@ enum UIAlerts: UIAlertRepresentable {
 				message: "leave_chat_desc".localized,
 				actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
 			)
-            
-        case .leavingServer(confirm: let confirmation, deny: let denial):
-            return alertController(
-                entitled: "leave_server".localized,
-                message: "leave_server_desc".localized,
-                actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
-            )
+			
+		case .leavingServer(confirm: let confirmation, deny: let denial):
+			return alertController(
+				entitled: "leave_server".localized,
+				message: "leave_server_desc".localized,
+				actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
+			)
 			
 		case .uploaded(withCode: let fileCode):
 			return alertController(
@@ -261,7 +261,7 @@ enum UIAlerts: UIAlertRepresentable {
 			load.isEnabled = false
 			
 			let textFieldConfiguration: ((UITextField) -> Void)? = { textField in
-                textField.placeholder = "file_code".localized
+				textField.placeholder = "file_code".localized
 				textField.returnKeyType = .done
 				textField.enablesReturnKeyAutomatically = true
 				textField.addAction(for: .editingChanged) { [weak textField, weak load] in

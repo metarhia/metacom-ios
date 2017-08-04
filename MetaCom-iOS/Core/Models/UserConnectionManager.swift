@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-A type representing a manager for user connections to various server hosts and ports.
+	A type representing a manager for user connections to various server hosts and ports.
 */
 final class UserConnectionManager {
 	
