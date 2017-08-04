@@ -172,11 +172,9 @@ enum UIPicker<PickerController: UIViewController>: UIAlertRepresentable where Pi
 enum UIErrors: UIAlertRepresentable {
 	
 	case chatJoiningFailed
-	case chatOnlyInterlocutor
 	case fileUploadFailed
-	case fileDownloadFailed(fileCode: String)
+	case fileDownloadFailed(filePlaceholder: String)
 	case connectionFailed
-	case messageSendingFailed
 	case genericError
 	
 	private func errorController(with message: String) -> UIAlertController {
@@ -192,16 +190,12 @@ enum UIErrors: UIAlertRepresentable {
 		switch self {
 		case .chatJoiningFailed:
 			return errorController(with: "An error occured while joining chat room. Try again.")
-		case .chatOnlyInterlocutor:
-			return errorController(with: "You are the only chat interlocutor")
 		case .fileUploadFailed:
 			return errorController(with: "Upload failed")
 		case .fileDownloadFailed(let code):
 			return errorController(with: "Downloading file with code \"\(code)\" failed. Check the code and try again.")
 		case .connectionFailed:
 			return errorController(with: "Impossible to connect to server. Please check specified host and port and try again.")
-		case .messageSendingFailed:
-			return errorController(with: "An error occured while sending message. Try again.")
 		case .genericError:
 			return errorController(with: "Something gone wrong...")
 		}
