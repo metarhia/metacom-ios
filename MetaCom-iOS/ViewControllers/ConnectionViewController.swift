@@ -135,11 +135,12 @@ class ConnectionViewController: UIViewController {
 	}
 	
 	@IBAction func unwindToConnection(_ segue: UIStoryboardSegue) {
-		guard let current = UserConnectionManager.instance.currentConnection else {
-			return
-		}
-		
-		UserConnectionManager.instance.removeConnection(current)
+        
+        guard let current = UserConnectionManager.instance.currentConnection else {
+            return
+        }
+        
+        UserConnectionManager.instance.removeConnection(current)
 	}
 	
 	// MARK: - Handling keyboard events
