@@ -50,17 +50,17 @@ extension MCError {
 		135 : "File wasn`t sent."
 	]
 	
-	public enum ErrorType: Int {
-		case roomTaken = 30
-		case notInChat = 31
-		case noInterlocutor = 32
-		case noSuchfile = 33
-    case uploadNotStarted = 34
-    case previousUploadNotFinished = 35
-		case connectionLost = 133
-		case noChat = 134
-		case fileFailed = 135
-	}
+    public enum ErrorType: Int {
+        case roomTaken = 30
+        case notInChat = 31
+        case noInterlocutor = 32
+        case noSuchfile = 33
+        case uploadNotStarted = 34
+        case previousUploadNotFinished = 35
+        case connectionLost = 133
+        case noChat = 134
+        case fileFailed = 135
+    }
 }
 
 extension MCError: LocalizedError {
