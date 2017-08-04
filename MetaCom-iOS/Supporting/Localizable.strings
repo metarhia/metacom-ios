@@ -9,6 +9,7 @@
 	"connection_lost" = "Connection lost";
 	"connection_established" = "Connection established";
 	file = file;
+	"file_code" = "File code";
 	upload = Upload;
 	download = Download;
 	ok = OK;

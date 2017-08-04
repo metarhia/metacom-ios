@@ -261,6 +261,7 @@ enum UIAlerts: UIAlertRepresentable {
 			load.isEnabled = false
 			
 			let textFieldConfiguration: ((UITextField) -> Void)? = { textField in
+                textField.placeholder = "file_code".localized
 				textField.returnKeyType = .done
 				textField.enablesReturnKeyAutomatically = true
 				textField.addAction(for: .editingChanged) { [weak textField, weak load] in
