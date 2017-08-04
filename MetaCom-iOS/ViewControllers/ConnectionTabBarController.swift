@@ -1,5 +1,5 @@
 //
-//  UserConnectionViewController.swift
+//  ConnectionTabBarController.swift
 //  MetaCom-iOS
 //
 //  Created by Artem Chernenkiy on 04.08.2017.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class UserConnectionViewController: UITabBarController {
+class ConnectionTabBarController: UITabBarController {
 	
-	@IBAction func leaveChat() {
+	@IBAction func disconnect() {
 		
 		let confirmation = {
 			self.performSegue(withIdentifier: "unwind_to_connection", sender: nil)
