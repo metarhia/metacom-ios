@@ -12,10 +12,10 @@
 "IGd-Ep-un2.title" = "User Connection";
 
 /* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Lfj-5I-109"; */
-"Lfj-5I-109.normalTitle" = "Submit";
+"Lfj-5I-109.normalTitle" = "Connect";
 
 /* Class = "UIButton"; normalTitle = "Let's chat!"; ObjectID = "WmP-dB-xvp"; */
-"WmP-dB-xvp.normalTitle" = "Submit";
+"WmP-dB-xvp.normalTitle" = "Open";
 
 /* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "ZGb-Da-BFY"; */
 "ZGb-Da-BFY.normalTitle" = "Upload";
