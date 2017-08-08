@@ -19,6 +19,7 @@ class ChatRoom {
 	private(set) var isEmpty: Bool
 	fileprivate let connection: Connection
 	fileprivate var receivers: Array<ChatRoomDelegate> = []
+	fileprivate var filesQueue: Array<(data: Data, mimeType: String, completion: Completion?)> = []
 	
 	fileprivate var hasInterlocutor: Bool {
 		set {
@@ -110,10 +111,24 @@ class ChatRoom {
 	*/
 	private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
 		
+		let clearCompletion: Completion? = { [unowned self] (error: Error?) in
+			
+			defer {
+				completion?(error)
+			}
+			
+			guard !self.filesQueue.isEmpty else {
+				return
+			}
+			
+			let nextFile = self.filesQueue.removeFirst()
+			self.sendFile(nextFile.data, mimeType: nextFile.mimeType, completion: nextFile.completion)
+		}
+		
 		let onTransferEnd = { [unowned self] (error: Error?) in
 			
 			guard error == nil else {
-				completion?(error)
+				clearCompletion?(error)
 				return
 			}
 			
@@ -123,14 +138,18 @@ class ChatRoom {
 		let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
 			
 			guard error == nil else {
-				completion?(error)
+				clearCompletion?(error)
 				return
 			}
 			
 			FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
 		}
 		
-		connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+		if filesQueue.isEmpty {
+			connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+		} else {
+			filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+		}
 	}
 	
 	/**
