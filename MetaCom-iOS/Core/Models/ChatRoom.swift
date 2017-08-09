@@ -123,21 +123,22 @@ class ChatRoom {
 			- completion: callback on completion.
 	*/
 	private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
-		
+        
+        var loadFromQueue: (() -> ())?
+        
 		let clearCompletion: Completion? = { [unowned self] (error: Error?) in
-			
-			defer {
-				completion?(error)
-			}
             
-            self.filesQueue.removeFirst()
+            let completionHandler = self.filesQueue.removeFirst().completion
+            
+			defer {
+                completionHandler?(error)
+			}
 			
 			guard !self.filesQueue.isEmpty else {
 				return
 			}
             
-			let nextFile = self.filesQueue.removeFirst()
-			self.sendFile(nextFile.data, mimeType: nextFile.mimeType, completion: nextFile.completion)
+            loadFromQueue?()
 		}
 		
 		let onTransferEnd = { [unowned self] (error: Error?) in
@@ -156,15 +157,31 @@ class ChatRoom {
 				clearCompletion?(error)
 				return
 			}
+            
+            guard let file = self.filesQueue.first?.data else {
+                clearCompletion?(MCError(of: .fileFailed))
+                return
+            }
 			
-			FileManager.upload(data: data, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
+			FileManager.upload(data: file, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
 		}
-		
-		if filesQueue.isEmpty {
-			connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
+        
+        loadFromQueue = { [weak self] in
+            
+            guard let type = self?.filesQueue.first?.mimeType else {
+                clearCompletion?(MCError(of: .fileFailed))
+                return
+            }
+            
+            self?.connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [type], onTransferStart)
         }
         
-        filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+        if filesQueue.isEmpty {
+            filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+            loadFromQueue?()
+        } else {
+            filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+        }
 	}
 	
 	/**
