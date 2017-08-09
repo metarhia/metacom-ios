@@ -129,11 +129,13 @@ class ChatRoom {
 			defer {
 				completion?(error)
 			}
+            
+            self.filesQueue.removeFirst()
 			
 			guard !self.filesQueue.isEmpty else {
 				return
 			}
-			
+            
 			let nextFile = self.filesQueue.removeFirst()
 			self.sendFile(nextFile.data, mimeType: nextFile.mimeType, completion: nextFile.completion)
 		}
@@ -145,7 +147,7 @@ class ChatRoom {
 				return
 			}
 			
-			self.connection.cacheCall(Constants.interfaceName, "endChatFileTransfer", []) { completion?($1) }
+			self.connection.cacheCall(Constants.interfaceName, "endChatFileTransfer", []) { clearCompletion?($1) }
 		}
 		
 		let onTransferStart = { [unowned self] (_: Any?, error: Error?) in
@@ -160,9 +162,9 @@ class ChatRoom {
 		
 		if filesQueue.isEmpty {
 			connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [mimeType], onTransferStart)
-		} else {
-			filesQueue.append((data: data, mimeType: mimeType, completion: completion))
-		}
+        }
+        
+        filesQueue.append((data: data, mimeType: mimeType, completion: completion))
 	}
 	
 	/**
@@ -281,6 +283,7 @@ extension ChatRoom {
 			- notification: notification containing a message.
 	*/
 	fileprivate func onConnectionFailed(_ notification: Notification) {
+        self.filesQueue.removeAll()
 		self.receivers.forEach { $0.chatRoom(self, connectionDidChange: false) }
 	}
 	
