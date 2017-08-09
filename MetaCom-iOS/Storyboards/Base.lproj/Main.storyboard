@@ -69,7 +69,7 @@
                                                 <rect key="frame" x="0.0" y="38" width="250" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <action selector="textFieldValueChanged" destination="BYZ-38-t0r" eventType="editingChanged" id="Vw2-Om-MdQ"/>
                                                 </connections>
