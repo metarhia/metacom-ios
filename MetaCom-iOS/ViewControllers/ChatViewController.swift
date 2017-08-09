@@ -156,27 +156,11 @@ class ChatViewController: JSQMessagesViewController {
 	}
 	
     @IBAction func closeChat() {
-        
-        let exitHandler: Completion? = { [weak self] error in
-            
-            guard let `error` = error, let localError = MCError(from: error), localError.errorCode != 31 else {
-                
-                // TODO: - Perform actions on success
-                self?.performSegue(withIdentifier: "closeChat", sender: nil)
-                self?.chat = nil
-                return
-            }
-            
-            // TODO: - Perform actions on Error
-        }
-        
+
         let confirmationHandler: (() -> ())? = { [weak self] in
             
-            guard let chatRoom = self?.chat, let uConnection = UserConnectionManager.instance.currentConnection else {
-                return
-            }
-            
-            uConnection.chatManager.removeRoom(chatRoom, completion: exitHandler)
+            self?.chat = nil
+            self?.performSegue(withIdentifier: "closeChat", sender: nil)
         }
         
         self.present(alert: UIAlerts.leavingChat(confirm: confirmationHandler, deny: nil), animated: true)

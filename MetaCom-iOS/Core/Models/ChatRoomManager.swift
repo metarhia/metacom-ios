@@ -92,17 +92,16 @@ final class ChatRoomManager {
 	*/
 	func removeRoom(_ chatRoom: ChatRoom, completion: Completion? = nil) {
 		
-		chatRoom.leave { (error) in
+		chatRoom.leave { error in
 			
 			defer {
 				completion?(error)
 			}
 			
-			guard error == nil else {
+			guard let `error` = error, let localError = MCError(from: error), localError.errorCode != 31 else {
+                self.chats.remove(chatRoom)
 				return
 			}
-			
-			self.chats.remove(chatRoom)
 		}
 	}
 	
