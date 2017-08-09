@@ -10,7 +10,14 @@ import JSQMessagesViewController
 
 class JSQMessagesCollectionViewCellSystem: JSQMessagesCollectionViewCell {
 	
-	@IBOutlet weak var textLabel: UILabel!
+	@IBOutlet weak var textLabel: UILabel! {
+		didSet {
+			guard let label = textLabel else {
+				return
+			}
+			label.font = label.font.withSize(15)
+		}
+	}
 	
 	var text: String? {
 		get {
