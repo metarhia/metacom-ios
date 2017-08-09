@@ -19,6 +19,7 @@ class ChatRoom {
 	private(set) var isEmpty: Bool
 	fileprivate let connection: Connection
 	fileprivate var receivers: Array<ChatRoomDelegate> = []
+	fileprivate var observerTokens: Array<NSObjectProtocol> = []
 	fileprivate var filesQueue: Array<(data: Data, mimeType: String, completion: Completion?)> = []
 	
 	fileprivate var hasInterlocutor: Bool {
@@ -74,7 +75,19 @@ class ChatRoom {
 	*/
 	func leave(completion: Completion?) {
 		
-		self.connection.cacheCall(Constants.interfaceName, "leave", [], { completion?($1) })
+		let deinitHandler: Callback? = { [unowned self] _, error in
+			
+			NotificationCenter.default.removeObserver(self)
+			
+			self.observerTokens.forEach(NotificationCenter.default.removeObserver(_:))
+			self.observerTokens.removeAll()
+			self.filesQueue.removeAll()
+			self.receivers.removeAll()
+			
+			completion?(error)
+		}
+		
+		connection.cacheCall(Constants.interfaceName, "leave", [], deinitHandler)
 	}
 	
 	/**
@@ -183,13 +196,9 @@ class ChatRoom {
 			}
 			
 			let center = NotificationCenter.default
-			center.addObserver(forName: pair.event, object: this.connection, queue: nil, using: pair.method)
+			let token = center.addObserver(forName: pair.event, object: this.connection, queue: nil, using: pair.method)
+			self?.observerTokens.append(token)
 		}
-	}
-	
-	deinit {
-		NotificationCenter.default.removeObserver(self)
-		self.leave(completion: nil)
 	}
 }
 
