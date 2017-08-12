@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 import MobileCoreServices
 
 // TODO: - Fix naming in multiple places.
@@ -81,7 +82,15 @@ extension Actions {
 						imagePicker.mediaTypes = types
 					}
 					
-					controller.present(imagePicker, animated: true)
+					let authStatus = PHPhotoLibrary.authorizationStatus()
+					if authStatus == .notDetermined {
+						PHPhotoLibrary.requestAuthorization { _ in
+							controller.present(imagePicker, animated: true)
+						}
+					} else {
+						controller.present(imagePicker, animated: true)
+					}
+					
 				}
 				
 				return UIAlertAction(title: "photo_library".localized, style: .default, handler: block)
