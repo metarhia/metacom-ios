@@ -123,22 +123,22 @@ class ChatRoom {
 			- completion: callback on completion.
 	*/
 	private func sendFile(_ data: Data, mimeType: String, completion: Completion? = nil) {
-        
-        var loadFromQueue: (() -> ())?
-        
+		
+		var loadFromQueue: (() -> ())?
+		
 		let clearCompletion: Completion? = { [unowned self] (error: Error?) in
-            
-            let completionHandler = self.filesQueue.removeFirst().completion
-            
+			
+			let completionHandler = self.filesQueue.removeFirst().completion
+			
 			defer {
-                completionHandler?(error)
+				completionHandler?(error)
 			}
 			
 			guard !self.filesQueue.isEmpty else {
 				return
 			}
-            
-            loadFromQueue?()
+			
+			loadFromQueue?()
 		}
 		
 		let onTransferEnd = { [unowned self] (error: Error?) in
@@ -157,31 +157,31 @@ class ChatRoom {
 				clearCompletion?(error)
 				return
 			}
-            
-            guard let file = self.filesQueue.first?.data else {
-                clearCompletion?(MCError(of: .fileFailed))
-                return
-            }
+			
+			guard let file = self.filesQueue.first?.data else {
+				clearCompletion?(MCError(of: .fileFailed))
+				return
+			}
 			
 			FileManager.upload(data: file, via: self.connection, method: "sendFileChunkToChat", completion: onTransferEnd)
 		}
-        
-        loadFromQueue = { [weak self] in
-            
-            guard let type = self?.filesQueue.first?.mimeType else {
-                clearCompletion?(MCError(of: .fileFailed))
-                return
-            }
-            
-            self?.connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [type], onTransferStart)
-        }
-        
-        if filesQueue.isEmpty {
-            filesQueue.append((data: data, mimeType: mimeType, completion: completion))
-            loadFromQueue?()
-        } else {
-            filesQueue.append((data: data, mimeType: mimeType, completion: completion))
-        }
+		
+		loadFromQueue = { [weak self] in
+			
+			guard let type = self?.filesQueue.first?.mimeType else {
+				clearCompletion?(MCError(of: .fileFailed))
+				return
+			}
+			
+			self?.connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [type], onTransferStart)
+		}
+		
+		if filesQueue.isEmpty {
+			filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+			loadFromQueue?()
+		} else {
+			filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+		}
 	}
 	
 	/**
@@ -259,7 +259,7 @@ extension ChatRoom {
 		hasInterlocutor = false
 		receivers.forEach { $0.chatRoomDidLeave(self) }
 	}
-  
+	
 	/**
 		Receive upon chat interlocutor starts file transfer.
 		- parameters:
@@ -300,7 +300,7 @@ extension ChatRoom {
 			- notification: notification containing a message.
 	*/
 	fileprivate func onConnectionFailed(_ notification: Notification) {
-        self.filesQueue.removeAll()
+		self.filesQueue.removeAll()
 		self.receivers.forEach { $0.chatRoom(self, connectionDidChange: false) }
 	}
 	

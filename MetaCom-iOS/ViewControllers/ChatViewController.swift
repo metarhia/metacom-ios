@@ -155,16 +155,16 @@ class ChatViewController: JSQMessagesViewController {
 		}
 	}
 	
-    @IBAction func closeChat() {
-
-        let confirmationHandler: (() -> ())? = { [weak self] in
-            
-            self?.chat = nil
-            self?.performSegue(withIdentifier: "closeChat", sender: nil)
-        }
-        
-        self.present(alert: UIAlerts.leavingChat(confirm: confirmationHandler, deny: nil), animated: true)
-    }
+	@IBAction func closeChat() {
+		
+		let confirmationHandler: (() -> ())? = { [weak self] in
+			
+			self?.chat = nil
+			self?.performSegue(withIdentifier: "closeChat", sender: nil)
+		}
+		
+		self.present(alert: UIAlerts.leavingChat(confirm: confirmationHandler, deny: nil), animated: true)
+	}
 	
 	// MARK: - Sending / receiving messages
 	
