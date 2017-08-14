@@ -350,7 +350,7 @@ class ChatViewController: JSQMessagesViewController {
 			}
 			
 			let fileExtension = FileManager.extractExtension(using: uti ?? "")
-			let fileName = Int(Date().timeIntervalSinceReferenceDate * 1000).description
+			let fileName = (Date.timeIntervalSinceReferenceDate * 10).description
 			let fileURL = path.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
 			
 			guard (try? data.write(to: fileURL)) != nil else {
