@@ -9,6 +9,7 @@
 import Foundation
 
 typealias Completion = (Error?) -> ()
+typealias FileUpload = (data: Data, mimeType: String, completion: Completion?)
 
 /**
 	A type representing a chat conversation.
@@ -18,9 +19,9 @@ class ChatRoom {
 	public let name: String
 	private(set) var isEmpty: Bool
 	fileprivate let connection: Connection
+	fileprivate var filesQueue: Array<FileUpload> = []
 	fileprivate var receivers: Array<ChatRoomDelegate> = []
 	fileprivate var observerTokens: Array<NSObjectProtocol> = []
-	fileprivate var filesQueue: Array<(data: Data, mimeType: String, completion: Completion?)> = []
 	
 	fileprivate var hasInterlocutor: Bool {
 		set {
@@ -176,11 +177,13 @@ class ChatRoom {
 			self?.connection.cacheCall(Constants.interfaceName, "startChatFileTransfer", [type], onTransferStart)
 		}
 		
+		let fileUpload: FileUpload = (data: data, mimeType: mimeType, completion: completion)
+		
 		if filesQueue.isEmpty {
-			filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+			filesQueue.append(fileUpload)
 			loadFromQueue?()
 		} else {
-			filesQueue.append((data: data, mimeType: mimeType, completion: completion))
+			filesQueue.append(fileUpload)
 		}
 	}
 	
