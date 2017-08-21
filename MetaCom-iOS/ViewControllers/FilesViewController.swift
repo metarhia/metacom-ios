@@ -90,7 +90,7 @@ class FilesViewController: UIViewController {
 			self.present(share, animated: true)
 		}
 		
-		let downloadAlert = UIAlerts.download { [weak self] code in
+		let dowloadHandler: (String) -> () = { [weak self] code in
 			guard let `self` = self else {
 				return
 			}
@@ -104,6 +104,8 @@ class FilesViewController: UIViewController {
 			let manager = UserConnectionManager.instance.currentConnection?.fileManager
 			manager?.download(from: code, completion: downloadCompletion)
 		}
+		
+		let downloadAlert = UIAlerts.download(handler: dowloadHandler, textFieldDelegate: self)
 		
 		present(alert: downloadAlert, animated: true)
 	}
@@ -155,5 +157,14 @@ extension FilesViewController: FilePickerDelegate {
 		infoStackView.isHidden = true
 		
 		present(alert: UIErrors.genericError, animated: true)
+	}
+}
+
+// MARK: - UITextFieldDelegate
+
+extension FilesViewController: UITextFieldDelegate {
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		return string.isEmpty || !string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
 	}
 }

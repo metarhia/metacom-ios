@@ -217,7 +217,7 @@ enum UIAlerts: UIAlertRepresentable {
 	case leavingServer(confirm: (() -> ())?, deny: (() -> ())?)
 	
 	case uploaded(withCode: String)
-	case download(handler: (String) -> ())
+	case download(handler: (String) -> (), textFieldDelegate: UITextFieldDelegate?)
 	
 	private func alertController(entitled: String, message: String? = nil, actions: UIAlertAction...) -> UIAlertController {
 		
@@ -250,7 +250,7 @@ enum UIAlerts: UIAlertRepresentable {
 				actions: Actions.copy(code: fileCode).alertAction, Actions.confirm(withBlock: nil).alertAction
 			)
 			
-		case .download(handler: let handler):
+		case .download(let handler, let delegate):
 			
 			let alert = alertController(
 				entitled: "download_desc".localized,
@@ -273,6 +273,7 @@ enum UIAlerts: UIAlertRepresentable {
 				textField.placeholder = "file_code".localized
 				textField.returnKeyType = .done
 				textField.enablesReturnKeyAutomatically = true
+				textField.delegate = delegate
 				textField.addAction(for: .editingChanged) { [weak textField, weak load] in
 					load?.isEnabled = textField?.text?.isEmpty == false
 				}
