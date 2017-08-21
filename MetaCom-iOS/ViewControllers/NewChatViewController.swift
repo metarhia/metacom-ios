@@ -74,6 +74,9 @@ class NewChatViewController: UIViewController {
 	}
 	
 	@IBAction func nameChanged() {
+		if chatNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true {
+			chatNameTextField.text = ""
+		}
 		updateButtonState()
 	}
 	
@@ -170,6 +173,10 @@ class NewChatViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 
 extension NewChatViewController: UITextFieldDelegate {
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		return !((textField.text?.isEmpty != false) && string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
