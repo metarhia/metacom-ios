@@ -87,7 +87,10 @@ class ConnectionViewController: UIViewController {
 		connectButton.isEnabled = host != nil && port != nil
 	}
 	
-	@IBAction func textFieldValueChanged() {
+	@IBAction func textFieldValueChanged(_ textField: UITextField) {
+		if textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true {
+			textField.text = ""
+		}
 		updateButtonState()
 	}
 	
@@ -182,6 +185,10 @@ class ConnectionViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 
 extension ConnectionViewController: UITextFieldDelegate {
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		return !((textField.text?.isEmpty != false) && string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let nextTag = textField.tag + 1;
