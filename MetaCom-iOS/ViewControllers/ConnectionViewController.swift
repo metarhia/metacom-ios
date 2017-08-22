@@ -146,6 +146,12 @@ class ConnectionViewController: UIViewController {
 		UserConnectionManager.instance.removeConnection(current)
 	}
 	
+	@IBAction func showServerIstallationGuide() {
+		if let url = URL(string: "link_server_installation_guide".localized) {
+			UIApplication.shared.open(url)
+		}
+	}
+	
 	// MARK: - Handling keyboard events
 	// Preventing controls overlapping by keyboard.
 	// Perhaps will be replaced with another solution later.
