@@ -66,6 +66,10 @@ class ConnectionViewController: UIViewController {
 		}
 	}
 	
+	override var preferredStatusBarStyle : UIStatusBarStyle {
+		return .lightContent
+	}
+	
 	// MARK: - UI updating stuff
 	
 	private var isInterfaceLocked: Bool = false {

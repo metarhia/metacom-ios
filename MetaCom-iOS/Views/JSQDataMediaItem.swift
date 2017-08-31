@@ -34,9 +34,9 @@ class JSQDataMediaItem: JSQMediaItem {
 	private func updateBackground() {
 		let color: UIColor
 		if appliesMediaViewMaskAsOutgoing {
-			color = isFailed ? .jsq_messageBubbleRed() : .jsq_messageBubbleBlue()
+			color = isFailed ? .messageBubbleFailed : .messageBubbleOutgoing
 		} else {
-			color = .jsq_messageBubbleLightGray()
+			color = .messageBubbleIncoming
 		}
 		cachedView?.backgroundColor = color
 	}

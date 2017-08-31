@@ -37,9 +37,11 @@
 		8F02679D1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */; };
 		8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
 		8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */; };
+		8F03FD611F58297200583A1D /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03FD601F58297200583A1D /* UITextField+PlaceholderColor.swift */; };
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
 		8F3CAC341F29D49D00382D9A /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CAC331F29D49D00382D9A /* ActivityButton.swift */; };
 		8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */; };
+		8F689DE01F56BEF6001CB56A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689DDF1F56BEF6001CB56A /* UIColor+Extensions.swift */; };
 		8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */; };
 		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
 		8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
@@ -106,9 +108,11 @@
 		8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+VerticalLayout.swift"; sourceTree = "<group>"; };
 		8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerController.swift; sourceTree = "<group>"; };
 		8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerDelegate.swift; sourceTree = "<group>"; };
+		8F03FD601F58297200583A1D /* UITextField+PlaceholderColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
 		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		8F3CAC331F29D49D00382D9A /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertRepresentable.swift"; sourceTree = "<group>"; };
+		8F689DDF1F56BEF6001CB56A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessagesBubbleImage.swift; sourceTree = "<group>"; };
 		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotedActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */,
 				148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */,
 				8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */,
+				8F689DDF1F56BEF6001CB56A /* UIColor+Extensions.swift */,
+				8F03FD601F58297200583A1D /* UITextField+PlaceholderColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -480,6 +486,7 @@
 				8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */,
 				147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */,
 				142319051ECDDE0900F63687 /* Message.swift in Sources */,
+				8F03FD611F58297200583A1D /* UITextField+PlaceholderColor.swift in Sources */,
 				142318F61ECCE99C00F63687 /* UserConnectionManager.swift in Sources */,
 				8F7370E71F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift in Sources */,
 				142318F81ECCE9AE00F63687 /* UserConnection.swift in Sources */,
@@ -488,6 +495,7 @@
 				8F9E9FA51ECEF8E1004F5CD1 /* FilesViewController.swift in Sources */,
 				8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */,
 				14CBECC91ED08ECD008B6587 /* Events.swift in Sources */,
+				8F689DE01F56BEF6001CB56A /* UIColor+Extensions.swift in Sources */,
 				8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */,
 				142319021ECCF2F800F63687 /* Constants.swift in Sources */,
 				14E3BA661EE467A100739F46 /* Error.swift in Sources */,

@@ -45,10 +45,19 @@ class ActivityButton: UIButton {
 	private func setup() {
 		let activityIndicator = UIActivityIndicatorView(frame: self.bounds)
 		activityIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		activityIndicator.activityIndicatorViewStyle = .gray
+		activityIndicator.activityIndicatorViewStyle = .white
 		activityIndicator.hidesWhenStopped = true
 		self.addSubview(activityIndicator)
 		self.activityIndicator = activityIndicator
+	}
+	
+	var activityIndicatorStyle: UIActivityIndicatorViewStyle {
+		get {
+			return activityIndicator.activityIndicatorViewStyle
+		}
+		set {
+			activityIndicator.activityIndicatorViewStyle = newValue
+		}
 	}
 	
 	var isActivityIndicatorVisible: Bool = false {

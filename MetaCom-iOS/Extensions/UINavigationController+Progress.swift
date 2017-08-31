@@ -48,6 +48,7 @@ private class ProgressView: UIView {
 	
 	private func setup() {
 		self.addSubview(progressView)
+		tintColor = .defaultTint
 		updateProgressView()
 	}
 	

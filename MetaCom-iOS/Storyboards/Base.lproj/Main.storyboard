@@ -47,7 +47,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="MetaCom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-ro-jze">
                                         <rect key="frame" x="141.5" y="271.5" width="92" height="25.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azi-qc-NC2" userLabel="Separator">
@@ -59,18 +59,30 @@
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="host" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-49-q5S">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
-                                                <nil key="textColor"/>
+                                                <color key="backgroundColor" white="0.19536675347222221" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="textFieldValueChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="Kvl-Qo-9al"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="port" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uHg-qc-BlR">
                                                 <rect key="frame" x="0.0" y="38" width="250" height="30"/>
-                                                <nil key="textColor"/>
+                                                <color key="backgroundColor" white="0.19536675347222221" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="textFieldValueChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="OAw-BB-56i"/>
                                                 </connections>
@@ -93,7 +105,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="xjh-lo-fn1" firstAttribute="leading" secondItem="wcp-SF-qnh" secondAttribute="leading" id="1MG-X7-Jfr"/>
                                     <constraint firstItem="CLm-L6-8F0" firstAttribute="top" secondItem="gRX-Nv-JAb" secondAttribute="bottom" id="4MO-HM-8ed"/>
@@ -144,7 +156,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="qA5-i2-Gsd" secondAttribute="trailing" id="8KI-gU-ndE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qA5-i2-Gsd" secondAttribute="bottom" constant="8" symbolic="YES" id="96N-DX-HNe"/>
@@ -187,9 +199,15 @@
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Chat name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9se-2w-j3G">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
-                                        <nil key="textColor"/>
+                                        <color key="backgroundColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="nameChanged" destination="FLt-Jf-409" eventType="editingChanged" id="87n-Ni-xq0"/>
                                         </connections>
@@ -204,7 +222,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pJU-7k-hOr" firstAttribute="centerY" secondItem="OeM-3e-VNM" secondAttribute="centerY" priority="750" id="IJW-tt-bFU"/>
                             <constraint firstItem="pJU-7k-hOr" firstAttribute="width" secondItem="OeM-3e-VNM" secondAttribute="width" multiplier="1:1.5" id="gST-jq-M7m"/>
@@ -235,7 +253,7 @@
                     <view key="view" contentMode="scaleToFill" id="bdu-u1-iuD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chat name" id="dmo-YO-J5M">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="YHD-xZ-UXy">
@@ -307,7 +325,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vyo-0b-WAs" firstAttribute="centerY" secondItem="f7v-3Q-Rdt" secondAttribute="centerY" id="0qk-R3-bJc"/>
                             <constraint firstItem="vyo-0b-WAs" firstAttribute="centerX" secondItem="f7v-3Q-Rdt" secondAttribute="centerX" id="5es-Cu-jqB"/>
@@ -340,10 +358,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="03c-i2-S5s">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="03c-i2-S5s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.93725490199999995" green="0.60392156860000001" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9mn-GY-DcA" kind="relationship" relationship="viewControllers" id="mlC-oT-gkG"/>
@@ -359,7 +378,8 @@
         <scene sceneID="Urg-Fz-T8c">
             <objects>
                 <navigationController id="c0u-BN-ZGB" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bL7-rh-wvh">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bL7-rh-wvh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -376,7 +396,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EuX-dW-NWt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ovz-9v-EiI">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ovz-9v-EiI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -398,4 +419,5 @@
         <image name="logo" width="1024" height="1024"/>
         <image name="upload" width="45" height="59"/>
     </resources>
+    <color key="tintColor" red="0.87450980392156863" green="0.54117647058823526" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
 </document>

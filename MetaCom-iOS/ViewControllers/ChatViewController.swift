@@ -102,9 +102,9 @@ class ChatViewController: JSQMessagesViewController {
 	fileprivate var messages = [ChatMessage]()
 	fileprivate var failedMessages = [Message]()
 	
-	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())!
-	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())!
-	private var failedBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleRed())!
+	private var incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .messageBubbleIncoming)!
+	private var outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .messageBubbleOutgoing)!
+	private var failedBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .messageBubbleFailed)!
 	private var systemBubble = SystemMessagesBubbleImage()
 	
 	// MARK: - View Controller Lifecycle
@@ -113,6 +113,14 @@ class ChatViewController: JSQMessagesViewController {
 		super.viewDidLoad()
 		
 		self.title = chat?.name
+		
+		collectionView.backgroundColor = .black
+		inputToolbar.contentView.textView.keyboardAppearance = .dark
+		inputToolbar.contentView.textView.backgroundColor = .black
+		inputToolbar.contentView.textView.textColor = .white
+		inputToolbar.contentView.textView.tintColor = .defaultTint
+		inputToolbar.contentView.rightBarButtonItem.setTitleColor(.defaultTint, for: .normal)
+		inputToolbar.barStyle = .blackTranslucent
 		
 		collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
 		                        forCellWithReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier())
@@ -299,6 +307,7 @@ class ChatViewController: JSQMessagesViewController {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JSQMessagesCollectionViewCellSystem.cellReuseIdentifier(), for: indexPath) as! JSQMessagesCollectionViewCellSystem
 			
 			cell.text = chatMessage.text
+			cell.backgroundColor = .clear
 			
 			return cell
 		}
@@ -310,7 +319,7 @@ class ChatViewController: JSQMessagesViewController {
 		let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
 		
 		if let messageCell = cell as? JSQMessagesCollectionViewCell {
-			let textColor: UIColor = chatMessage.senderId == self.senderId ? .white : .black
+			let textColor: UIColor = chatMessage.senderId == self.senderId ? .black : .white
 			messageCell.textView?.textColor = textColor
 			
 			// Disabling user interaction and (unfortunately) data detectors to prevent text selection.
