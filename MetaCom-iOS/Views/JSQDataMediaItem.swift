@@ -61,7 +61,7 @@ class JSQDataMediaItem: JSQMediaItem {
 		
 		let isOutgoing = appliesMediaViewMaskAsOutgoing
 		let view = DataMediaView(frame: CGRect(origin: .zero, size: mediaViewDisplaySize()))
-		view.tintColor = isOutgoing ? .white : UIColor.black.withAlphaComponent(0.7)
+		view.tintColor = isOutgoing ? UIColor.black : UIColor.white
 		view.clipsToBounds = true
 		view.isLoading = isLoading
 		JSQMessagesMediaViewBubbleImageMasker.applyBubbleImageMask(toMediaView: view, isOutgoing: isOutgoing)

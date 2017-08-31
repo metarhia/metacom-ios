@@ -120,6 +120,7 @@ class ChatViewController: JSQMessagesViewController {
 		inputToolbar.contentView.textView.textColor = .white
 		inputToolbar.contentView.textView.tintColor = .defaultTint
 		inputToolbar.contentView.rightBarButtonItem.setTitleColor(.defaultTint, for: .normal)
+		inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.defaultTint.withAlphaComponent(0.3), for: .highlighted)
 		inputToolbar.barStyle = .blackTranslucent
 		
 		collectionView.register(JSQMessagesCollectionViewCellSystem.nib(),
