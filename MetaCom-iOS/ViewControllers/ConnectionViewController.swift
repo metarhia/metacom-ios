@@ -39,17 +39,13 @@ class ConnectionViewController: UIViewController {
 		portTextField.delegate = self
 		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
-        
-        defer {
-            updateButtonState()
-        }
 		
-		guard let saved = UserConnectionManager.instance.requestPreviousConnection() else {
-			return
+		if let saved = UserConnectionManager.instance.requestPreviousConnection() {
+			hostTextField.text = saved.host
+			portTextField.text = "\(saved.port)"
 		}
 		
-		hostTextField.text = saved.host
-		portTextField.text = "\(saved.port)"
+		updateButtonState()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
