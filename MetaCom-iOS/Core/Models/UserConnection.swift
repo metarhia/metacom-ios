@@ -94,15 +94,16 @@ final class UserConnection {
 		}
 		
 		/// Block called if any transport related error occures.
-		let block: (Notification) -> Void = {
+		let errorHandler: (Notification) -> Void = {
 			let error = $0.userInfo?["error"] as? Error ?? MCError(of: .connectionLost)
 			completion(nil, error)
 		}
 		
-		let t1 = center.addObserver(forName: .MCConnectionDidFail, object: connection, queue: queue, using: block)
-		let t2 = center.addObserver(forName: .MCConnectionLost, object: connection, queue: queue, using: block)
+		let t1 = center.addObserver(forName: .MCConnectionDidFail, object: connection, queue: queue, using: errorHandler)
+		let t2 = center.addObserver(forName: .MCConnectionLost, object: connection, queue: queue, using: errorHandler)
+		let t3 = center.addObserver(forName: .UIApplicationDidEnterBackground, object: connection, queue: queue, using: errorHandler)
 		
-		tokens.append(contentsOf: [t1, t2])
+		tokens.append(contentsOf: [t1, t2, t3])
 		
 		connection.connect()
 		connection.handshake(Constants.applicationName, completion)
@@ -111,13 +112,14 @@ final class UserConnection {
 	/**
 		Attempt to reconnect to a `MetaCom` server.
 	*/
-	func reconnect() {
+	func reconnect(with callback: ((Error?) -> Void)? = nil) {
 		
 		connection.reconnect(config: config)
 		connection.handshake(Constants.applicationName) { [unowned self] _, error in
-			self.isActive = true
 			let name: Notification.Name = (error != nil) ? .MCConnectionDidFail : .MCConnectionRestored
 			NotificationCenter.default.post(name: name, object: self.connection)
+			
+			callback?(error)
 		}
 	}
 	
@@ -150,7 +152,9 @@ extension UserConnection: ConnectionDelegate {
 	
 	public func connectionDidConnect(_ connection: JSTP.Connection) {
 		isActive = true
-		NotificationCenter.default.post(name: .MCConnectionEstablished, object: connection)
+		
+		let center = NotificationCenter.default
+		center.post(name: .MCConnectionEstablished, object: connection)
 	}
 	
 	public func connection(_ connection: Connection, didFailWithError error: Error) {
@@ -161,7 +165,23 @@ extension UserConnection: ConnectionDelegate {
 		
 		isActive = false
 		NotificationCenter.default.post(name: .MCConnectionDidFail, object: connection, userInfo: ["error": error])
+		
 		reconnect()
+		Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
+			
+			guard let isEstablished = self?.isActive, !isEstablished else {
+				return timer.invalidate()
+			}
+			
+			self?.reconnect { error in
+				
+				guard error == nil else {
+					return
+				}
+				
+				timer.invalidate()
+			}
+		}
 		
 		NSLog("Connection #\(id) failed with error \(error.localizedDescription)")
 	}
