@@ -35,17 +35,21 @@ class ConnectionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Developer hack. Will be removed. Later...
-		#if DEBUG
-			hostTextField.text = "dev.metarhia.com"
-			portTextField.text = "3000"
-		#endif
-		
 		hostTextField.delegate = self
 		portTextField.delegate = self
 		
-		updateButtonState()
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+        
+        defer {
+            updateButtonState()
+        }
+		
+		guard let saved = UserConnectionManager.instance.requestPreviousConnection() else {
+			return
+		}
+		
+		hostTextField.text = saved.host
+		portTextField.text = "\(saved.port)"
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {

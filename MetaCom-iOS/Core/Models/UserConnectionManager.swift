@@ -69,6 +69,7 @@ final class UserConnectionManager {
 			}
 			
 			callback(connection)
+			UserDefaults.standard.set(["host" : host, "port" : port], forKey: "lastUserConnection")
 		}
 		
 		userConnections.append(connection)
@@ -82,5 +83,15 @@ final class UserConnectionManager {
 	*/
 	func removeConnection(_ connection: UserConnection) {
 		userConnections.remove(connection)
+	}
+	
+	/**
+		Return last used user connection credentials.
+		- returns: tuple containing last used host and port.
+	*/
+	func requestPreviousConnection() -> (host: String, port: Int)? {
+		
+		let saved = UserDefaults.standard.dictionary(forKey: "lastUserConnection")
+		return saved == nil ? nil : (host: saved?["host"] as! String, port: saved?["port"] as! Int)
 	}
 }
