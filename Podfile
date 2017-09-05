@@ -1,12 +1,19 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
 
-target 'MetaCom-iOS' do
+abstract_target 'Devices' do
+
   use_frameworks!
 
   # Pods for MetaCom-iOS
-	pod 'JSQMessagesViewController'
-	pod 'ReachabilitySwift'
+  pod 'JSQMessagesViewController'
+  pod 'ReachabilitySwift'
+
+  target 'MetaCom-iOS-Device' do
+  end
+
+  target 'MetaCom-iOS-Simulator' do
+  end
 
 end
 
@@ -18,5 +25,13 @@ post_install do |installer|
 		content = File.read(script)
 		content.gsub!(/set -e/, "set -e\nKG_FILE=\"#{file}\"\nif [ -f \"$KG_FILE\" ]; then exit 0; fi\nmkdir -p \"#{folder}\"\ntouch \"$KG_FILE\"")
 		File.write(script, content)
+	end
+
+  installer.pods_project.targets.each do |target|
+		target.build_configurations.each do |config|
+			cflags = config.build_settings['OTHER_CFLAGS'] || ['$(inherited)']
+			cflags << '-fembed-bitcode'
+			config.build_settings['OTHER_CFLAGS'] = cflags
+		end
 	end
 end

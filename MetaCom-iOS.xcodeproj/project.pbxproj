@@ -24,16 +24,63 @@
 		142319051ECDDE0900F63687 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319041ECDDE0900F63687 /* Message.swift */; };
 		142319071ECDEA2000F63687 /* ChatRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */; };
 		142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319111ED07B4400F63687 /* NotificationName+Extensions.swift */; };
-		1474A72A1ED2FA87009464BD /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; };
-		1474A72B1ED2FA87009464BD /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7271ED2F9F3009464BD /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; };
-		1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1474A7261ED2F9F3009464BD /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		143936321F5E7564000D38DE /* UINavigationController+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8425C71F1A528300C5AC6E /* UINavigationController+Progress.swift */; };
+		143936331F5E7564000D38DE /* ChatRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */; };
+		143936341F5E7564000D38DE /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318F91ECCE9BE00F63687 /* FileManager.swift */; };
+		143936351F5E7564000D38DE /* ChatRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FB1ECCE9C700F63687 /* ChatRoomManager.swift */; };
+		143936361F5E7564000D38DE /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
+		143936371F5E7564000D38DE /* JSTPConnection+CacheCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */; };
+		143936381F5E7564000D38DE /* UIViewController+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */; };
+		143936391F5E7564000D38DE /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318FE1ECCE9DA00F63687 /* ChatRoom.swift */; };
+		1439363A1F5E7564000D38DE /* SystemMessagesBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */; };
+		1439363B1F5E7564000D38DE /* UIButton+VerticalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */; };
+		1439363C1F5E7564000D38DE /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
+		1439363D1F5E7564000D38DE /* UIControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */; };
+		1439363E1F5E7564000D38DE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319041ECDDE0900F63687 /* Message.swift */; };
+		1439363F1F5E7564000D38DE /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03FD601F58297200583A1D /* UITextField+PlaceholderColor.swift */; };
+		143936401F5E7564000D38DE /* UserConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318F51ECCE99C00F63687 /* UserConnectionManager.swift */; };
+		143936411F5E7564000D38DE /* JSQMessagesCollectionViewCellSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7370E61F1BA3A500DDCE8D /* JSQMessagesCollectionViewCellSystem.swift */; };
+		143936421F5E7564000D38DE /* UserConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318F71ECCE9AE00F63687 /* UserConnection.swift */; };
+		143936431F5E7564000D38DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142318DF1ECCE14B00F63687 /* AppDelegate.swift */; };
+		143936441F5E7564000D38DE /* SystemSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14226CF31F2F6CBF00E5A288 /* SystemSound.swift */; };
+		143936451F5E7564000D38DE /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA41ECEF8E1004F5CD1 /* FilesViewController.swift */; };
+		143936461F5E7564000D38DE /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
+		143936471F5E7564000D38DE /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
+		143936481F5E7564000D38DE /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689DDF1F56BEF6001CB56A /* UIColor+Extensions.swift */; };
+		143936491F5E7564000D38DE /* UIViewController+UIAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */; };
+		1439364A1F5E7564000D38DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319011ECCF2F800F63687 /* Constants.swift */; };
+		1439364B1F5E7564000D38DE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3BA651EE467A100739F46 /* Error.swift */; };
+		1439364C1F5E7564000D38DE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA61ECEFBD9004F5CD1 /* ChatViewController.swift */; };
+		1439364D1F5E7564000D38DE /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA21ECEEC8F004F5CD1 /* ConnectionViewController.swift */; };
+		1439364E1F5E7564000D38DE /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CAC331F29D49D00382D9A /* ActivityButton.swift */; };
+		1439364F1F5E7564000D38DE /* JSQDataMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */; };
+		143936501F5E7564000D38DE /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
+		143936511F5E7564000D38DE /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14084C071F1004DB005DE87C /* String+Localized.swift */; };
+		143936521F5E7564000D38DE /* NotificationName+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142319111ED07B4400F63687 /* NotificationName+Extensions.swift */; };
+		143936531F5E7564000D38DE /* ConnectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FCAF4D1F349737002292BE /* ConnectionTabBarController.swift */; };
+		143936541F5E7564000D38DE /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
+		143936551F5E7564000D38DE /* FilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */; };
+		143936561F5E7564000D38DE /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9E9FA81ECEFBE5004F5CD1 /* NewChatViewController.swift */; };
+		1439365C1F5E7564000D38DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142318E81ECCE14B00F63687 /* LaunchScreen.storyboard */; };
+		1439365D1F5E7564000D38DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142318E61ECCE14B00F63687 /* Assets.xcassets */; };
+		1439365E1F5E7564000D38DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14084C051F0FFEE8005DE87C /* Localizable.strings */; };
+		1439365F1F5E7564000D38DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 142318E31ECCE14B00F63687 /* Main.storyboard */; };
+		143936601F5E7564000D38DE /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
+		143936611F5E7564000D38DE /* JSQMessagesCollectionViewCellSystem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7370DF1F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib */; };
+		143936621F5E7564000D38DE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14226CF01F2F6AFF00E5A288 /* Settings.bundle */; };
+		1442564D1F5E93AB00C0D9AE /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1439366F1F5E769F000D38DE /* JSTP.framework */; };
+		1442564E1F5E93AB00C0D9AE /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1439366F1F5E769F000D38DE /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1442564F1F5E93AE00C0D9AE /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143936701F5E769F000D38DE /* Socket.framework */; };
+		144256501F5E93AF00C0D9AE /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 143936701F5E769F000D38DE /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147BD87B1F12BD3700562013 /* UIControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */; };
+		147F683F1F5E7B6300CB56DF /* JSTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143936731F5E76AF000D38DE /* JSTP.framework */; };
+		147F68401F5E7B6300CB56DF /* JSTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 143936731F5E76AF000D38DE /* JSTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		147F68411F5E7B6300CB56DF /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143936741F5E76AF000D38DE /* Socket.framework */; };
+		147F68421F5E7B6300CB56DF /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 143936741F5E76AF000D38DE /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		148A782F1F2A13D1007415BA /* JSTPConnection+CacheCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */; };
 		14CBECC91ED08ECD008B6587 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CBECC81ED08ECD008B6587 /* Events.swift */; };
 		14E3BA661EE467A100739F46 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3BA651EE467A100739F46 /* Error.swift */; };
 		14FCAF4E1F349737002292BE /* ConnectionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FCAF4D1F349737002292BE /* ConnectionTabBarController.swift */; };
-		404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */; };
 		8F02679D1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */; };
 		8F035ED01EEEDE2100E597A0 /* FilePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */; };
 		8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */; };
@@ -56,17 +103,31 @@
 		8FAB32EB1ED823560004BEFF /* DataMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAB32EA1ED823560004BEFF /* DataMediaView.xib */; };
 		8FAB32ED1ED823670004BEFF /* DataMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAB32EC1ED823670004BEFF /* DataMediaView.swift */; };
 		8FEE95301ED8B2DD007DAE78 /* UIViewController+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */; };
+		DBF1662C6DD06DBC985C229F /* Pods_Devices_MetaCom_iOS_Simulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AC213E7F2632A195B1FAA7 /* Pods_Devices_MetaCom_iOS_Simulator.framework */; };
+		DC9C0DBE9F5FD0CC8352B405 /* Pods_Devices_MetaCom_iOS_Device.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17FD6941B2C415176FAE41AA /* Pods_Devices_MetaCom_iOS_Device.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1474A72C1ED2FA87009464BD /* Embed Frameworks */ = {
+		144256511F5E93B700C0D9AE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1474A72B1ED2FA87009464BD /* Socket.framework in Embed Frameworks */,
-				1474A72E1ED2FAAC009464BD /* JSTP.framework in Embed Frameworks */,
+				1442564E1F5E93AB00C0D9AE /* JSTP.framework in Embed Frameworks */,
+				144256501F5E93AF00C0D9AE /* Socket.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		147F68431F5E7B6400CB56DF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				147F68401F5E7B6300CB56DF /* JSTP.framework in Embed Frameworks */,
+				147F68421F5E7B6300CB56DF /* Socket.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,16 +135,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		10C4CE72ADA726E54DF08C87 /* Pods-MetaCom-iOS-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-Device.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-Device/Pods-MetaCom-iOS-Device.debug.xcconfig"; sourceTree = "<group>"; };
 		14084C051F0FFEE8005DE87C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		14084C071F1004DB005DE87C /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		14226CF01F2F6AFF00E5A288 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		14226CF31F2F6CBF00E5A288 /* SystemSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSound.swift; sourceTree = "<group>"; };
-		142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaCom-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		142318DC1ECCE14B00F63687 /* MetaCom-iOS-Device.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaCom-iOS-Device.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		142318DF1ECCE14B00F63687 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		142318E41ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		142318E61ECCE14B00F63687 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		142318E91ECCE14B00F63687 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		142318EB1ECCE14B00F63687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		142318EB1ECCE14B00F63687 /* Device-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Device-Info.plist"; sourceTree = "<group>"; };
 		142318F51ECCE99C00F63687 /* UserConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConnectionManager.swift; sourceTree = "<group>"; };
 		142318F71ECCE9AE00F63687 /* UserConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConnection.swift; sourceTree = "<group>"; };
 		142318F91ECCE9BE00F63687 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
@@ -94,17 +156,30 @@
 		142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomDelegate.swift; sourceTree = "<group>"; };
 		142319111ED07B4400F63687 /* NotificationName+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extensions.swift"; sourceTree = "<group>"; };
 		143602F51F29FB13005958FC /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1474A7261ED2F9F3009464BD /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
-		1474A7271ED2F9F3009464BD /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
+		1439366B1F5E7564000D38DE /* MetaCom-iOS-Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaCom-iOS-Simulator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1439366C1F5E7565000D38DE /* Simulator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Simulator-Info.plist"; sourceTree = "<group>"; };
+		1439366F1F5E769F000D38DE /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
+		143936701F5E769F000D38DE /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
+		143936731F5E76AF000D38DE /* JSTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSTP.framework; sourceTree = "<group>"; };
+		143936741F5E76AF000D38DE /* Socket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socket.framework; sourceTree = "<group>"; };
 		147BD87A1F12BD3700562013 /* UIControl+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+Extensions.swift"; sourceTree = "<group>"; };
 		148A782E1F2A13D1007415BA /* JSTPConnection+CacheCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSTPConnection+CacheCall.swift"; sourceTree = "<group>"; };
 		14CBECC81ED08ECD008B6587 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		14E3BA651EE467A100739F46 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		14FCAF4C1F3483DF002292BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		14FCAF4D1F349737002292BE /* ConnectionTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTabBarController.swift; sourceTree = "<group>"; };
+		16C2EBA693F2AF26A0666ED2 /* Pods-MetaCom-iOS-MetaCom-iOS-Simulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-MetaCom-iOS-Simulator.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-MetaCom-iOS-Simulator/Pods-MetaCom-iOS-MetaCom-iOS-Simulator.release.xcconfig"; sourceTree = "<group>"; };
+		17FD6941B2C415176FAE41AA /* Pods_Devices_MetaCom_iOS_Device.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Devices_MetaCom_iOS_Device.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A71DCC682584A36FB8DD59B /* Pods-MetaCom-iOS Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS Device.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS Device/Pods-MetaCom-iOS Device.debug.xcconfig"; sourceTree = "<group>"; };
 		1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		1C3FDC80E44837F8EF8C1675 /* Pods-Devices-MetaCom-iOS-Simulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Devices-MetaCom-iOS-Simulator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Simulator/Pods-Devices-MetaCom-iOS-Simulator.release.xcconfig"; sourceTree = "<group>"; };
+		230EEB07E8B720AC9E3CAD01 /* Pods-MetaCom-iOS Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS Device.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS Device/Pods-MetaCom-iOS Device.release.xcconfig"; sourceTree = "<group>"; };
 		2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaCom_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		295D73C49AE96D7CBABC5721 /* Pods-Devices-MetaCom-iOS-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Devices-MetaCom-iOS-Device.release.xcconfig"; path = "Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Device/Pods-Devices-MetaCom-iOS-Device.release.xcconfig"; sourceTree = "<group>"; };
+		3A6EEC699CE72A2409984532 /* Pods-MetaCom-iOS-MetaCom-iOS-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-MetaCom-iOS-Device.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-MetaCom-iOS-Device/Pods-MetaCom-iOS-MetaCom-iOS-Device.release.xcconfig"; sourceTree = "<group>"; };
+		3B862E6D36ADAABBF21D56E1 /* Pods-MetaCom-iOS-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-Device.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-Device/Pods-MetaCom-iOS-Device.release.xcconfig"; sourceTree = "<group>"; };
+		470E3F28D6DC70F04E74C742 /* Pods-Devices-MetaCom-iOS-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Devices-MetaCom-iOS-Device.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Device/Pods-Devices-MetaCom-iOS-Device.debug.xcconfig"; sourceTree = "<group>"; };
+		80AC213E7F2632A195B1FAA7 /* Pods_Devices_MetaCom_iOS_Simulator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Devices_MetaCom_iOS_Simulator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F02679C1F31E40C00AEDC8D /* UIButton+VerticalLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+VerticalLayout.swift"; sourceTree = "<group>"; };
 		8F035ECF1EEEDE2100E597A0 /* FilePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerController.swift; sourceTree = "<group>"; };
 		8F035ED21EEEDEB200E597A0 /* FilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePickerDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +203,11 @@
 		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
 		8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MetaCom-iOS.entitlements"; path = "../MetaCom-iOS.entitlements"; sourceTree = "<group>"; };
 		8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EndEditing.swift"; sourceTree = "<group>"; };
+		920EEE9CC21315F87B5539EE /* Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-MetaCom-iOS-Device/Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig"; sourceTree = "<group>"; };
+		9FA57E3A711FA246E132FD05 /* Pods-MetaCom-iOS-Simulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-Simulator.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-Simulator/Pods-MetaCom-iOS-Simulator.release.xcconfig"; sourceTree = "<group>"; };
+		C1F5B1D464933BF00C391721 /* Pods-MetaCom-iOS-MetaCom-iOS-Simulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-MetaCom-iOS-Simulator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-MetaCom-iOS-Simulator/Pods-MetaCom-iOS-MetaCom-iOS-Simulator.debug.xcconfig"; sourceTree = "<group>"; };
+		D9ED10368C17EE09AE1FB9F7 /* Pods-MetaCom-iOS-Simulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-Simulator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-Simulator/Pods-MetaCom-iOS-Simulator.debug.xcconfig"; sourceTree = "<group>"; };
+		EF09B93193AC545B7945FF56 /* Pods-Devices-MetaCom-iOS-Simulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Devices-MetaCom-iOS-Simulator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Simulator/Pods-Devices-MetaCom-iOS-Simulator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,9 +215,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1474A72A1ED2FA87009464BD /* Socket.framework in Frameworks */,
-				1474A72D1ED2FAAC009464BD /* JSTP.framework in Frameworks */,
-				404AF8F6726770FDA6940EA8 /* Pods_MetaCom_iOS.framework in Frameworks */,
+				1442564F1F5E93AE00C0D9AE /* Socket.framework in Frameworks */,
+				1442564D1F5E93AB00C0D9AE /* JSTP.framework in Frameworks */,
+				DC9C0DBE9F5FD0CC8352B405 /* Pods_Devices_MetaCom_iOS_Device.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		143936571F5E7564000D38DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				147F68411F5E7B6300CB56DF /* Socket.framework in Frameworks */,
+				147F683F1F5E7B6300CB56DF /* JSTP.framework in Frameworks */,
+				DBF1662C6DD06DBC985C229F /* Pods_Devices_MetaCom_iOS_Simulator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,8 +237,8 @@
 		140E073C1ED18FC400D8FB7D /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				1474A7261ED2F9F3009464BD /* JSTP.framework */,
-				1474A7271ED2F9F3009464BD /* Socket.framework */,
+				1439366E1F5E7675000D38DE /* Device */,
+				1439366D1F5E766F000D38DE /* Simulator */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -175,7 +265,8 @@
 		142318DD1ECCE14B00F63687 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */,
+				142318DC1ECCE14B00F63687 /* MetaCom-iOS-Device.app */,
+				1439366B1F5E7564000D38DE /* MetaCom-iOS-Simulator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,7 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */,
-				142318EB1ECCE14B00F63687 /* Info.plist */,
+				142318EB1ECCE14B00F63687 /* Device-Info.plist */,
+				1439366C1F5E7565000D38DE /* Simulator-Info.plist */,
 				143602F51F29FB13005958FC /* Podfile */,
 				142318E61ECCE14B00F63687 /* Assets.xcassets */,
 				14084C051F0FFEE8005DE87C /* Localizable.strings */,
@@ -273,10 +365,29 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1439366D1F5E766F000D38DE /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+				143936731F5E76AF000D38DE /* JSTP.framework */,
+				143936741F5E76AF000D38DE /* Socket.framework */,
+			);
+			path = Simulator;
+			sourceTree = "<group>";
+		};
+		1439366E1F5E7675000D38DE /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				1439366F1F5E769F000D38DE /* JSTP.framework */,
+				143936701F5E769F000D38DE /* Socket.framework */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
 		6E4B011D50B2539AD81C3505 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6034B7A35759EFECBB1C4B93 /* Pods_MetaCom_iOS.framework */,
+				17FD6941B2C415176FAE41AA /* Pods_Devices_MetaCom_iOS_Device.framework */,
+				80AC213E7F2632A195B1FAA7 /* Pods_Devices_MetaCom_iOS_Simulator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -286,6 +397,20 @@
 			children = (
 				2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */,
 				1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */,
+				1A71DCC682584A36FB8DD59B /* Pods-MetaCom-iOS Device.debug.xcconfig */,
+				230EEB07E8B720AC9E3CAD01 /* Pods-MetaCom-iOS Device.release.xcconfig */,
+				10C4CE72ADA726E54DF08C87 /* Pods-MetaCom-iOS-Device.debug.xcconfig */,
+				3B862E6D36ADAABBF21D56E1 /* Pods-MetaCom-iOS-Device.release.xcconfig */,
+				D9ED10368C17EE09AE1FB9F7 /* Pods-MetaCom-iOS-Simulator.debug.xcconfig */,
+				9FA57E3A711FA246E132FD05 /* Pods-MetaCom-iOS-Simulator.release.xcconfig */,
+				920EEE9CC21315F87B5539EE /* Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig */,
+				3A6EEC699CE72A2409984532 /* Pods-MetaCom-iOS-MetaCom-iOS-Device.release.xcconfig */,
+				C1F5B1D464933BF00C391721 /* Pods-MetaCom-iOS-MetaCom-iOS-Simulator.debug.xcconfig */,
+				16C2EBA693F2AF26A0666ED2 /* Pods-MetaCom-iOS-MetaCom-iOS-Simulator.release.xcconfig */,
+				470E3F28D6DC70F04E74C742 /* Pods-Devices-MetaCom-iOS-Device.debug.xcconfig */,
+				295D73C49AE96D7CBABC5721 /* Pods-Devices-MetaCom-iOS-Device.release.xcconfig */,
+				EF09B93193AC545B7945FF56 /* Pods-Devices-MetaCom-iOS-Simulator.debug.xcconfig */,
+				1C3FDC80E44837F8EF8C1675 /* Pods-Devices-MetaCom-iOS-Simulator.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -342,9 +467,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		142318DB1ECCE14B00F63687 /* MetaCom-iOS */ = {
+		142318DB1ECCE14B00F63687 /* MetaCom-iOS-Device */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 142318EE1ECCE14B00F63687 /* Build configuration list for PBXNativeTarget "MetaCom-iOS" */;
+			buildConfigurationList = 142318EE1ECCE14B00F63687 /* Build configuration list for PBXNativeTarget "MetaCom-iOS-Device" */;
 			buildPhases = (
 				F450E6A2416A6BE6C86ED89A /* [CP] Check Pods Manifest.lock */,
 				142318D81ECCE14B00F63687 /* Sources */,
@@ -352,15 +477,36 @@
 				142318DA1ECCE14B00F63687 /* Resources */,
 				434B471473F28DE4A6548C2B /* [CP] Embed Pods Frameworks */,
 				3826789E18CEB52A63DB41FB /* [CP] Copy Pods Resources */,
-				1474A72C1ED2FA87009464BD /* Embed Frameworks */,
+				144256511F5E93B700C0D9AE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "MetaCom-iOS";
+			name = "MetaCom-iOS-Device";
 			productName = "MetaCom-iOS";
-			productReference = 142318DC1ECCE14B00F63687 /* MetaCom-iOS.app */;
+			productReference = 142318DC1ECCE14B00F63687 /* MetaCom-iOS-Device.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1439362F1F5E7564000D38DE /* MetaCom-iOS-Simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 143936681F5E7564000D38DE /* Build configuration list for PBXNativeTarget "MetaCom-iOS-Simulator" */;
+			buildPhases = (
+				F0E5E27406B0EA9C7F7647D8 /* [CP] Check Pods Manifest.lock */,
+				143936311F5E7564000D38DE /* Sources */,
+				143936571F5E7564000D38DE /* Frameworks */,
+				1439365B1F5E7564000D38DE /* Resources */,
+				147F68431F5E7B6400CB56DF /* Embed Frameworks */,
+				E63ED45A7A1D454C7176BA38 /* [CP] Embed Pods Frameworks */,
+				54B3400E45AAB35283BF3E33 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MetaCom-iOS-Simulator";
+			productName = "MetaCom-iOS";
+			productReference = 1439366B1F5E7564000D38DE /* MetaCom-iOS-Simulator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -383,6 +529,9 @@
 							};
 						};
 					};
+					1439362F1F5E7564000D38DE = {
+						DevelopmentTeam = Q5WSPT927E;
+					};
 				};
 			};
 			buildConfigurationList = 142318D71ECCE14B00F63687 /* Build configuration list for PBXProject "MetaCom-iOS" */;
@@ -398,7 +547,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				142318DB1ECCE14B00F63687 /* MetaCom-iOS */,
+				142318DB1ECCE14B00F63687 /* MetaCom-iOS-Device */,
+				1439362F1F5E7564000D38DE /* MetaCom-iOS-Simulator */,
 			);
 		};
 /* End PBXProject section */
@@ -418,6 +568,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1439365B1F5E7564000D38DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1439365C1F5E7564000D38DE /* LaunchScreen.storyboard in Resources */,
+				1439365D1F5E7564000D38DE /* Assets.xcassets in Resources */,
+				1439365E1F5E7564000D38DE /* Localizable.strings in Resources */,
+				1439365F1F5E7564000D38DE /* Main.storyboard in Resources */,
+				143936601F5E7564000D38DE /* DataMediaView.xib in Resources */,
+				143936611F5E7564000D38DE /* JSQMessagesCollectionViewCellSystem.xib in Resources */,
+				143936621F5E7564000D38DE /* Settings.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -433,7 +597,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Device/Pods-Devices-MetaCom-iOS-Device-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		434B471473F28DE4A6548C2B /* [CP] Embed Pods Frameworks */ = {
@@ -448,7 +612,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MetaCom-iOS/Pods-MetaCom-iOS-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Device/Pods-Devices-MetaCom-iOS-Device-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54B3400E45AAB35283BF3E33 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Simulator/Pods-Devices-MetaCom-iOS-Simulator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E63ED45A7A1D454C7176BA38 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Simulator/Pods-Devices-MetaCom-iOS-Simulator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0E5E27406B0EA9C7F7647D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F450E6A2416A6BE6C86ED89A /* [CP] Check Pods Manifest.lock */ = {
@@ -510,6 +719,50 @@
 				8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */,
 				8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */,
 				8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		143936311F5E7564000D38DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				143936321F5E7564000D38DE /* UINavigationController+Progress.swift in Sources */,
+				143936331F5E7564000D38DE /* ChatRoomDelegate.swift in Sources */,
+				143936341F5E7564000D38DE /* FileManager.swift in Sources */,
+				143936351F5E7564000D38DE /* ChatRoomManager.swift in Sources */,
+				143936361F5E7564000D38DE /* FilePickerController.swift in Sources */,
+				143936371F5E7564000D38DE /* JSTPConnection+CacheCall.swift in Sources */,
+				143936381F5E7564000D38DE /* UIViewController+EndEditing.swift in Sources */,
+				143936391F5E7564000D38DE /* ChatRoom.swift in Sources */,
+				1439363A1F5E7564000D38DE /* SystemMessagesBubbleImage.swift in Sources */,
+				1439363B1F5E7564000D38DE /* UIButton+VerticalLayout.swift in Sources */,
+				1439363C1F5E7564000D38DE /* DataMediaView.swift in Sources */,
+				1439363D1F5E7564000D38DE /* UIControl+Extensions.swift in Sources */,
+				1439363E1F5E7564000D38DE /* Message.swift in Sources */,
+				1439363F1F5E7564000D38DE /* UITextField+PlaceholderColor.swift in Sources */,
+				143936401F5E7564000D38DE /* UserConnectionManager.swift in Sources */,
+				143936411F5E7564000D38DE /* JSQMessagesCollectionViewCellSystem.swift in Sources */,
+				143936421F5E7564000D38DE /* UserConnection.swift in Sources */,
+				143936431F5E7564000D38DE /* AppDelegate.swift in Sources */,
+				143936441F5E7564000D38DE /* SystemSound.swift in Sources */,
+				143936451F5E7564000D38DE /* FilesViewController.swift in Sources */,
+				143936461F5E7564000D38DE /* DotedActivityIndicatorView.swift in Sources */,
+				143936471F5E7564000D38DE /* Events.swift in Sources */,
+				143936481F5E7564000D38DE /* UIColor+Extensions.swift in Sources */,
+				143936491F5E7564000D38DE /* UIViewController+UIAlertRepresentable.swift in Sources */,
+				1439364A1F5E7564000D38DE /* Constants.swift in Sources */,
+				1439364B1F5E7564000D38DE /* Error.swift in Sources */,
+				1439364C1F5E7564000D38DE /* ChatViewController.swift in Sources */,
+				1439364D1F5E7564000D38DE /* ConnectionViewController.swift in Sources */,
+				1439364E1F5E7564000D38DE /* ActivityButton.swift in Sources */,
+				1439364F1F5E7564000D38DE /* JSQDataMediaItem.swift in Sources */,
+				143936501F5E7564000D38DE /* DotView.swift in Sources */,
+				143936511F5E7564000D38DE /* String+Localized.swift in Sources */,
+				143936521F5E7564000D38DE /* NotificationName+Extensions.swift in Sources */,
+				143936531F5E7564000D38DE /* ConnectionTabBarController.swift in Sources */,
+				143936541F5E7564000D38DE /* Array+Remove.swift in Sources */,
+				143936551F5E7564000D38DE /* FilePickerDelegate.swift in Sources */,
+				143936561F5E7564000D38DE /* NewChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,29 +899,60 @@
 		};
 		142318EF1ECCE14B00F63687 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2451D1FAFDD4B14897641018 /* Pods-MetaCom-iOS.debug.xcconfig */;
+			baseConfigurationReference = 470E3F28D6DC70F04E74C742 /* Pods-Devices-MetaCom-iOS-Device.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
 				DEVELOPMENT_TEAM = Q5WSPT927E;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MetaCom-iOS",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Vendor",
+					"$(PROJECT_DIR)/Vendor/Device",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Device-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.metarhia.MetaCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
 		142318F01ECCE14B00F63687 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B814286C647E3437F73483E /* Pods-MetaCom-iOS.release.xcconfig */;
+			baseConfigurationReference = 295D73C49AE96D7CBABC5721 /* Pods-Devices-MetaCom-iOS-Device.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				DEVELOPMENT_TEAM = Q5WSPT927E;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MetaCom-iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor",
+					"$(PROJECT_DIR)/Vendor/Device",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Device-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.metarhia.MetaCom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Release;
+		};
+		143936691F5E7564000D38DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF09B93193AC545B7945FF56 /* Pods-Devices-MetaCom-iOS-Simulator.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
 				DEVELOPMENT_TEAM = Q5WSPT927E;
@@ -677,12 +961,38 @@
 					"$(PROJECT_DIR)/MetaCom-iOS",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Vendor",
+					"$(PROJECT_DIR)/Vendor/Simulator",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Simulator-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.metarhia.MetaCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		1439366A1F5E7564000D38DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C3FDC80E44837F8EF8C1675 /* Pods-Devices-MetaCom-iOS-Simulator.release.xcconfig */;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				DEVELOPMENT_TEAM = Q5WSPT927E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MetaCom-iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor",
+					"$(PROJECT_DIR)/Vendor/Simulator",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MetaCom-iOS/Supporting/Simulator-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.metarhia.MetaCom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -698,11 +1008,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		142318EE1ECCE14B00F63687 /* Build configuration list for PBXNativeTarget "MetaCom-iOS" */ = {
+		142318EE1ECCE14B00F63687 /* Build configuration list for PBXNativeTarget "MetaCom-iOS-Device" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				142318EF1ECCE14B00F63687 /* Debug */,
 				142318F01ECCE14B00F63687 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		143936681F5E7564000D38DE /* Build configuration list for PBXNativeTarget "MetaCom-iOS-Simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				143936691F5E7564000D38DE /* Debug */,
+				1439366A1F5E7564000D38DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
