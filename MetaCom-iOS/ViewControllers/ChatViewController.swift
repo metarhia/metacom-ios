@@ -114,6 +114,10 @@ class ChatViewController: JSQMessagesViewController {
 		
 		self.title = chat?.name
 		
+		if #available(iOS 11.0, *) {
+			collectionView.contentInsetAdjustmentBehavior = .never
+		}
+		
 		collectionView.backgroundColor = .black
 		inputToolbar.contentView.textView.keyboardAppearance = .dark
 		inputToolbar.contentView.textView.backgroundColor = .black
@@ -455,7 +459,6 @@ class ChatViewController: JSQMessagesViewController {
 		super.didReceiveMenuWillHide(notification)
 		selectedMediaMessageIndexPathForMenu = nil
 	}
-	
 }
 
 // MARK: - ChatRoomDelegate
