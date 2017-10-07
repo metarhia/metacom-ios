@@ -96,8 +96,10 @@ class CompletionsView: UIView {
 			return
 		}
 		
+		UIView.setAnimationsEnabled(false)
 		collectionView.collectionViewLayout.invalidateLayout()
 		collectionView.layoutIfNeeded()
+		UIView.setAnimationsEnabled(true)
 		
 		let containerWidth = collectionView.bounds.width
 		let contentWidth = collectionView.contentSize.width
