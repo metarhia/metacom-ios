@@ -62,7 +62,7 @@ class CompletionsView: UIView {
 		
 		let flowLayout = UICollectionViewFlowLayout()
 		flowLayout.scrollDirection = .horizontal
-		flowLayout.estimatedItemSize = CGSize(width: 0, height: 32)
+		flowLayout.estimatedItemSize = CGSize(width: 0, height: 1)
 		let collectionView = UICollectionView(frame: bounds, collectionViewLayout: flowLayout)
 		collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		collectionView.register(CompletionCell.self, forCellWithReuseIdentifier: "completionCell")
