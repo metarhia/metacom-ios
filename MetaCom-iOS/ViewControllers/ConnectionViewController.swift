@@ -16,6 +16,8 @@ class ConnectionViewController: UIViewController {
 	
 	@IBOutlet weak var bottomSpace: NSLayoutConstraint!
 	
+	weak var remotesCompletionsView: CompletionsView?
+	
 	private var host: String? {
 		guard let host = hostTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else {
 			return nil
@@ -30,6 +32,8 @@ class ConnectionViewController: UIViewController {
 		return Int(port)
 	}
 	
+	private var shouldConnectOnAppear = false
+	
 	// MARK: - View Controller Lifecycle
 	
 	override func viewDidLoad() {
@@ -38,19 +42,35 @@ class ConnectionViewController: UIViewController {
 		hostTextField.delegate = self
 		portTextField.delegate = self
 		
+		let completionsView = CompletionsView()
+		completionsView.delegate = self
+		hostTextField.inputAccessoryView = completionsView
+		remotesCompletionsView = completionsView
+		
 		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
 		
-		if let saved = UserConnectionManager.instance.requestPreviousConnection() {
-			hostTextField.text = saved.host
-			portTextField.text = "\(saved.port)"
+		if let remote = UserConnectionManager.instance.recentRemote {
+			setRemote(remote)
+			shouldConnectOnAppear = UserConnectionManager.instance.needReconnect
 		}
 		
+		NotificationCenter.default.addObserver(self,
+		                                       selector: #selector(remotesDidChange(_:)),
+		                                       name: RemotesManager.remotesDidChangeNotification,
+		                                       object: RemotesManager.shared)
+		
 		updateButtonState()
+		updateRemotesCompletions()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		registerKeyboardNotifications()
+		
+		if shouldConnectOnAppear {
+			shouldConnectOnAppear = false
+			connect()
+		}
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -70,6 +90,10 @@ class ConnectionViewController: UIViewController {
 		return .lightContent
 	}
 	
+	deinit {
+		NotificationCenter.default.removeObserver(self)
+	}
+	
 	// MARK: - UI updating stuff
 	
 	private var isInterfaceLocked: Bool = false {
@@ -78,6 +102,13 @@ class ConnectionViewController: UIViewController {
 			portTextField.isEnabled = !isInterfaceLocked
 			connectButton.isActivityIndicatorVisible = isInterfaceLocked
 		}
+	}
+	
+	fileprivate func setRemote(_ remote: Remote) {
+		hostTextField.text = remote.host
+		portTextField.text = "\(remote.port)"
+		updateButtonState()
+		updateRemotesCompletions()
 	}
 	
 	private var shouldUnlockInterfaceOnDisappear: Bool = true
@@ -96,6 +127,16 @@ class ConnectionViewController: UIViewController {
 			textField.text = ""
 		}
 		updateButtonState()
+		updateRemotesCompletions()
+	}
+	
+	@objc private func remotesDidChange(_ notification: Notification) {
+		updateRemotesCompletions()
+	}
+	
+	private func updateRemotesCompletions() {
+		let remotes = RemotesManager.shared.remotes(havingPrefix: host ?? "")
+		remotesCompletionsView?.completions = Array(remotes[0 ..< min(10, remotes.count)])
 	}
 	
 	// MARK: - Connection
@@ -209,5 +250,25 @@ extension ConnectionViewController: UITextFieldDelegate {
 			connect()
 		}
 		return false
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		// Fixes UITextField's strange behavior when text "jumps"
+		// to the left edge of control and back to normal position
+		// when user selects another UITextField
+		textField.layoutIfNeeded()
+	}
+}
+
+// MARK: - CompletionsViewDelegate
+
+extension ConnectionViewController: CompletionsViewDelegate {
+	
+	func completionsView(_ completionsView: CompletionsView, didPickItemAt index: Int) {
+		guard let remote = completionsView.completions[index] as? Remote else {
+			return
+		}
+		
+		setRemote(remote)
 	}
 }

@@ -31,4 +31,5 @@
 		"upload_desc" = "Your file was uploaded. The code is %1$@";
 		"download_desc" = "Enter download code:";
 		"link_server_installation_guide" = "https://github.com/metarhia/server/blob/master/README.md";
+		"no_avilable_completions" = "No available completions";
 }

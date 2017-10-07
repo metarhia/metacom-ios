@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+				
+		NotificationCenter.default.addObserver(RemotesManager.shared,
+		                                       selector: #selector(RemotesManager.storeDidChange(_:)),
+		                                       name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+		                                       object: NSUbiquitousKeyValueStore.default())
+		NSUbiquitousKeyValueStore.default().synchronize()
 		
 		setSoundAvailability()
 		return true

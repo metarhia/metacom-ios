@@ -13,6 +13,9 @@ import Foundation
 */
 final class UserConnectionManager {
 	
+	private static let recentRemoteKey = "recent-remote"
+	private static let needReconnectKey = "need-reconnect"
+	
 	/// Manager instance.
 	public static let instance = UserConnectionManager()
 	
@@ -20,7 +23,11 @@ final class UserConnectionManager {
 	private(set) var userConnections: [UserConnection] = []
 	
 	/// Currently displayed connection.
-	private weak var currentUserConnection: UserConnection?
+	private weak var currentUserConnection: UserConnection? {
+		didSet {
+			needReconnect = currentUserConnection != nil
+		}
+	}
 	
 	/**
 		Represents current connection the user works with.
@@ -44,6 +51,38 @@ final class UserConnectionManager {
 	}
 	
 	/**
+		Represents parameters of most recent successful connection.
+	*/
+	private(set) var recentRemote: Remote? {
+		set {
+			if let remote = newValue {
+				UserDefaults.standard.set(remote.connectionString, forKey: UserConnectionManager.recentRemoteKey)
+			} else {
+				UserDefaults.standard.removeObject(forKey: UserConnectionManager.recentRemoteKey)
+			}
+		}
+		get {
+			if let connectionString = UserDefaults.standard.string(forKey: UserConnectionManager.recentRemoteKey) {
+				return Remote(connectionString: connectionString)
+			}
+			return nil
+		}
+	}
+	
+	/**
+		Need restore the previous connection.
+	*/
+	private(set) var needReconnect: Bool {
+		set {
+			UserDefaults.standard.set(newValue, forKey: UserConnectionManager.needReconnectKey)
+		}
+		get {
+			
+			return UserDefaults.standard.bool(forKey: UserConnectionManager.needReconnectKey)
+		}
+	}
+	
+	/**
 		Create new `UserConnectionManager` instance.
 	*/
 	private init() { }
@@ -51,14 +90,13 @@ final class UserConnectionManager {
 	/**
 		Establish new connection.
 		- parameters:
-			- host: server host.
-			- port: server port.
+			- remote: specifies destination's `host:port`.
 			- callback: called on completion.
 	*/
-	func addConnection(host: String, port: Int, callback: @escaping (UserConnection?) -> Void) {
+	func addConnection(remote: Remote, callback: @escaping (UserConnection?) -> Void) {
 		
 		let id = (userConnections.last?.id ?? -1) + 1
-		let config = Configuration(host: host, port, true, Constants.applicationName, nil)
+		let config = Configuration(host: remote.host, remote.port, true, Constants.applicationName, nil)
 		let connection = UserConnection(identifier: id, configuration: config)
 		
 		let completion: (Error?) -> Void = { [weak self, unowned connection] error in
@@ -69,11 +107,24 @@ final class UserConnectionManager {
 			}
 			
 			callback(connection)
-			UserDefaults.standard.set(["host" : host, "port" : port], forKey: "lastUserConnection")
+			self?.recentRemote = remote
+			RemotesManager.shared.addRemote(remote)
 		}
 		
+		needReconnect = false
 		userConnections.append(connection)
 		connection.connect(with: completion)
+	}
+	
+	/**
+		Establish new connection.
+		- parameters:
+			- host: server host.
+			- port: server port.
+			- callback: called on completion.
+	*/
+	func addConnection(host: String, port: Int, callback: @escaping (UserConnection?) -> Void) {
+		addConnection(remote: Remote(host: host, port: port), callback: callback)
 	}
 	
 	/**
@@ -82,16 +133,9 @@ final class UserConnectionManager {
 			- connection: living connection.
 	*/
 	func removeConnection(_ connection: UserConnection) {
+		if connection == currentUserConnection {
+			currentUserConnection = nil
+		}
 		userConnections.remove(connection)
-	}
-	
-	/**
-		Return last used user connection credentials.
-		- returns: tuple containing last used host and port.
-	*/
-	func requestPreviousConnection() -> (host: String, port: Int)? {
-		
-		let saved = UserDefaults.standard.dictionary(forKey: "lastUserConnection")
-		return saved == nil ? nil : (host: saved?["host"] as! String, port: saved?["port"] as! Int)
 	}
 }

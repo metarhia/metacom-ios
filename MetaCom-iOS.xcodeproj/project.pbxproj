@@ -88,8 +88,14 @@
 		8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F146CCE1EDD914100BC1733 /* Array+Remove.swift */; };
 		8F3CAC341F29D49D00382D9A /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3CAC331F29D49D00382D9A /* ActivityButton.swift */; };
 		8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */; };
+		8F5E69C61F8635A0008A95E3 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E69C51F8635A0008A95E3 /* Remote.swift */; };
+		8F5E69C71F8635A4008A95E3 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E69C51F8635A0008A95E3 /* Remote.swift */; };
+		8F5E69C91F87839D008A95E3 /* RemotesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E69C81F87839D008A95E3 /* RemotesManager.swift */; };
+		8F5E69CA1F87839D008A95E3 /* RemotesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E69C81F87839D008A95E3 /* RemotesManager.swift */; };
 		8F689DE01F56BEF6001CB56A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F689DDF1F56BEF6001CB56A /* UIColor+Extensions.swift */; };
 		8F6B37821F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */; };
+		8F6CFFC91F856DC600B07AA7 /* CompletionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6CFFC81F856DC600B07AA7 /* CompletionsView.swift */; };
+		8F6CFFCA1F856DC600B07AA7 /* CompletionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6CFFC81F856DC600B07AA7 /* CompletionsView.swift */; };
 		8F70D5DF1EF5709B00AAB2B5 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */; };
 		8F70D5E11EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */; };
 		8F7370E01F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7370DF1F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib */; };
@@ -187,8 +193,12 @@
 		8F146CCE1EDD914100BC1733 /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		8F3CAC331F29D49D00382D9A /* ActivityButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		8F3F87B01EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertRepresentable.swift"; sourceTree = "<group>"; };
+		8F5E69C51F8635A0008A95E3 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
+		8F5E69C81F87839D008A95E3 /* RemotesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotesManager.swift; sourceTree = "<group>"; };
+		8F5E69D01F878DCD008A95E3 /* MetaCom-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MetaCom-iOS.entitlements"; sourceTree = "<group>"; };
 		8F689DDF1F56BEF6001CB56A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		8F6B37811F1BB82B0075FCBF /* SystemMessagesBubbleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessagesBubbleImage.swift; sourceTree = "<group>"; };
+		8F6CFFC81F856DC600B07AA7 /* CompletionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionsView.swift; sourceTree = "<group>"; };
 		8F70D5DE1EF5709B00AAB2B5 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		8F70D5E01EF57E7900AAB2B5 /* DotedActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotedActivityIndicatorView.swift; sourceTree = "<group>"; };
 		8F7370DF1F1B9E7400DDCE8D /* JSQMessagesCollectionViewCellSystem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesCollectionViewCellSystem.xib; sourceTree = "<group>"; };
@@ -201,7 +211,6 @@
 		8FAB32E81ED81B250004BEFF /* JSQDataMediaItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQDataMediaItem.swift; sourceTree = "<group>"; };
 		8FAB32EA1ED823560004BEFF /* DataMediaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataMediaView.xib; sourceTree = "<group>"; };
 		8FAB32EC1ED823670004BEFF /* DataMediaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMediaView.swift; sourceTree = "<group>"; };
-		8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "MetaCom-iOS.entitlements"; path = "../MetaCom-iOS.entitlements"; sourceTree = "<group>"; };
 		8FEE952F1ED8B2DD007DAE78 /* UIViewController+EndEditing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+EndEditing.swift"; sourceTree = "<group>"; };
 		920EEE9CC21315F87B5539EE /* Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-MetaCom-iOS-Device/Pods-MetaCom-iOS-MetaCom-iOS-Device.debug.xcconfig"; sourceTree = "<group>"; };
 		9FA57E3A711FA246E132FD05 /* Pods-MetaCom-iOS-Simulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaCom-iOS-Simulator.release.xcconfig"; path = "Pods/Target Support Files/Pods-MetaCom-iOS-Simulator/Pods-MetaCom-iOS-Simulator.release.xcconfig"; sourceTree = "<group>"; };
@@ -311,7 +320,7 @@
 		142318F31ECCE1CE00F63687 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				8FE14AF91EE1638D009C5FAF /* MetaCom-iOS.entitlements */,
+				8F5E69D01F878DCD008A95E3 /* MetaCom-iOS.entitlements */,
 				142318EB1ECCE14B00F63687 /* Device-Info.plist */,
 				1439366C1F5E7565000D38DE /* Simulator-Info.plist */,
 				143602F51F29FB13005958FC /* Podfile */,
@@ -361,6 +370,8 @@
 				142318F51ECCE99C00F63687 /* UserConnectionManager.swift */,
 				142319061ECDEA2000F63687 /* ChatRoomDelegate.swift */,
 				14E3BA651EE467A100739F46 /* Error.swift */,
+				8F5E69C51F8635A0008A95E3 /* Remote.swift */,
+				8F5E69C81F87839D008A95E3 /* RemotesManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,6 +471,7 @@
 				8F0BFBAE1EF6852E00074837 /* DataMediaItem */,
 				8F0BFBAD1EF684F000074837 /* DotedActivityIndicator */,
 				8F3CAC331F29D49D00382D9A /* ActivityButton.swift */,
+				8F6CFFC81F856DC600B07AA7 /* CompletionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -531,6 +543,11 @@
 					};
 					1439362F1F5E7564000D38DE = {
 						DevelopmentTeam = Q5WSPT927E;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -606,9 +623,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Device/Pods-Devices-MetaCom-iOS-Device-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -636,9 +660,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Devices-MetaCom-iOS-Simulator/Pods-Devices-MetaCom-iOS-Simulator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -651,13 +682,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Devices-MetaCom-iOS-Simulator-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F450E6A2416A6BE6C86ED89A /* [CP] Check Pods Manifest.lock */ = {
@@ -666,13 +700,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Devices-MetaCom-iOS-Device-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -706,6 +743,8 @@
 				14CBECC91ED08ECD008B6587 /* Events.swift in Sources */,
 				8F689DE01F56BEF6001CB56A /* UIColor+Extensions.swift in Sources */,
 				8F3F87B11EE9762A00B64B99 /* UIViewController+UIAlertRepresentable.swift in Sources */,
+				8F6CFFC91F856DC600B07AA7 /* CompletionsView.swift in Sources */,
+				8F5E69C91F87839D008A95E3 /* RemotesManager.swift in Sources */,
 				142319021ECCF2F800F63687 /* Constants.swift in Sources */,
 				14E3BA661EE467A100739F46 /* Error.swift in Sources */,
 				8F9E9FA71ECEFBD9004F5CD1 /* ChatViewController.swift in Sources */,
@@ -716,6 +755,7 @@
 				14084C081F1004DB005DE87C /* String+Localized.swift in Sources */,
 				142319121ED07B4400F63687 /* NotificationName+Extensions.swift in Sources */,
 				14FCAF4E1F349737002292BE /* ConnectionTabBarController.swift in Sources */,
+				8F5E69C61F8635A0008A95E3 /* Remote.swift in Sources */,
 				8F146CCF1EDD914100BC1733 /* Array+Remove.swift in Sources */,
 				8F035ED31EEEDEB200E597A0 /* FilePickerDelegate.swift in Sources */,
 				8F9E9FA91ECEFBE5004F5CD1 /* NewChatViewController.swift in Sources */,
@@ -750,6 +790,8 @@
 				143936471F5E7564000D38DE /* Events.swift in Sources */,
 				143936481F5E7564000D38DE /* UIColor+Extensions.swift in Sources */,
 				143936491F5E7564000D38DE /* UIViewController+UIAlertRepresentable.swift in Sources */,
+				8F6CFFCA1F856DC600B07AA7 /* CompletionsView.swift in Sources */,
+				8F5E69CA1F87839D008A95E3 /* RemotesManager.swift in Sources */,
 				1439364A1F5E7564000D38DE /* Constants.swift in Sources */,
 				1439364B1F5E7564000D38DE /* Error.swift in Sources */,
 				1439364C1F5E7564000D38DE /* ChatViewController.swift in Sources */,
@@ -760,6 +802,7 @@
 				143936511F5E7564000D38DE /* String+Localized.swift in Sources */,
 				143936521F5E7564000D38DE /* NotificationName+Extensions.swift in Sources */,
 				143936531F5E7564000D38DE /* ConnectionTabBarController.swift in Sources */,
+				8F5E69C71F8635A4008A95E3 /* Remote.swift in Sources */,
 				143936541F5E7564000D38DE /* Array+Remove.swift in Sources */,
 				143936551F5E7564000D38DE /* FilePickerDelegate.swift in Sources */,
 				143936561F5E7564000D38DE /* NewChatViewController.swift in Sources */,
@@ -903,7 +946,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/Supporting/MetaCom-iOS.entitlements";
 				DEVELOPMENT_TEAM = Q5WSPT927E;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -928,7 +971,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/Supporting/MetaCom-iOS.entitlements";
 				DEVELOPMENT_TEAM = Q5WSPT927E;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -954,7 +997,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/Supporting/MetaCom-iOS.entitlements";
 				DEVELOPMENT_TEAM = Q5WSPT927E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -978,7 +1021,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/MetaCom-iOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "MetaCom-iOS/Supporting/MetaCom-iOS.entitlements";
 				DEVELOPMENT_TEAM = Q5WSPT927E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
