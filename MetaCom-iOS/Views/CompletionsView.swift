@@ -96,6 +96,7 @@ class CompletionsView: UIView {
 			return
 		}
 		
+		collectionView.collectionViewLayout.invalidateLayout()
 		collectionView.layoutIfNeeded()
 		
 		let containerWidth = collectionView.bounds.width
