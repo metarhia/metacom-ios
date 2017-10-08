@@ -273,6 +273,7 @@ enum UIAlerts: UIAlertRepresentable {
 				textField.placeholder = "file_code".localized
 				textField.returnKeyType = .done
 				textField.enablesReturnKeyAutomatically = true
+				textField.clearButtonMode = .whileEditing
 				textField.delegate = delegate
 				textField.addAction(for: .editingChanged) { [weak textField, weak load] in
 					load?.isEnabled = textField?.text?.isEmpty == false
