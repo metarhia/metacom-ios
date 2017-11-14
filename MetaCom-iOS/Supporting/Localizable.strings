@@ -26,10 +26,18 @@
 		"err_generic" = "Something gone wrong...";
 		"leave_chat" = "Leave Chat";
 		"leave_chat_desc" = "Leaving the chat will cause losing conversation history";
+		"leave_chat_confirmation" = "Leave";
+		"leave_chat_confirmation_with_export" = "Export and leave";
 		"leave_server" = "Leave Server";
 		"leave_server_desc" = "Leaving the server will cause aborting all current file transitions";
 		"upload_desc" = "Your file was uploaded. The code is %1$@";
 		"download_desc" = "Enter download code:";
 		"link_server_installation_guide" = "https://github.com/metarhia/server/blob/master/README.md";
 		"no_avilable_completions" = "No available completions";
+		
+		"chat_dump_system_message_format" = "--- %@ ---";
+		"chat_dump_incoming_message_format" = "Other: %@";
+		"chat_dump_outgoing_message_format" = "Me: %@";
+		"chat_dump_message_serialization_faild" = "Message serialization failed";
+		"chat_dump_file_tranfer" = "File transfer";
 }

@@ -47,6 +47,14 @@ private class ChatMessage: JSQMessage {
 	var isSystem: Bool {
 		return senderId == ChatConstants.systemSenderId
 	}
+	
+	var isIncoming: Bool {
+		return senderId == ChatConstants.incomingSenderId
+	}
+	
+	var isOutgoing: Bool {
+		return senderId == ChatConstants.outgoingSenderId
+	}
 }
 
 private extension Message {
@@ -171,12 +179,95 @@ class ChatViewController: JSQMessagesViewController {
 	@IBAction func closeChat() {
 		
 		let confirmationHandler: (() -> ())? = { [weak self] in
-			
 			self?.chat = nil
 			self?.performSegue(withIdentifier: "closeChat", sender: nil)
 		}
 		
-		self.present(alert: UIAlerts.leavingChat(confirm: confirmationHandler, deny: nil), animated: true)
+		let confirmationWithExportHandler: (() -> ())? = { [weak self] in
+			self?.exportChat() {
+				confirmationHandler?()
+			}
+		}
+		
+		self.present(alert: UIAlerts.leavingChat(confirm: confirmationHandler, exportAndConfirm: confirmationWithExportHandler, deny: nil), animated: true)
+	}
+	
+	// MARK: - Chat exporting
+		
+	@IBOutlet weak var exportButton: UIBarButtonItem!
+	
+	@IBAction private func exportChat() {
+		exportChat(completion: { })
+	}
+	
+	private func exportChat(completion: @escaping () -> ()) {
+		guard let chat = chat else {
+			return
+		}
+		
+		guard let path = UIKit.FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+			self.present(alert: UIErrors.genericError, animated: true)
+			return
+		}
+		
+		let fileURL = path.appendingPathComponent(chat.name).appendingPathExtension("txt")
+		
+		exportButton.isEnabled = false
+		
+		DispatchQueue.global().async { [weak self] in
+			guard (try? self?.dumpChat().write(to: fileURL, atomically: false, encoding: .utf8)) != nil else {
+				DispatchQueue.main.async {
+					self?.present(alert: UIErrors.genericError, animated: true)
+				}
+				return
+			}
+			
+			let share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+			share.completionWithItemsHandler = { _ in
+				try? UIKit.FileManager.default.removeItem(at: fileURL)
+				DispatchQueue.main.async {
+					completion()
+				}
+			}
+			
+			DispatchQueue.main.async {
+				self?.exportButton?.isEnabled = true
+				
+				if let popover = share.popoverPresentationController {
+					popover.barButtonItem = self?.navigationItem.leftBarButtonItem
+					popover.permittedArrowDirections = .up
+				}
+				
+				self?.present(share, animated: true)
+			}
+		}
+	}
+	
+	private func dumpChat() -> String {
+		var dump = ""
+		for chatMessage in messages {
+			let format: String
+			let text: String
+			if chatMessage.isSystem {
+				format = "chat_dump_system_message_format".localized
+				text = chatMessage.text
+			} else {
+				format = (chatMessage.isIncoming ? "chat_dump_incoming_message_format" : "chat_dump_outgoing_message_format").localized
+				if let message = chatMessage.message {
+					switch message.content {
+					case .text(let content):
+						text = content
+					case .file, .fileURL:
+						text = "chat_dump_file_tranfer".localized
+					}
+				} else {
+					text = "chat_dump_message_serialization_faild".localized
+				}
+			}
+			dump += (dump.isEmpty ? "" : "\n") + String(format: format, text)
+		}
+		
+		return dump
 	}
 	
 	// MARK: - Sending / receiving messages

@@ -33,6 +33,8 @@ private enum Actions: UIAlertActionRepresentable {
 	case confirm(withBlock: (() -> ())?)
 	case cancel(withBlock: (() -> ())?)
 	
+	case generic(withTitle: String, style: UIAlertActionStyle, block: (() -> ())?)
+	
 	var alertAction: UIAlertAction {
 		
 		switch self {
@@ -51,6 +53,11 @@ private enum Actions: UIAlertActionRepresentable {
 			
 		case .cancel(withBlock: let block):
 			return UIAlertAction(title: "cancel".localized, style: .cancel) { _ in
+				block?()
+			}
+			
+		case .generic(withTitle: let title, style: let style, block: let block):
+			return UIAlertAction(title: title, style: style) { _ in
 				block?()
 			}
 		}
@@ -213,7 +220,7 @@ enum UIErrors: UIAlertRepresentable {
 
 enum UIAlerts: UIAlertRepresentable {
 	
-	case leavingChat(confirm: (() -> ())?, deny: (() -> ())?)
+	case leavingChat(confirm: (() -> ())?, exportAndConfirm: (() -> ())?, deny: (() -> ())?)
 	case leavingServer(confirm: (() -> ())?, deny: (() -> ())?)
 	
 	case uploaded(withCode: String)
@@ -229,11 +236,14 @@ enum UIAlerts: UIAlertRepresentable {
 	var alertController: UIAlertController {
 		
 		switch self {
-		case .leavingChat(confirm: let confirmation, deny: let denial):
+		case .leavingChat(confirm: let confirmation, exportAndConfirm: let confirmationWithExport, deny: let denial):
 			return alertController(
 				entitled: "leave_chat".localized,
 				message: "leave_chat_desc".localized,
-				actions: Actions.confirm(withBlock: confirmation).alertAction, Actions.cancel(withBlock: denial).alertAction
+				actions:
+					Actions.generic(withTitle: "leave_chat_confirmation".localized, style: .default, block: confirmation).alertAction,
+					Actions.generic(withTitle: "leave_chat_confirmation_with_export".localized, style: .default, block: confirmationWithExport).alertAction,
+					Actions.cancel(withBlock: denial).alertAction
 			)
 			
 		case .leavingServer(confirm: let confirmation, deny: let denial):
