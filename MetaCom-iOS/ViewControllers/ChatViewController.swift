@@ -184,8 +184,10 @@ class ChatViewController: JSQMessagesViewController {
 		}
 		
 		let confirmationWithExportHandler: (() -> ())? = { [weak self] in
-			self?.exportChat() {
-				confirmationHandler?()
+			self?.exportChat() { exported in
+				if exported {
+					confirmationHandler?()
+				}
 			}
 		}
 		
@@ -197,10 +199,10 @@ class ChatViewController: JSQMessagesViewController {
 	@IBOutlet weak var exportButton: UIBarButtonItem!
 	
 	@IBAction private func exportChat() {
-		exportChat(completion: { })
+		exportChat(completion: { _ in })
 	}
 	
-	private func exportChat(completion: @escaping () -> ()) {
+	private func exportChat(completion: @escaping (Bool) -> ()) {
 		guard let chat = chat else {
 			return
 		}
@@ -223,10 +225,10 @@ class ChatViewController: JSQMessagesViewController {
 			}
 			
 			let share = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
-			share.completionWithItemsHandler = { _ in
+			share.completionWithItemsHandler = { _, completed, _, _ in
 				try? UIKit.FileManager.default.removeItem(at: fileURL)
 				DispatchQueue.main.async {
-					completion()
+					completion(completed)
 				}
 			}
 			
